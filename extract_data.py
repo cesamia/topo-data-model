@@ -8,6 +8,28 @@ from pathlib import Path
 HTML_FILE = "schema_harmonization_pretty_json.html"
 DB_FILE = "db/schemas.db"
 
+HGDB_CLASSES = [
+    "AerofacA",  "AerofacP",  "AquedctC",  "AquedctL",  "BarrierL",
+    "BluffL",    "BndvoidA",  "BridgeC",   "BridgeL",   "BuildA",
+    "BuildL",    "BuildP",    "BuiltupA",  "CoastA",    "CoastL",
+    "CommP",     "ContourL",  "CropA",     "CulvertC",  "DamA",
+    "DamC",      "DamL",      "DangerA",   "DangerL",   "DangerP",
+    "DepthL",    "DisposeA",  "ElevP",     "EmbankA",   "EmbankL",
+    "ExtractA",  "ExtractP",  "FerryL",    "FordC",     "FordL",
+    "FortA",     "FortP",     "GrassA",    "GroundA",   "HarborP",
+    "InterL",    "LakeresA",  "LandfrmL",  "LandfrmP",  "LandmrkA",
+    "LandmrkL",  "LandmrkP",  "LiftL",     "Lndfrm2A",  "LockA",
+    "MarkersP",  "MisaeroP",  "MiscL",     "MtnP",      "NamedLocP",
+    "OrchardA",  "PierA",     "PierL",     "PipeL",     "PolbndA",
+    "PolbndL",   "PolbndP",   "PowerA",    "PowerL",    "PowerP",
+    "RailrdL",   "RapidsC",   "RigwellP",  "RoadL",     "RouteP",
+    "RuinsA",    "RuinsP",    "RunwayA",   "SeastrtA",  "SeastrtL",
+    "SportA",    "StorageA",  "StorageP",  "SubstatA",  "SubstatP",
+    "SwampA",    "ThermalP",  "TlmhydroP", "TlmutilP",  "TrackL",
+    "TrailL",    "TreatA",    "TreesA",    "TreesP",    "TunnelC",
+    "TunnelL",   "WatrcrsA",  "WatrcrsL",  "WellsprP",
+]
+
 SCHEMA = """
 CREATE TABLE feature_classes (
     id             INTEGER PRIMARY KEY,
@@ -163,6 +185,14 @@ def populate(conn: sqlite3.Connection, fc_data: dict, alias_index: dict, lists: 
                     "INSERT INTO fc_membership(fc_id, scale, display_name) VALUES(?, ?, ?)",
                     (fid, scale, display_name),
                 )
+
+    for name in HGDB_CLASSES:
+        fid = fc_ids.get(name)
+        if fid:
+            conn.execute(
+                "INSERT INTO fc_membership(fc_id, scale, display_name) VALUES(?, 'hdm', ?)",
+                (fid, name),
+            )
 
     conn.commit()
 

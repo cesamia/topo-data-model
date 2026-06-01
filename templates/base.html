@@ -28,7 +28,7 @@
       <div class="text-uppercase fw-bold text-secondary mb-2" style="font-size:10px;letter-spacing:.8px">Feature Classes</div>
       <!-- Scale toggle -->
       <div class="btn-group w-100 mb-2" role="group">
-        <button class="btn btn-sm btn-outline-secondary active" data-scale="all" onclick="setScale('all',this)">All</button>
+        <button class="btn btn-sm btn-outline-secondary active" data-scale="hdm" onclick="setScale('hdm',this)">HDM</button>
         <button class="btn btn-sm btn-outline-secondary" data-scale="10k"  onclick="setScale('10k',this)">10k</button>
         <button class="btn btn-sm btn-outline-secondary" data-scale="50k"  onclick="setScale('50k',this)">50k</button>
       </div>
@@ -46,13 +46,13 @@
     </div>
     <!-- FC list -->
     <nav class="fc-list overflow-y-auto flex-grow-1">
-      {% for fc in fc_list %}
-      <a href="{{ static_prefix }}fc/{{ fc.canonical_name }}.html"
-         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark{% if active == fc.canonical_name %} fc-item-active{% endif %}"
-         data-name="{{ fc.canonical_name.lower() }}"
-         data-scales="{{ fc.scales | join(' ') }}">
-        <span class="badge-sh badge-{{ fc.badge }} flex-shrink-0">{{ fc.badge | badge_label }}</span>
-        <span class="text-truncate" style="font-size:12.5px">{{ fc.canonical_name }}</span>
+      {% for item in sidebar_items %}
+      <a href="{{ static_prefix }}fc/{{ item.canonical_name }}.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark{% if active == item.canonical_name %} fc-item-active{% endif %}"
+         data-name="{{ item.display_name.lower() }}"
+         data-list="{{ item.scale }}">
+        <span class="badge-sh badge-{{ item.display_badge }} flex-shrink-0">{{ item.display_badge | badge_label }}</span>
+        <span class="text-truncate" style="font-size:12.5px">{{ item.display_name }}</span>
       </a>
       {% endfor %}
     </nav>
@@ -65,7 +65,7 @@
 </div>
 
 <script>
-  let activeScale = 'all';
+  let activeScale = 'hdm';
 
   function setScale(scale, btn) {
     activeScale = scale;
@@ -78,7 +78,7 @@
     const q = document.getElementById('searchInput').value.toLowerCase();
     let vis = 0;
     document.querySelectorAll('.fc-item').forEach(el => {
-      const matchScale = activeScale === 'all' || (el.dataset.scales || '').split(' ').includes(activeScale);
+      const matchScale = el.dataset.list === activeScale;
       const matchSearch = !q || (el.dataset.name || '').includes(q);
       const show = matchScale && matchSearch;
       el.classList.toggle('d-none', !show);

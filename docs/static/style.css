@@ -38,6 +38,9 @@
 .badge-Modified  { background: #e8f0fd; color: #2563a8; border-color: #c6d8f5; }
 .badge-Removed   { background: #fde8e8; color: #c0392b; border-color: #f5c6c6; }
 .badge-Added     { background: #f0fae8; color: #4a7c1e; border-color: #d0e8b8; }
+/* 10k / 50k sidebar badges */
+.badge-Mapped    { background: #e0f7fa; color: #00695c; border-color: #80cbc4; }
+.badge-Deleted   { background: #fde8e8; color: #c0392b; border-color: #f5c6c6; }
 
 /* ── Action chips ───────────────────────────────────────────── */
 .ac {

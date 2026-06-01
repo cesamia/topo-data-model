@@ -44,23 +44,65 @@ def format_date(d: str | None) -> str:
 
 
 def badge_label(badge: str) -> str:
-    return {"Removed": "DEL", "Modified": "MOD", "Added": "ADD"}.get(badge, "RET")
+    return {
+        "Modified": "MOD",
+        "Added":    "ADD",
+        "Removed":  "REM",
+        "Deleted":  "DEL",
+        "Mapped":   "MAP",
+    }.get(badge, "RET")
 
 
 # ── Queries ───────────────────────────────────────────────────────────────────
 
-def get_fc_list(conn: sqlite3.Connection) -> list[dict]:
-    rows = conn.execute(
-        "SELECT id, canonical_name, badge FROM feature_classes ORDER BY canonical_name"
-    ).fetchall()
-    result = []
-    for r in rows:
-        scales = [s[0] for s in conn.execute(
-            "SELECT DISTINCT scale FROM fc_membership WHERE fc_id=?", (r["id"],)
-        ).fetchall()]
-        result.append({"id": r["id"], "canonical_name": r["canonical_name"],
-                       "badge": r["badge"], "scales": scales})
-    return result
+def get_sidebar_items(conn: sqlite3.Connection) -> list[dict]:
+    """Flat sidebar list ordered HDM → 10k → 50k.
+
+    HDM items show the harmonised badge (Retained/Modified/Added).
+    10k/50k items show Mapped (FC exists in HDM) or Deleted (not in HDM),
+    but always link to the canonical HDM detail page.
+    """
+    hdm_set = {
+        r["canonical_name"]
+        for r in conn.execute(
+            """
+            SELECT fc.canonical_name
+              FROM fc_membership m
+              JOIN feature_classes fc ON fc.id = m.fc_id
+             WHERE m.scale = 'hdm'
+            """
+        ).fetchall()
+    }
+
+    items = []
+    for scale in ("hdm", "10k", "50k"):
+        rows = conn.execute(
+            """
+            SELECT fc.canonical_name, fc.badge, m.display_name
+              FROM fc_membership m
+              JOIN feature_classes fc ON fc.id = m.fc_id
+             WHERE m.scale = ?
+             ORDER BY m.display_name COLLATE NOCASE
+            """,
+            (scale,),
+        ).fetchall()
+        for r in rows:
+            if scale == "hdm":
+                display_badge = r["badge"]          # Retained / Modified / Added
+            else:
+                display_badge = (
+                    "Mapped" if r["canonical_name"] in hdm_set else "Deleted"
+                )
+            items.append(
+                {
+                    "canonical_name": r["canonical_name"],
+                    "display_name":   r["display_name"],
+                    "badge":          r["badge"],        # raw DB badge
+                    "display_badge":  display_badge,     # shown in sidebar
+                    "scale":          scale,
+                }
+            )
+    return items
 
 
 def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
@@ -120,20 +162,21 @@ def main():
     (OUT_DIR / "fc").mkdir(parents=True, exist_ok=True)
     (OUT_DIR / "static").mkdir(parents=True, exist_ok=True)
 
-    fc_list = get_fc_list(conn)
+    sidebar_items = get_sidebar_items(conn)
 
+    all_badges = conn.execute("SELECT badge FROM feature_classes").fetchall()
     counts = {
-        "total":    len(fc_list),
-        "retained": sum(1 for f in fc_list if f["badge"] == "Retained"),
-        "modified": sum(1 for f in fc_list if f["badge"] == "Modified"),
-        "removed":  sum(1 for f in fc_list if f["badge"] == "Removed"),
-        "added":    sum(1 for f in fc_list if f["badge"] == "Added"),
+        "total":    len(all_badges),
+        "retained": sum(1 for r in all_badges if r["badge"] == "Retained"),
+        "modified": sum(1 for r in all_badges if r["badge"] == "Modified"),
+        "removed":  sum(1 for r in all_badges if r["badge"] == "Removed"),
+        "added":    sum(1 for r in all_badges if r["badge"] == "Added"),
     }
 
     # index.html
     tmpl = env.get_template("index.html")
     (OUT_DIR / "index.html").write_text(
-        tmpl.render(fc_list=fc_list, counts=counts, active=None, static_prefix=""),
+        tmpl.render(sidebar_items=sidebar_items, counts=counts, active=None, static_prefix=""),
         encoding="utf-8",
     )
     print("Built index.html")
@@ -147,7 +190,7 @@ def main():
         fc = get_fc_detail(conn, fc_row)
         safe = fc["canonical_name"].replace("/", "_")
         html = detail_tmpl.render(
-            fc=fc, fc_list=fc_list,
+            fc=fc, sidebar_items=sidebar_items,
             active=fc["canonical_name"],
             static_prefix="../",
         )
