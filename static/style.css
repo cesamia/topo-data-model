@@ -13,13 +13,17 @@
 .fc-list { padding: 4px 0; }
 
 .fc-item {
+  display: flex !important;
+  align-items: center;
+  gap: 0.5rem;
   border-left: 3px solid transparent;
   font-size: 12.5px;
   color: #3a4c60;
   transition: background .12s, border-color .12s;
 }
-.fc-item:hover  { background: #eef4fb; color: #1a3a5c; }
-.fc-item-active { background: #e3f0fb; border-left-color: #2e7d9e; color: #1a3a5c; font-weight: 600; }
+.fc-item.fc-hidden { display: none !important; }
+.fc-item:hover      { background: #eef4fb; color: #1a3a5c; }
+.fc-item-active     { background: #e3f0fb; border-left-color: #2e7d9e; color: #1a3a5c; font-weight: 600; }
 
 /* ── Status badges ──────────────────────────────────────────── */
 .badge-sh {
