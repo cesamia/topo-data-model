@@ -39,11 +39,11 @@
     </div>
     <!-- Legend — clickable badge filters -->
     <div class="d-flex align-items-center gap-1 px-2 py-1 border-bottom bg-light flex-wrap">
-      <span class="leg-hdm badge-sh badge-Retained sb-badge-btn" onclick="toggleBadge('Retained',this)" title="Retained">RET</span>
-      <span class="leg-hdm badge-sh badge-Modified sb-badge-btn" onclick="toggleBadge('Modified',this)" title="Modified">MOD</span>
-      <span class="leg-hdm badge-sh badge-Added    sb-badge-btn" onclick="toggleBadge('Added',this)"    title="Added">ADD</span>
-      <span class="leg-src badge-sh badge-Mapped   sb-badge-btn d-none" onclick="toggleBadge('Mapped',this)"  title="Mapped to HDM">MAP</span>
-      <span class="leg-src badge-sh badge-Deleted  sb-badge-btn d-none" onclick="toggleBadge('Deleted',this)" title="Deleted from HDM">DEL</span>
+      <span class="leg-hdm badge-sh badge-Retained sb-badge-btn" data-badge="Retained" onclick="toggleBadge('Retained',this)" title="Retained">RET</span>
+      <span class="leg-hdm badge-sh badge-Modified sb-badge-btn" data-badge="Modified" onclick="toggleBadge('Modified',this)" title="Modified">MOD</span>
+      <span class="leg-hdm badge-sh badge-Added    sb-badge-btn" data-badge="Added"    onclick="toggleBadge('Added',this)"    title="Added">ADD</span>
+      <span class="leg-src badge-sh badge-Mapped   sb-badge-btn d-none" data-badge="Mapped"  onclick="toggleBadge('Mapped',this)"  title="Mapped to HDM">MAP</span>
+      <span class="leg-src badge-sh badge-Deleted  sb-badge-btn d-none" data-badge="Deleted" onclick="toggleBadge('Deleted',this)" title="Deleted from HDM">DEL</span>
       <span id="badgeReset" class="d-none ms-auto sb-reset" onclick="resetBadge()" title="Clear filter">✕</span>
     </div>
     <!-- FC list -->
@@ -3110,12 +3110,14 @@ function domFilter(btn, status) {
 </div>
 
 <script>
-  let activeScale = 'hdm';
-  let activeBadge = null;
+  let activeScale = sessionStorage.getItem('sb_scale') || 'hdm';
+  let activeBadge = sessionStorage.getItem('sb_badge') || null;
 
   function setScale(scale, btn) {
     activeScale = scale;
     activeBadge = null;
+    sessionStorage.setItem('sb_scale', scale);
+    sessionStorage.removeItem('sb_badge');
     document.querySelectorAll('[data-scale]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const isHdm = scale === 'hdm';
@@ -3129,10 +3131,12 @@ function domFilter(btn, status) {
   function toggleBadge(badge, el) {
     if (activeBadge === badge) {
       activeBadge = null;
+      sessionStorage.removeItem('sb_badge');
       el.classList.remove('sb-badge-active');
       document.getElementById('badgeReset').classList.add('d-none');
     } else {
       activeBadge = badge;
+      sessionStorage.setItem('sb_badge', badge);
       document.querySelectorAll('.sb-badge-btn').forEach(b => b.classList.remove('sb-badge-active'));
       el.classList.add('sb-badge-active');
       document.getElementById('badgeReset').classList.remove('d-none');
@@ -3142,6 +3146,7 @@ function domFilter(btn, status) {
 
   function resetBadge() {
     activeBadge = null;
+    sessionStorage.removeItem('sb_badge');
     document.querySelectorAll('.sb-badge-btn').forEach(b => b.classList.remove('sb-badge-active'));
     document.getElementById('badgeReset').classList.add('d-none');
     applyFilter();
@@ -3161,7 +3166,21 @@ function domFilter(btn, status) {
     document.getElementById('fcCount').textContent = vis + ' feature classes';
   }
 
-  applyFilter();
+  // Restore UI state on load
+  (function restoreState() {
+    const isHdm = activeScale === 'hdm';
+    document.querySelectorAll('[data-scale]').forEach(b =>
+      b.classList.toggle('active', b.dataset.scale === activeScale));
+    document.querySelectorAll('.leg-hdm').forEach(el => el.classList.toggle('d-none', !isHdm));
+    document.querySelectorAll('.leg-src').forEach(el => el.classList.toggle('d-none', isHdm));
+    if (activeBadge) {
+      document.querySelectorAll('.sb-badge-btn').forEach(b => {
+        if (b.dataset.badge === activeBadge) b.classList.add('sb-badge-active');
+      });
+      document.getElementById('badgeReset').classList.remove('d-none');
+    }
+    applyFilter();
+  })();
 </script>
 </body>
 </html>
