@@ -50,7 +50,7 @@
     <nav class="fc-list overflow-y-auto flex-grow-1">
       {% for item in sidebar_items %}
       <a href="{{ static_prefix }}fc/{{ item.canonical_name }}.html"
-         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark{% if active == item.canonical_name %} fc-item-active{% endif %}"
+         class="fc-item d-none d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark{% if active == item.canonical_name %} fc-item-active{% endif %}"
          data-name="{{ item.display_name.lower() }}"
          data-list="{{ item.scale }}"
          data-badge="{{ item.display_badge }}">
@@ -138,6 +138,8 @@
       document.getElementById('badgeReset').classList.remove('d-none');
     }
     applyFilter();
+    const active = document.querySelector('.fc-item-active:not(.d-none)');
+    if (active) active.scrollIntoView({ block: 'nearest' });
   })();
 </script>
 </body>
