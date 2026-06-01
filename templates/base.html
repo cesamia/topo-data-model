@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{% block title %}Schema Harmonization{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="{{ static_prefix }}static/style.css"/>
+</head>
+<body class="d-flex flex-column vh-100 overflow-hidden bg-light">
+
+<!-- Header -->
+<header class="sh-header d-flex align-items-center px-3 flex-shrink-0">
+  <a href="{{ static_prefix }}index.html" class="text-white text-decoration-none fw-semibold me-2">
+    Schema Harmonization
+  </a>
+  <span class="text-secondary me-2">|</span>
+  <span class="sh-sub">10k / 50k Topographic Datasets</span>
+  <span class="badge bg-secondary ms-auto fw-normal">Documentation</span>
+</header>
+
+<!-- Body layout -->
+<div class="d-flex flex-grow-1 overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="sh-sidebar d-flex flex-column border-end bg-white flex-shrink-0">
+    <div class="p-2 border-bottom bg-white">
+      <div class="text-uppercase fw-bold text-secondary mb-2" style="font-size:10px;letter-spacing:.8px">Feature Classes</div>
+      <!-- Scale toggle -->
+      <div class="btn-group w-100 mb-2" role="group">
+        <button class="btn btn-sm btn-outline-secondary active" data-scale="all" onclick="setScale('all',this)">All</button>
+        <button class="btn btn-sm btn-outline-secondary" data-scale="10k"  onclick="setScale('10k',this)">10k</button>
+        <button class="btn btn-sm btn-outline-secondary" data-scale="50k"  onclick="setScale('50k',this)">50k</button>
+      </div>
+      <!-- Search -->
+      <input id="searchInput" type="text" class="form-control form-control-sm"
+             placeholder="Search…" oninput="applyFilter()"/>
+      <div id="fcCount" class="text-muted mt-1" style="font-size:11px"></div>
+    </div>
+    <!-- Legend -->
+    <div class="d-flex gap-1 px-2 py-1 border-bottom bg-light flex-wrap">
+      <span class="badge-sh badge-Retained">RET</span>
+      <span class="badge-sh badge-Modified">MOD</span>
+      <span class="badge-sh badge-Removed">DEL</span>
+      <span class="badge-sh badge-Added">ADD</span>
+    </div>
+    <!-- FC list -->
+    <nav class="fc-list overflow-y-auto flex-grow-1">
+      {% for fc in fc_list %}
+      <a href="{{ static_prefix }}fc/{{ fc.canonical_name }}.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark{% if active == fc.canonical_name %} fc-item-active{% endif %}"
+         data-name="{{ fc.canonical_name.lower() }}"
+         data-scales="{{ fc.scales | join(' ') }}">
+        <span class="badge-sh badge-{{ fc.badge }} flex-shrink-0">{{ fc.badge | badge_label }}</span>
+        <span class="text-truncate" style="font-size:12.5px">{{ fc.canonical_name }}</span>
+      </a>
+      {% endfor %}
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-grow-1 overflow-y-auto p-3">
+    {% block content %}{% endblock %}
+  </main>
+</div>
+
+<script>
+  let activeScale = 'all';
+
+  function setScale(scale, btn) {
+    activeScale = scale;
+    document.querySelectorAll('[data-scale]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter();
+  }
+
+  function applyFilter() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    let vis = 0;
+    document.querySelectorAll('.fc-item').forEach(el => {
+      const matchScale = activeScale === 'all' || (el.dataset.scales || '').split(' ').includes(activeScale);
+      const matchSearch = !q || (el.dataset.name || '').includes(q);
+      const show = matchScale && matchSearch;
+      el.classList.toggle('d-none', !show);
+      if (show) vis++;
+    });
+    document.getElementById('fcCount').textContent = vis + ' feature classes';
+  }
+
+  applyFilter();
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Overview — Schema Harmonization{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-center align-items-center h-100">
+  <div class="card shadow-sm" style="max-width:520px;width:100%">
+    <div class="card-body p-4">
+      <h4 class="fw-bold text-dark mb-1">Schema Harmonization</h4>
+      <p class="text-muted mb-4" style="font-size:13px">10k / 50k Topographic Dataset Comparison</p>
+
+      <div class="row g-2 mb-4">
+        <div class="col-6 col-sm-4">
+          <div class="card text-center border-0 bg-light py-2">
+            <div class="fs-4 fw-bold">{{ counts.total }}</div>
+            <div class="text-muted" style="font-size:11px">Feature Classes</div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4">
+          <div class="card text-center border-0 py-2" style="background:#e8f5ee">
+            <div class="fs-4 fw-bold text-success">{{ counts.retained }}</div>
+            <div class="text-muted" style="font-size:11px">Retained</div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4">
+          <div class="card text-center border-0 py-2" style="background:#e8f0fd">
+            <div class="fs-4 fw-bold" style="color:#2563a8">{{ counts.modified }}</div>
+            <div class="text-muted" style="font-size:11px">Modified</div>
+          </div>
+        </div>
+        <div class="col-6 col-sm-4">
+          <div class="card text-center border-0 py-2" style="background:#fde8e8">
+            <div class="fs-4 fw-bold text-danger">{{ counts.removed }}</div>
+            <div class="text-muted" style="font-size:11px">Removed</div>
+          </div>
+        </div>
+        {% if counts.added %}
+        <div class="col-6 col-sm-4">
+          <div class="card text-center border-0 py-2" style="background:#f0fae8">
+            <div class="fs-4 fw-bold" style="color:#4a7c1e">{{ counts.added }}</div>
+            <div class="text-muted" style="font-size:11px">Added</div>
+          </div>
+        </div>
+        {% endif %}
+      </div>
+
+      <p class="text-muted mb-0" style="font-size:12.5px">
+        ← Select a feature class from the sidebar to view its harmonization details, subtypes, domain comparisons, and changelog.
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

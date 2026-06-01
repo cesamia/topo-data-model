@@ -1,0 +1,3311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuildA — Schema Harmonization</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="../static/style.css"/>
+</head>
+<body class="d-flex flex-column vh-100 overflow-hidden bg-light">
+
+<!-- Header -->
+<header class="sh-header d-flex align-items-center px-3 flex-shrink-0">
+  <a href="../index.html" class="text-white text-decoration-none fw-semibold me-2">
+    Schema Harmonization
+  </a>
+  <span class="text-secondary me-2">|</span>
+  <span class="sh-sub">10k / 50k Topographic Datasets</span>
+  <span class="badge bg-secondary ms-auto fw-normal">Documentation</span>
+</header>
+
+<!-- Body layout -->
+<div class="d-flex flex-grow-1 overflow-hidden">
+
+  <!-- Sidebar -->
+  <aside class="sh-sidebar d-flex flex-column border-end bg-white flex-shrink-0">
+    <div class="p-2 border-bottom bg-white">
+      <div class="text-uppercase fw-bold text-secondary mb-2" style="font-size:10px;letter-spacing:.8px">Feature Classes</div>
+      <!-- Scale toggle -->
+      <div class="btn-group w-100 mb-2" role="group">
+        <button class="btn btn-sm btn-outline-secondary active" data-scale="all" onclick="setScale('all',this)">All</button>
+        <button class="btn btn-sm btn-outline-secondary" data-scale="10k"  onclick="setScale('10k',this)">10k</button>
+        <button class="btn btn-sm btn-outline-secondary" data-scale="50k"  onclick="setScale('50k',this)">50k</button>
+      </div>
+      <!-- Search -->
+      <input id="searchInput" type="text" class="form-control form-control-sm"
+             placeholder="Search…" oninput="applyFilter()"/>
+      <div id="fcCount" class="text-muted mt-1" style="font-size:11px"></div>
+    </div>
+    <!-- Legend -->
+    <div class="d-flex gap-1 px-2 py-1 border-bottom bg-light flex-wrap">
+      <span class="badge-sh badge-Retained">RET</span>
+      <span class="badge-sh badge-Modified">MOD</span>
+      <span class="badge-sh badge-Removed">DEL</span>
+      <span class="badge-sh badge-Added">ADD</span>
+    </div>
+    <!-- FC list -->
+    <nav class="fc-list overflow-y-auto flex-grow-1">
+      
+      <a href="../fc/AerofacA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="aerofaca"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">AerofacA</span>
+      </a>
+      
+      <a href="../fc/AerofacP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="aerofacp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">AerofacP</span>
+      </a>
+      
+      <a href="../fc/AgristrA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="agristra"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">AgristrA</span>
+      </a>
+      
+      <a href="../fc/AgristrP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="agristrp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">AgristrP</span>
+      </a>
+      
+      <a href="../fc/Alley_L.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="alley_l"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">Alley_L</span>
+      </a>
+      
+      <a href="../fc/AquedctC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="aquedctc"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">AquedctC</span>
+      </a>
+      
+      <a href="../fc/AquedctL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="aquedctl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">AquedctL</span>
+      </a>
+      
+      <a href="../fc/AsphaltA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="asphalta"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">AsphaltA</span>
+      </a>
+      
+      <a href="../fc/BarrierL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="barrierl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">BarrierL</span>
+      </a>
+      
+      <a href="../fc/BluffL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="bluffl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">BluffL</span>
+      </a>
+      
+      <a href="../fc/BndvoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="bndvoida"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">BndvoidA</span>
+      </a>
+      
+      <a href="../fc/BridgeC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="bridgec"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">BridgeC</span>
+      </a>
+      
+      <a href="../fc/BridgeL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="bridgel"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">BridgeL</span>
+      </a>
+      
+      <a href="../fc/BuildA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark fc-item-active"
+         data-name="builda"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">BuildA</span>
+      </a>
+      
+      <a href="../fc/BuildL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="buildl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">BuildL</span>
+      </a>
+      
+      <a href="../fc/BuildP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="buildp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">BuildP</span>
+      </a>
+      
+      <a href="../fc/BuiltupA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="builtupa"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">BuiltupA</span>
+      </a>
+      
+      <a href="../fc/CisternP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="cisternp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">CisternP</span>
+      </a>
+      
+      <a href="../fc/CoastA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="coasta"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">CoastA</span>
+      </a>
+      
+      <a href="../fc/CoastL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="coastl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">CoastL</span>
+      </a>
+      
+      <a href="../fc/CommA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="comma"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">CommA</span>
+      </a>
+      
+      <a href="../fc/CommP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="commp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">CommP</span>
+      </a>
+      
+      <a href="../fc/ComplexOutline_A.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="complexoutline_a"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">ComplexOutline_A</span>
+      </a>
+      
+      <a href="../fc/ContourL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="contourl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">ContourL</span>
+      </a>
+      
+      <a href="../fc/CropA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="cropa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">CropA</span>
+      </a>
+      
+      <a href="../fc/CulvertC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="culvertc"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">CulvertC</span>
+      </a>
+      
+      <a href="../fc/DamA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="dama"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">DamA</span>
+      </a>
+      
+      <a href="../fc/DamC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="damc"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">DamC</span>
+      </a>
+      
+      <a href="../fc/DamL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="daml"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">DamL</span>
+      </a>
+      
+      <a href="../fc/DangerA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="dangera"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">DangerA</span>
+      </a>
+      
+      <a href="../fc/DangerL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="dangerl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">DangerL</span>
+      </a>
+      
+      <a href="../fc/DangerP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="dangerp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">DangerP</span>
+      </a>
+      
+      <a href="../fc/DepthL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="depthl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">DepthL</span>
+      </a>
+      
+      <a href="../fc/DisposeA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="disposea"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">DisposeA</span>
+      </a>
+      
+      <a href="../fc/ElevP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="elevp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">ElevP</span>
+      </a>
+      
+      <a href="../fc/ElevoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="elevoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">ElevoidA</span>
+      </a>
+      
+      <a href="../fc/EmbankA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="embanka"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">EmbankA</span>
+      </a>
+      
+      <a href="../fc/EmbankL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="embankl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">EmbankL</span>
+      </a>
+      
+      <a href="../fc/ExtractA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="extracta"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">ExtractA</span>
+      </a>
+      
+      <a href="../fc/ExtractP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="extractp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">ExtractP</span>
+      </a>
+      
+      <a href="../fc/FerryC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="ferryc"
+         data-scales="50k">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">FerryC</span>
+      </a>
+      
+      <a href="../fc/FerryL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="ferryl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">FerryL</span>
+      </a>
+      
+      <a href="../fc/FirebrkL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="firebrkl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">FirebrkL</span>
+      </a>
+      
+      <a href="../fc/FordC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="fordc"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">FordC</span>
+      </a>
+      
+      <a href="../fc/FordL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="fordl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">FordL</span>
+      </a>
+      
+      <a href="../fc/FortA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="forta"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">FortA</span>
+      </a>
+      
+      <a href="../fc/FortP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="fortp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">FortP</span>
+      </a>
+      
+      <a href="../fc/Fort_L.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="fort_l"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">Fort_L</span>
+      </a>
+      
+      <a href="../fc/GrassA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="grassa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">GrassA</span>
+      </a>
+      
+      <a href="../fc/GroundA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="grounda"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">GroundA</span>
+      </a>
+      
+      <a href="../fc/GroundTxt.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="groundtxt"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">GroundTxt</span>
+      </a>
+      
+      <a href="../fc/HarborA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="harbora"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">HarborA</span>
+      </a>
+      
+      <a href="../fc/HarborP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="harborp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">HarborP</span>
+      </a>
+      
+      <a href="../fc/HedgeL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="hedgel"
+         data-scales="50k">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">HedgeL</span>
+      </a>
+      
+      <a href="../fc/HydroP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="hydrop"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">HydroP</span>
+      </a>
+      
+      <a href="../fc/HydroTxt.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="hydrotxt"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">HydroTxt</span>
+      </a>
+      
+      <a href="../fc/HydvoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="hydvoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">HydvoidA</span>
+      </a>
+      
+      <a href="../fc/IndL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="indl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">IndL</span>
+      </a>
+      
+      <a href="../fc/IndvoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="indvoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">IndvoidA</span>
+      </a>
+      
+      <a href="../fc/InterL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="interl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">InterL</span>
+      </a>
+      
+      <a href="../fc/InundA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="inunda"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">InundA</span>
+      </a>
+      
+      <a href="../fc/LakeresA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="lakeresa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">LakeresA</span>
+      </a>
+      
+      <a href="../fc/LandfrmL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="landfrml"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">LandfrmL</span>
+      </a>
+      
+      <a href="../fc/LandfrmP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="landfrmp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">LandfrmP</span>
+      </a>
+      
+      <a href="../fc/LandmrkA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="landmrka"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">LandmrkA</span>
+      </a>
+      
+      <a href="../fc/LandmrkL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="landmrkl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">LandmrkL</span>
+      </a>
+      
+      <a href="../fc/LandmrkP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="landmrkp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">LandmrkP</span>
+      </a>
+      
+      <a href="../fc/LiftL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="liftl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">LiftL</span>
+      </a>
+      
+      <a href="../fc/Lndfrm1A.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="lndfrm1a"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">Lndfrm1A</span>
+      </a>
+      
+      <a href="../fc/Lndfrm2A.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="lndfrm2a"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">Lndfrm2A</span>
+      </a>
+      
+      <a href="../fc/LockA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="locka"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">LockA</span>
+      </a>
+      
+      <a href="../fc/MarkersP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="markersp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">MarkersP</span>
+      </a>
+      
+      <a href="../fc/MisaeroP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="misaerop"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">MisaeroP</span>
+      </a>
+      
+      <a href="../fc/MiscA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="misca"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">MiscA</span>
+      </a>
+      
+      <a href="../fc/MiscL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="miscl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">MiscL</span>
+      </a>
+      
+      <a href="../fc/MiscP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="miscp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">MiscP</span>
+      </a>
+      
+      <a href="../fc/MispopA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="mispopa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">MispopA</span>
+      </a>
+      
+      <a href="../fc/MispopP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="mispopp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">MispopP</span>
+      </a>
+      
+      <a href="../fc/MobileA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="mobilea"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">MobileA</span>
+      </a>
+      
+      <a href="../fc/MtnP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="mtnp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">MtnP</span>
+      </a>
+      
+      <a href="../fc/NamedLocP (previously GroundP).html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="namedlocp (previously groundp)"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">NamedLocP (previously GroundP)</span>
+      </a>
+      
+      <a href="../fc/NuclearA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="nucleara"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">NuclearA</span>
+      </a>
+      
+      <a href="../fc/ObstrP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="obstrp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">ObstrP</span>
+      </a>
+      
+      <a href="../fc/OrchardA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="orcharda"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">OrchardA</span>
+      </a>
+      
+      <a href="../fc/PhyvoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="phyvoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">PhyvoidA</span>
+      </a>
+      
+      <a href="../fc/PierA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="piera"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PierA</span>
+      </a>
+      
+      <a href="../fc/PierL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="pierl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">PierL</span>
+      </a>
+      
+      <a href="../fc/PipeL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="pipel"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PipeL</span>
+      </a>
+      
+      <a href="../fc/PlazaA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="plazaa"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">PlazaA</span>
+      </a>
+      
+      <a href="../fc/PolbndA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="polbnda"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PolbndA</span>
+      </a>
+      
+      <a href="../fc/PolbndL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="polbndl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PolbndL</span>
+      </a>
+      
+      <a href="../fc/PolbndP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="polbndp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">PolbndP</span>
+      </a>
+      
+      <a href="../fc/PopvoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="popvoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">PopvoidA</span>
+      </a>
+      
+      <a href="../fc/PowerA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="powera"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PowerA</span>
+      </a>
+      
+      <a href="../fc/PowerL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="powerl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PowerL</span>
+      </a>
+      
+      <a href="../fc/PowerP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="powerp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">PowerP</span>
+      </a>
+      
+      <a href="../fc/ProcessA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="processa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">ProcessA</span>
+      </a>
+      
+      <a href="../fc/ProcessP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="processp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">ProcessP</span>
+      </a>
+      
+      <a href="../fc/PumpingA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="pumpinga"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">PumpingA</span>
+      </a>
+      
+      <a href="../fc/PumpingP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="pumpingp"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">PumpingP</span>
+      </a>
+      
+      <a href="../fc/Quarry_A.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="quarry_a"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">Quarry_A</span>
+      </a>
+      
+      <a href="../fc/Quarry_P.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="quarry_p"
+         data-scales="10k 50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">Quarry_P</span>
+      </a>
+      
+      <a href="../fc/RailrdL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="railrdl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">RailrdL</span>
+      </a>
+      
+      <a href="../fc/RampL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rampl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">RampL</span>
+      </a>
+      
+      <a href="../fc/RapidsC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rapidsc"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">RapidsC</span>
+      </a>
+      
+      <a href="../fc/RapidsL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rapidsl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">RapidsL</span>
+      </a>
+      
+      <a href="../fc/RestA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="resta"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">RestA</span>
+      </a>
+      
+      <a href="../fc/RigwellP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rigwellp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">RigwellP</span>
+      </a>
+      
+      <a href="../fc/RoadL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="roadl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">RoadL</span>
+      </a>
+      
+      <a href="../fc/RouteP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="routep"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">RouteP</span>
+      </a>
+      
+      <a href="../fc/RrturnC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rrturnc"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">RrturnC</span>
+      </a>
+      
+      <a href="../fc/RryardA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rryarda"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">RryardA</span>
+      </a>
+      
+      <a href="../fc/RryardP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="rryardp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">RryardP</span>
+      </a>
+      
+      <a href="../fc/RuinsA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="ruinsa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">RuinsA</span>
+      </a>
+      
+      <a href="../fc/RuinsP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="ruinsp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">RuinsP</span>
+      </a>
+      
+      <a href="../fc/RunwayA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="runwaya"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">RunwayA</span>
+      </a>
+      
+      <a href="../fc/SeastrtA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="seastrta"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">SeastrtA</span>
+      </a>
+      
+      <a href="../fc/SeastrtL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="seastrtl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">SeastrtL</span>
+      </a>
+      
+      <a href="../fc/ShedC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="shedc"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">ShedC</span>
+      </a>
+      
+      <a href="../fc/ShedL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="shedl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">ShedL</span>
+      </a>
+      
+      <a href="../fc/SportA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="sporta"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">SportA</span>
+      </a>
+      
+      <a href="../fc/StoragA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="storaga"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">StoragA</span>
+      </a>
+      
+      <a href="../fc/StorageA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="storagea"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">StorageA</span>
+      </a>
+      
+      <a href="../fc/StorageP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="storagep"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">StorageP</span>
+      </a>
+      
+      <a href="../fc/SubstatA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="substata"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">SubstatA</span>
+      </a>
+      
+      <a href="../fc/SubstatP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="substatp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">SubstatP</span>
+      </a>
+      
+      <a href="../fc/SwampA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="swampa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">SwampA</span>
+      </a>
+      
+      <a href="../fc/TeethA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="teetha"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TeethA</span>
+      </a>
+      
+      <a href="../fc/TeethL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="teethl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TeethL</span>
+      </a>
+      
+      <a href="../fc/TeleL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="telel"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TeleL</span>
+      </a>
+      
+      <a href="../fc/ThermalP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="thermalp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">ThermalP</span>
+      </a>
+      
+      <a href="../fc/TlmBndL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmbndl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmBndL</span>
+      </a>
+      
+      <a href="../fc/TlmbndC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmbndc"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmbndC</span>
+      </a>
+      
+      <a href="../fc/TlmhydroA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmhydroa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmhydroA</span>
+      </a>
+      
+      <a href="../fc/TlmhydroC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmhydroc"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmhydroC</span>
+      </a>
+      
+      <a href="../fc/TlmhydroL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmhydrol"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmhydroL</span>
+      </a>
+      
+      <a href="../fc/TlmhydroP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmhydrop"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmhydroP</span>
+      </a>
+      
+      <a href="../fc/TlmindP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmindp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmindP</span>
+      </a>
+      
+      <a href="../fc/TlmphysA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmphysa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmphysA</span>
+      </a>
+      
+      <a href="../fc/TlmpopA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmpopa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmpopA</span>
+      </a>
+      
+      <a href="../fc/TlmpopP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmpopp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmpopP</span>
+      </a>
+      
+      <a href="../fc/TlmtransA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmtransa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmtransA</span>
+      </a>
+      
+      <a href="../fc/TlmtransC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmtransc"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmtransC</span>
+      </a>
+      
+      <a href="../fc/TlmtransL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmtransl"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmtransL</span>
+      </a>
+      
+      <a href="../fc/TlmtransP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmtransp"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmtransP</span>
+      </a>
+      
+      <a href="../fc/TlmutilP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmutilp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmutilP</span>
+      </a>
+      
+      <a href="../fc/TlmvegA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tlmvega"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TlmvegA</span>
+      </a>
+      
+      <a href="../fc/TowerP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="towerp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">TowerP</span>
+      </a>
+      
+      <a href="../fc/TrackL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="trackl"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">TrackL</span>
+      </a>
+      
+      <a href="../fc/TrailL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="traill"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">TrailL</span>
+      </a>
+      
+      <a href="../fc/TravoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="travoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TravoidA</span>
+      </a>
+      
+      <a href="../fc/TreatA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="treata"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">TreatA</span>
+      </a>
+      
+      <a href="../fc/TreesA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="treesa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">TreesA</span>
+      </a>
+      
+      <a href="../fc/TreesP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="treesp"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">TreesP</span>
+      </a>
+      
+      <a href="../fc/TundraA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tundraa"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">TundraA</span>
+      </a>
+      
+      <a href="../fc/TunnelC.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tunnelc"
+         data-scales="50k harmonized">
+        <span class="badge-sh badge-Retained flex-shrink-0">RET</span>
+        <span class="text-truncate" style="font-size:12.5px">TunnelC</span>
+      </a>
+      
+      <a href="../fc/TunnelL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="tunnell"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">TunnelL</span>
+      </a>
+      
+      <a href="../fc/UtivoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="utivoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">UtivoidA</span>
+      </a>
+      
+      <a href="../fc/VegvoidA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="vegvoida"
+         data-scales="50k">
+        <span class="badge-sh badge-Removed flex-shrink-0">DEL</span>
+        <span class="text-truncate" style="font-size:12.5px">VegvoidA</span>
+      </a>
+      
+      <a href="../fc/WatrcrsA.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="watrcrsa"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">WatrcrsA</span>
+      </a>
+      
+      <a href="../fc/WatrcrsL.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="watrcrsl"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">WatrcrsL</span>
+      </a>
+      
+      <a href="../fc/WellsprP.html"
+         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
+         data-name="wellsprp"
+         data-scales="10k 50k harmonized">
+        <span class="badge-sh badge-Modified flex-shrink-0">MOD</span>
+        <span class="text-truncate" style="font-size:12.5px">WellsprP</span>
+      </a>
+      
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="flex-grow-1 overflow-y-auto p-3">
+    
+<div class="detail-wrap mx-auto" style="max-width:1100px">
+
+  
+  <div class="d-flex align-items-center gap-2 mb-1">
+    <h4 class="mb-0 fw-bold">BuildA</h4>
+    <span class="badge-sh badge-Modified fs-sm">MOD</span>
+  </div>
+
+  
+  <div class="d-flex align-items-center flex-wrap gap-1 mb-3">
+    
+      <span class="alias-lbl">10k</span>
+      
+        <span class="alias-chip chip-10k">Building_A</span>
+      
+    
+    
+    
+  </div>
+
+  
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Subtypes &amp; Mapping Actions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th>F-Code</th>
+            <th>Subtype</th>
+            <th>TMS Action <span class="text-muted fw-normal">(10k)</span></th>
+            <th>HGDB Action <span class="text-muted fw-normal">(50k)</span></th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr>
+            <td><code class="fcode">AL015</code></td>
+            <td class="font-monospace" style="font-size:12px">BuildingArea</td>
+            <td><span class="ac ac-tbda">TBDA</span></td>
+            <td><span class="ac ac-tbda">TBDA</span></td>
+            <td class="text-muted rem-td">
+              Need to discuss BFC and other attributes. (Skipped)
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
+  
+  
+  
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header d-flex align-items-center gap-2">
+      Domain Comparison
+      <span class="text-muted fw-normal" style="font-size:12px">
+        · Field: <code>BFC</code> — Building Function Category
+      </span>
+    </div>
+    <div class="card-body pb-0 pt-2">
+      <!-- Filter buttons -->
+      <div class="btn-group btn-group-sm mb-2 dom-filter" data-table="dt_1" role="group">
+        <button class="btn btn-outline-secondary active" data-filter="All"
+                onclick="domFilter(this,'All')">All (134)</button>
+        <button class="btn btn-outline-success" data-filter="Retained"
+                onclick="domFilter(this,'Retained')">Retained (95)</button>
+        <button class="btn btn-outline-primary" data-filter="Added"
+                onclick="domFilter(this,'Added')">Added (19)</button>
+        <button class="btn btn-outline-danger" data-filter="Removed"
+                onclick="domFilter(this,'Removed')">Removed (20)</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table" id="dt_1">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center th-50k">50k Domain (CD)</th>
+            <th colspan="2" class="text-center th-10k">10k Domain (PD)</th>
+            <th colspan="2" class="text-center th-harm">Harmonized</th>
+            <th>Status / Remarks</th>
+          </tr>
+          <tr class="table-light">
+            <th style="width:55px">Code</th><th>Description</th>
+            <th style="width:55px">Code</th><th>Description</th>
+            <th style="width:55px">Code</th><th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">0</td>
+            <td>Unknown</td>
+            <td class="font-monospace text-muted">0</td>
+            <td>Unknown</td>
+            <td class="font-monospace text-muted">0</td>
+            <td>Unknown</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">1</td>
+            <td>Fabrication Structures</td>
+            <td class="font-monospace text-muted">1</td>
+            <td>Fabrication Structures</td>
+            <td class="font-monospace text-muted">1</td>
+            <td>Fabrication Structures</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">2</td>
+            <td>Government Building</td>
+            <td class="font-monospace text-muted">2</td>
+            <td>Government Building</td>
+            <td class="font-monospace text-muted">2</td>
+            <td>Government Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">3</td>
+            <td>Capitol Building</td>
+            <td class="font-monospace text-muted">3</td>
+            <td>Capitol Building</td>
+            <td class="font-monospace text-muted">3</td>
+            <td>Capitol Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">4</td>
+            <td>Castle</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed. Most castles are not of historical significance (European context). &#34;Castles&#34; in the Philippines are part of an amusement park or a resort.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">5</td>
+            <td>Government Administration Building</td>
+            <td class="font-monospace text-muted">5</td>
+            <td>Government Administration Building</td>
+            <td class="font-monospace text-muted">5</td>
+            <td>Government Administration Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">6</td>
+            <td>Hospital</td>
+            <td class="font-monospace text-muted">6</td>
+            <td>Hospital</td>
+            <td class="font-monospace text-muted">6</td>
+            <td>Hospital</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">7</td>
+            <td>House of Worship</td>
+            <td class="font-monospace text-muted">7</td>
+            <td>House of Worship</td>
+            <td class="font-monospace text-muted">7</td>
+            <td>House of Worship</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">8</td>
+            <td>Military Administration/Operations Building</td>
+            <td class="font-monospace text-muted">8</td>
+            <td>Military Administration / Operations Building</td>
+            <td class="font-monospace text-muted">8</td>
+            <td>Military Administration/Operations Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">9</td>
+            <td>Museum</td>
+            <td class="font-monospace text-muted">9</td>
+            <td>Museum</td>
+            <td class="font-monospace text-muted">9</td>
+            <td>Museum</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">10</td>
+            <td>Observatory</td>
+            <td class="font-monospace text-muted">10</td>
+            <td>Observatory</td>
+            <td class="font-monospace text-muted">10</td>
+            <td>Observatory</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">11</td>
+            <td>Palace</td>
+            <td class="font-monospace text-muted">11</td>
+            <td>Palace</td>
+            <td class="font-monospace text-muted">11</td>
+            <td>Palace</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">12</td>
+            <td>Police Station</td>
+            <td class="font-monospace text-muted">12</td>
+            <td>Police Station</td>
+            <td class="font-monospace text-muted">12</td>
+            <td>Police Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">13</td>
+            <td>Prison</td>
+            <td class="font-monospace text-muted">13</td>
+            <td>Prison</td>
+            <td class="font-monospace text-muted">13</td>
+            <td>Prison</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">14</td>
+            <td>Ranger Station</td>
+            <td class="font-monospace text-muted">14</td>
+            <td>Ranger Station</td>
+            <td class="font-monospace text-muted">14</td>
+            <td>Ranger Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">15</td>
+            <td>School</td>
+            <td class="font-monospace text-muted">15</td>
+            <td>School</td>
+            <td class="font-monospace text-muted">15</td>
+            <td>School</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">16</td>
+            <td>House</td>
+            <td class="font-monospace text-muted">16</td>
+            <td>House</td>
+            <td class="font-monospace text-muted">16</td>
+            <td>House</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">17</td>
+            <td>Multi-Unit Dwelling</td>
+            <td class="font-monospace text-muted">17</td>
+            <td>Muti Unit Dwelling</td>
+            <td class="font-monospace text-muted">17</td>
+            <td>Multi-Unit Dwelling</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">18</td>
+            <td>Cemetery Building</td>
+            <td class="font-monospace text-muted">18</td>
+            <td>Cemetery Building</td>
+            <td class="font-monospace text-muted">18</td>
+            <td>Cemetery Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">19</td>
+            <td>Farm Building</td>
+            <td class="font-monospace text-muted">19</td>
+            <td>Farm Building</td>
+            <td class="font-monospace text-muted">19</td>
+            <td>Farm Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">20</td>
+            <td>Greenhouse</td>
+            <td class="font-monospace text-muted">20</td>
+            <td>Greenhouse</td>
+            <td class="font-monospace text-muted">20</td>
+            <td>Greenhouse</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">21</td>
+            <td>Garage</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">22</td>
+            <td>Watermill/Gristmill</td>
+            <td class="font-monospace text-muted">22</td>
+            <td>Watermill / Gristmill</td>
+            <td class="font-monospace text-muted">22</td>
+            <td>Watermill/Gristmill</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">23</td>
+            <td>Wind Tunnel</td>
+            <td class="font-monospace text-muted">23</td>
+            <td>Wind Tunnel</td>
+            <td class="font-monospace text-muted">23</td>
+            <td>Wind Tunnel</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">24</td>
+            <td>Warehouse</td>
+            <td class="font-monospace text-muted">24</td>
+            <td>Warehouse</td>
+            <td class="font-monospace text-muted">24</td>
+            <td>Warehouse</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">25</td>
+            <td>Roundhouse</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">26</td>
+            <td>Railroad storage / Repair facility</td>
+            <td class="font-monospace text-muted">26</td>
+            <td>Railroad Storage / Repair Facility</td>
+            <td class="font-monospace text-muted">26</td>
+            <td>Railroad storage / Repair facility</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">27</td>
+            <td>Depot Terminal</td>
+            <td class="font-monospace text-muted">27</td>
+            <td>Depot Terminal</td>
+            <td class="font-monospace text-muted">27</td>
+            <td>Depot Terminal</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">28</td>
+            <td>Administration Building</td>
+            <td class="font-monospace text-muted">28</td>
+            <td>Administration building</td>
+            <td class="font-monospace text-muted">28</td>
+            <td>Administration Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">29</td>
+            <td>Aircraft Maintenance Shop</td>
+            <td class="font-monospace text-muted">29</td>
+            <td>Aircraft Maintenance Shop</td>
+            <td class="font-monospace text-muted">29</td>
+            <td>Aircraft Maintenance Shop</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">30</td>
+            <td>Hangar</td>
+            <td class="font-monospace text-muted">30</td>
+            <td>Hangar</td>
+            <td class="font-monospace text-muted">30</td>
+            <td>Hangar</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">31</td>
+            <td>Custom House</td>
+            <td class="font-monospace text-muted">31</td>
+            <td>Customs House</td>
+            <td class="font-monospace text-muted">31</td>
+            <td>Custom House</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">33</td>
+            <td>Health Office / Center</td>
+            <td class="font-monospace text-muted">33</td>
+            <td>Health Office</td>
+            <td class="font-monospace text-muted">33</td>
+            <td>Health Office / Center</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">34</td>
+            <td>Firing Range</td>
+            <td class="font-monospace text-muted">34</td>
+            <td>Firing Range</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+                <div class="text-muted rem-cell">Add.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">35</td>
+            <td>Post Office</td>
+            <td class="font-monospace text-muted">35</td>
+            <td>Post Office</td>
+            <td class="font-monospace text-muted">35</td>
+            <td>Post Office</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">36</td>
+            <td>Barracks/Dormitory</td>
+            <td class="font-monospace text-muted">36</td>
+            <td>Barracks / Dormitory</td>
+            <td class="font-monospace text-muted">36</td>
+            <td>Barracks/Dormitory</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">37</td>
+            <td>Fire Station</td>
+            <td class="font-monospace text-muted">37</td>
+            <td>Fire Station</td>
+            <td class="font-monospace text-muted">37</td>
+            <td>Fire Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">38</td>
+            <td>Jail</td>
+            <td class="font-monospace text-muted">38</td>
+            <td>Jail</td>
+            <td class="font-monospace text-muted">38</td>
+            <td>Jail</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">50</td>
+            <td>Church</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">50</td>
+            <td>Church</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Map HWT as BFC for PD.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">51</td>
+            <td>Market</td>
+            <td class="font-monospace text-muted">51</td>
+            <td>Market</td>
+            <td class="font-monospace text-muted">51</td>
+            <td>Market</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">52</td>
+            <td>Town Hall</td>
+            <td class="font-monospace text-muted">52</td>
+            <td>Town Hall</td>
+            <td class="font-monospace text-muted">52</td>
+            <td>Town Hall</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">53</td>
+            <td>Bank</td>
+            <td class="font-monospace text-muted">53</td>
+            <td>Bank</td>
+            <td class="font-monospace text-muted">53</td>
+            <td>Bank</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">54</td>
+            <td>Service/Refuelling Station</td>
+            <td class="font-monospace text-muted">54</td>
+            <td>Service / Refueling Station</td>
+            <td class="font-monospace text-muted">54</td>
+            <td>Service/Refuelling Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">55</td>
+            <td>Yacht Club / Sailing Club</td>
+            <td class="font-monospace text-muted">55</td>
+            <td>Yacht Club / Sailing Club</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+                <div class="text-muted rem-cell">Add.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">56</td>
+            <td>Public Inn</td>
+            <td class="font-monospace text-muted">56</td>
+            <td>Public Inn</td>
+            <td class="font-monospace text-muted">56</td>
+            <td>Public Inn</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">57</td>
+            <td>Restaurant</td>
+            <td class="font-monospace text-muted">57</td>
+            <td>Restaurant</td>
+            <td class="font-monospace text-muted">57</td>
+            <td>Restaurant</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">58</td>
+            <td>Observation</td>
+            <td class="font-monospace text-muted">58</td>
+            <td>Observation</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+                <div class="text-muted rem-cell">Add. Viewing decks/lookout</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">59</td>
+            <td>R&amp;D Lab/Research Facility</td>
+            <td class="font-monospace text-muted">59</td>
+            <td>Research and Development Lab / Research Facility</td>
+            <td class="font-monospace text-muted">59</td>
+            <td>R&amp;D Lab/Research Facility</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">60</td>
+            <td>University/College</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">60</td>
+            <td>University/College</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Map EBT as BFC for PD.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">61</td>
+            <td>Courthouse</td>
+            <td class="font-monospace text-muted">61</td>
+            <td>Courthouse</td>
+            <td class="font-monospace text-muted">61</td>
+            <td>Courthouse</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">62</td>
+            <td>Legation</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">63</td>
+            <td>Mission</td>
+            <td class="font-monospace text-muted">63</td>
+            <td>Mission</td>
+            <td class="font-monospace text-muted">63</td>
+            <td>Mission</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">An establishment of missionaries in a foreign land for religious conversion.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">64</td>
+            <td>Chancery</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context. Colloquially referred to as an embassy.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">65</td>
+            <td>Ambassadorial Residence</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context. Colloquially referred to as an embassy.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">66</td>
+            <td>Embassy</td>
+            <td class="font-monospace text-muted">66</td>
+            <td>Embassy</td>
+            <td class="font-monospace text-muted">66</td>
+            <td>Embassy</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">67</td>
+            <td>Consulate</td>
+            <td class="font-monospace text-muted">67</td>
+            <td>Consulate</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+                <div class="text-muted rem-cell">Add.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">68</td>
+            <td>Guard House</td>
+            <td class="font-monospace text-muted">68</td>
+            <td>Guard House</td>
+            <td class="font-monospace text-muted">68</td>
+            <td>Guard House</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">69</td>
+            <td>Guard Shack / Guard Room</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for scale context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">70</td>
+            <td>Kennel</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for scale context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">71</td>
+            <td>Oil Mill (Vegetable)</td>
+            <td class="font-monospace text-muted">71</td>
+            <td>Oil Mill (Vegetable)</td>
+            <td class="font-monospace text-muted">71</td>
+            <td>Oil Mill (Vegetable)</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">72</td>
+            <td>Aerator</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">73</td>
+            <td>Carpentry</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">74</td>
+            <td>Sawmill</td>
+            <td class="font-monospace text-muted">74</td>
+            <td>Sawmill</td>
+            <td class="font-monospace text-muted">74</td>
+            <td>Sawmill</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">75</td>
+            <td>Kiln / Oven</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted">76</td>
+            <td>Signal Box / Railway Signalman&#39;s House</td>
+            <td class="font-monospace text-muted">76</td>
+            <td>Signal Box / Railway Signalman&#39;s House</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Can drop.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">77</td>
+            <td>Harbor Master&#39;s Office</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted">78</td>
+            <td>Marine Police</td>
+            <td class="font-monospace text-muted">78</td>
+            <td>Marine Police</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Can drop. Redundant w/ maritime station and sounds more like an agency than a building.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">79</td>
+            <td>Rescue</td>
+            <td class="font-monospace text-muted">79</td>
+            <td>Rescue</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+                <div class="text-muted rem-cell">Add. Volunteer Fire Station/Emergency Response Outposts</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">81</td>
+            <td>Maritime Station</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">81</td>
+            <td>Maritime Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Philippine Coast Guard</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">82</td>
+            <td>Lighthouse</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">82</td>
+            <td>Lighthouse</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Add. Map Lighthouse_P to this BFC.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">83</td>
+            <td>Power Generation</td>
+            <td class="font-monospace text-muted">83</td>
+            <td>Power Generation</td>
+            <td class="font-monospace text-muted">83</td>
+            <td>Power Generation</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">84</td>
+            <td>Filtration Plant</td>
+            <td class="font-monospace text-muted">84</td>
+            <td>Filtration Plant</td>
+            <td class="font-monospace text-muted">84</td>
+            <td>Filtration Plant</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">85</td>
+            <td>Newspaper Plant</td>
+            <td class="font-monospace text-muted">85</td>
+            <td>Newspaper Plant</td>
+            <td class="font-monospace text-muted">85</td>
+            <td>Newspaper Plant</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">86</td>
+            <td>Telephone Exchange  (main)</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">87</td>
+            <td>Auditorium</td>
+            <td class="font-monospace text-muted">87</td>
+            <td>Auditorium</td>
+            <td class="font-monospace text-muted">87</td>
+            <td>Auditorium</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">88</td>
+            <td>Opera House</td>
+            <td class="font-monospace text-muted">88</td>
+            <td>Opera House</td>
+            <td class="font-monospace text-muted">88</td>
+            <td>Opera House</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">89</td>
+            <td>Processing/Treatment</td>
+            <td class="font-monospace text-muted">89</td>
+            <td>Processing / Treatment</td>
+            <td class="font-monospace text-muted">89</td>
+            <td>Processing/Treatment</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">90</td>
+            <td>Pumphouse</td>
+            <td class="font-monospace text-muted">90</td>
+            <td>Pumphouse</td>
+            <td class="font-monospace text-muted">90</td>
+            <td>Pumphouse</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">91</td>
+            <td>Mobile Home</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">92</td>
+            <td>Weather Station</td>
+            <td class="font-monospace text-muted">92</td>
+            <td>Weather Station</td>
+            <td class="font-monospace text-muted">92</td>
+            <td>Weather Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">93</td>
+            <td>Dependent&#39;s Housing/Bivouac Area</td>
+            <td class="font-monospace text-muted">93</td>
+            <td>Dependents Housing / Bivouac Area</td>
+            <td class="font-monospace text-muted">93</td>
+            <td>Dependent&#39;s Housing/Bivouac Area</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">A residential or accommodation area provided by the military or a large institution, typically located within or adjacent to camps or bases.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">94</td>
+            <td>Railroad Station</td>
+            <td class="font-monospace text-muted">94</td>
+            <td>Railroad Station</td>
+            <td class="font-monospace text-muted">94</td>
+            <td>Railroad Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">95</td>
+            <td>Hotel</td>
+            <td class="font-monospace text-muted">95</td>
+            <td>Hotel</td>
+            <td class="font-monospace text-muted">95</td>
+            <td>Hotel</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">96</td>
+            <td>Diplomatic Building</td>
+            <td class="font-monospace text-muted">96</td>
+            <td>Diplomatic Building</td>
+            <td class="font-monospace text-muted">96</td>
+            <td>Diplomatic Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Cultural Center/UN Establishments and the like</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">97</td>
+            <td>Trading Post</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">99</td>
+            <td>Battery</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for scale context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">100</td>
+            <td>Medical Center</td>
+            <td class="font-monospace text-muted">100</td>
+            <td>Medical Center</td>
+            <td class="font-monospace text-muted">100</td>
+            <td>Medical Center</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">101</td>
+            <td>Municipal Hall</td>
+            <td class="font-monospace text-muted">101</td>
+            <td>Municipal Hall</td>
+            <td class="font-monospace text-muted">101</td>
+            <td>Municipal Hall</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">102</td>
+            <td>Oil/Gas Facilities Building</td>
+            <td class="font-monospace text-muted">102</td>
+            <td>Oil / Gas Facilities Building</td>
+            <td class="font-monospace text-muted">102</td>
+            <td>Oil/Gas Facilities Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">103</td>
+            <td>Outbuilding</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for PH context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">104</td>
+            <td>Paper/Pulp Mill</td>
+            <td class="font-monospace text-muted">104</td>
+            <td>Paper / Pulp Mill</td>
+            <td class="font-monospace text-muted">104</td>
+            <td>Paper/Pulp Mill</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">105</td>
+            <td>Reformatory</td>
+            <td class="font-monospace text-muted">105</td>
+            <td>Reformatory</td>
+            <td class="font-monospace text-muted">105</td>
+            <td>Reformatory</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">106</td>
+            <td>Sanitarium</td>
+            <td class="font-monospace text-muted">106</td>
+            <td>Sanitarium</td>
+            <td class="font-monospace text-muted">106</td>
+            <td>Sanitarium</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">107</td>
+            <td>Satellite Tracking Station</td>
+            <td class="font-monospace text-muted">107</td>
+            <td>Satellite Tracking Station</td>
+            <td class="font-monospace text-muted">107</td>
+            <td>Satellite Tracking Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">108</td>
+            <td>Seminary</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">108</td>
+            <td>Seminary</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Map EBT as BFC for PD.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">109</td>
+            <td>Senior Citizen&#39;s Home</td>
+            <td class="font-monospace text-muted">109</td>
+            <td>Senior Citizen&#39;s Home</td>
+            <td class="font-monospace text-muted">109</td>
+            <td>Senior Citizen&#39;s Home</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">110</td>
+            <td>Shipyard</td>
+            <td class="font-monospace text-muted">110</td>
+            <td>Shipyard</td>
+            <td class="font-monospace text-muted">110</td>
+            <td>Shipyard</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">111</td>
+            <td>Sportsplex</td>
+            <td class="font-monospace text-muted">111</td>
+            <td>Sportsplex</td>
+            <td class="font-monospace text-muted">111</td>
+            <td>Sportsplex</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">112</td>
+            <td>Steel Mill</td>
+            <td class="font-monospace text-muted">112</td>
+            <td>Steel Mill</td>
+            <td class="font-monospace text-muted">112</td>
+            <td>Steel Mill</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Removed">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">113</td>
+            <td>Weigh Scale</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td>
+              <span class="badge-sh badge-Removed">DEL</span>
+              
+                <div class="text-muted rem-cell">Not needed for scale context.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">114</td>
+            <td>Non-Christian House of Worship</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">114</td>
+            <td>Non-Christian House of Worship</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+                <div class="text-muted rem-cell">Map HWT as BFC for PD.</div>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">115</td>
+            <td>Hostel</td>
+            <td class="font-monospace text-muted">115</td>
+            <td>Hostel</td>
+            <td class="font-monospace text-muted">115</td>
+            <td>Hostel</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">116</td>
+            <td>Factory</td>
+            <td class="font-monospace text-muted">116</td>
+            <td>Factory</td>
+            <td class="font-monospace text-muted">116</td>
+            <td>Factory</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">117</td>
+            <td>Motel</td>
+            <td class="font-monospace text-muted">117</td>
+            <td>Motel</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">118</td>
+            <td>Community Center</td>
+            <td class="font-monospace text-muted">118</td>
+            <td>Community center</td>
+            <td class="font-monospace text-muted">118</td>
+            <td>Community Center</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">119</td>
+            <td>City Hall</td>
+            <td class="font-monospace text-muted">119</td>
+            <td>City Hall</td>
+            <td class="font-monospace text-muted">119</td>
+            <td>City Hall</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">120</td>
+            <td>Automobile Plant</td>
+            <td class="font-monospace text-muted">120</td>
+            <td>Automobile Plant</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">121</td>
+            <td>Armory</td>
+            <td class="font-monospace text-muted">121</td>
+            <td>Armory</td>
+            <td class="font-monospace text-muted">121</td>
+            <td>Armory</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">122</td>
+            <td>Shopping Center</td>
+            <td class="font-monospace text-muted">122</td>
+            <td>Shopping Center</td>
+            <td class="font-monospace text-muted">122</td>
+            <td>Shopping Center</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">123</td>
+            <td>Correctional Institute</td>
+            <td class="font-monospace text-muted">123</td>
+            <td>Correctional Institute</td>
+            <td class="font-monospace text-muted">123</td>
+            <td>Correctional Institute</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">124</td>
+            <td>Repair facility</td>
+            <td class="font-monospace text-muted">124</td>
+            <td>Repair facility</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">125</td>
+            <td>Barn</td>
+            <td class="font-monospace text-muted">125</td>
+            <td>Barn / Machinery Shed</td>
+            <td class="font-monospace text-muted">125</td>
+            <td>Barn</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">126</td>
+            <td>Astronomical Station</td>
+            <td class="font-monospace text-muted">126</td>
+            <td>Astronomical Station</td>
+            <td class="font-monospace text-muted">126</td>
+            <td>Astronomical Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">127</td>
+            <td>Theater</td>
+            <td class="font-monospace text-muted">127</td>
+            <td>Theater</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">128</td>
+            <td>Library</td>
+            <td class="font-monospace text-muted">128</td>
+            <td>Library</td>
+            <td class="font-monospace text-muted">128</td>
+            <td>Library</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">129</td>
+            <td>Airport Terminal</td>
+            <td class="font-monospace text-muted">129</td>
+            <td>Airport Termial</td>
+            <td class="font-monospace text-muted">129</td>
+            <td>Airport Terminal</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">130</td>
+            <td>Bus Station</td>
+            <td class="font-monospace text-muted">130</td>
+            <td>Bus Station</td>
+            <td class="font-monospace text-muted">130</td>
+            <td>Bus Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">131</td>
+            <td>Pilot Office</td>
+            <td class="font-monospace text-muted">131</td>
+            <td>Pilot Office</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">132</td>
+            <td>Pilot Lookout</td>
+            <td class="font-monospace text-muted">132</td>
+            <td>Pilot Lookout</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">133</td>
+            <td>Commercial Building</td>
+            <td class="font-monospace text-muted">133</td>
+            <td>Commercial Building</td>
+            <td class="font-monospace text-muted">133</td>
+            <td>Commercial Building</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">134</td>
+            <td>Fort</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">134</td>
+            <td>Fort</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">137</td>
+            <td>Guard Tower</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">137</td>
+            <td>Guard Tower</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">723</td>
+            <td>Combined Fire and Police Station</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">723</td>
+            <td>Combined Fire and Police Station</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">140</td>
+            <td>Non-Governmental Building of Significance (other than government)</td>
+            <td class="font-monospace text-muted">140</td>
+            <td>Non-Governmental Building of Significance (other than government)</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">150</td>
+            <td>Barracks</td>
+            <td class="font-monospace text-muted">150</td>
+            <td>Barracks</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">151</td>
+            <td>Dormitory</td>
+            <td class="font-monospace text-muted">151</td>
+            <td>Dormitory</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">152</td>
+            <td>Temporary Housing Area</td>
+            <td class="font-monospace text-muted">152</td>
+            <td>Temporary Housing Area</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">153</td>
+            <td>Congested Housing Area</td>
+            <td class="font-monospace text-muted">153</td>
+            <td>Congested Housing Area</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">154</td>
+            <td>Aero Beacon</td>
+            <td class="font-monospace text-muted">154</td>
+            <td>Aero Beacon</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">155</td>
+            <td>Stand Pipe</td>
+            <td class="font-monospace text-muted">155</td>
+            <td>Stand Pipe</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Added">
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">156</td>
+            <td>Wind Pump</td>
+            <td class="font-monospace text-muted">156</td>
+            <td>Wind Pump</td>
+            <td>
+              <span class="badge-sh badge-Added">ADD</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">997</td>
+            <td>Unpopulated</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">997</td>
+            <td>Unpopulated</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">998</td>
+            <td>Not Applicable</td>
+            <td class="font-monospace text-muted"></td>
+            <td></td>
+            <td class="font-monospace text-muted">998</td>
+            <td>Not Applicable</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+          <tr data-status="Retained">
+            <td class="font-monospace text-muted">999</td>
+            <td>Other</td>
+            <td class="font-monospace text-muted">999</td>
+            <td>Other</td>
+            <td class="font-monospace text-muted">999</td>
+            <td>Other</td>
+            <td>
+              <span class="badge-sh badge-Retained">RET</span>
+              
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
+
+</div>
+
+<script>
+function domFilter(btn, status) {
+  const wrap = btn.closest('.dom-filter');
+  wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const tbl = document.getElementById(wrap.dataset.table);
+  tbl.querySelectorAll('tbody tr').forEach(row => {
+    row.style.display = (status === 'All' || row.dataset.status === status) ? '' : 'none';
+  });
+}
+</script>
+
+  </main>
+</div>
+
+<script>
+  let activeScale = 'all';
+
+  function setScale(scale, btn) {
+    activeScale = scale;
+    document.querySelectorAll('[data-scale]').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilter();
+  }
+
+  function applyFilter() {
+    const q = document.getElementById('searchInput').value.toLowerCase();
+    let vis = 0;
+    document.querySelectorAll('.fc-item').forEach(el => {
+      const matchScale = activeScale === 'all' || (el.dataset.scales || '').split(' ').includes(activeScale);
+      const matchSearch = !q || (el.dataset.name || '').includes(q);
+      const show = matchScale && matchSearch;
+      el.classList.toggle('d-none', !show);
+      if (show) vis++;
+    });
+    document.getElementById('fcCount').textContent = vis + ' feature classes';
+  }
+
+  applyFilter();
+</script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+{% block title %}{{ fc.canonical_name }} — Schema Harmonization{% endblock %}
+
+{# ── Macros ── #}
+{% macro action_chip(action) %}
+  {%- if not action or action == 'nan' -%}
+    <span class="text-muted">—</span>
+  {%- else -%}
+    <span class="ac {{ action | action_chip_class }}">{{ action }}</span>
+  {%- endif -%}
+{% endmacro %}
+
+{% block content %}
+<div class="detail-wrap mx-auto" style="max-width:1100px">
+
+  {# ── FC header ── #}
+  <div class="d-flex align-items-center gap-2 mb-1">
+    <h4 class="mb-0 fw-bold">{{ fc.canonical_name }}</h4>
+    <span class="badge-sh badge-{{ fc.badge }} fs-sm">{{ fc.badge | badge_label }}</span>
+  </div>
+
+  {# Aliases #}
+  <div class="d-flex align-items-center flex-wrap gap-1 mb-3">
+    {% if fc.aliases_10k %}
+      <span class="alias-lbl">10k</span>
+      {% for a in fc.aliases_10k %}
+        <span class="alias-chip chip-10k">{{ a }}</span>
+      {% endfor %}
+    {% endif %}
+    {% if fc.aliases_50k and fc.aliases_50k[0] != fc.canonical_name %}
+      {% if fc.aliases_10k %}<span class="text-muted">|</span>{% endif %}
+      <span class="alias-lbl">50k</span>
+      {% for a in fc.aliases_50k %}
+        <span class="alias-chip chip-50k">{{ a }}</span>
+      {% endfor %}
+    {% endif %}
+    {% if not fc.aliases_10k and (not fc.aliases_50k or fc.aliases_50k[0] == fc.canonical_name) %}
+      <span class="text-muted" style="font-size:12px">No 10k feature class mapped.</span>
+    {% endif %}
+  </div>
+
+  {# ── Subtypes ── #}
+  {% if fc.subtypes %}
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Subtypes &amp; Mapping Actions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th>F-Code</th>
+            <th>Subtype</th>
+            <th>TMS Action <span class="text-muted fw-normal">(10k)</span></th>
+            <th>HGDB Action <span class="text-muted fw-normal">(50k)</span></th>
+            <th>Remarks</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for st in fc.subtypes %}
+          <tr>
+            <td><code class="fcode">{{ st.fcode }}</code></td>
+            <td class="font-monospace" style="font-size:12px">{{ st.subtype_name }}</td>
+            <td>{{ action_chip(st.tms_action) }}</td>
+            <td>{{ action_chip(st.hgdb_action) }}</td>
+            <td class="text-muted rem-td">
+              {% if st.remarks and st.remarks != 'nan' %}{{ st.remarks }}{% else %}—{% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+  {# ── Domains ── #}
+  {% for dom in fc.domains %}
+  {% set idx = loop.index %}
+  {% set ret_n  = dom.rows | selectattr('harm_status', 'equalto', 'Retained') | list | length %}
+  {% set add_n  = dom.rows | selectattr('harm_status', 'equalto', 'Added')    | list | length %}
+  {% set rem_n  = dom.rows | selectattr('harm_status', 'equalto', 'Removed')  | list | length %}
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header d-flex align-items-center gap-2">
+      Domain Comparison
+      <span class="text-muted fw-normal" style="font-size:12px">
+        · Field: <code>{{ dom.field_name }}</code> — {{ dom.field_alias }}
+      </span>
+    </div>
+    <div class="card-body pb-0 pt-2">
+      <!-- Filter buttons -->
+      <div class="btn-group btn-group-sm mb-2 dom-filter" data-table="dt_{{ idx }}" role="group">
+        <button class="btn btn-outline-secondary active" data-filter="All"
+                onclick="domFilter(this,'All')">All ({{ dom.rows | length }})</button>
+        <button class="btn btn-outline-success" data-filter="Retained"
+                onclick="domFilter(this,'Retained')">Retained ({{ ret_n }})</button>
+        <button class="btn btn-outline-primary" data-filter="Added"
+                onclick="domFilter(this,'Added')">Added ({{ add_n }})</button>
+        <button class="btn btn-outline-danger" data-filter="Removed"
+                onclick="domFilter(this,'Removed')">Removed ({{ rem_n }})</button>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table" id="dt_{{ idx }}">
+        <thead>
+          <tr>
+            <th colspan="2" class="text-center th-50k">50k Domain (CD)</th>
+            <th colspan="2" class="text-center th-10k">10k Domain (PD)</th>
+            <th colspan="2" class="text-center th-harm">Harmonized</th>
+            <th>Status / Remarks</th>
+          </tr>
+          <tr class="table-light">
+            <th style="width:55px">Code</th><th>Description</th>
+            <th style="width:55px">Code</th><th>Description</th>
+            <th style="width:55px">Code</th><th>Description</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in dom.rows %}
+          <tr data-status="{{ row.harm_status }}">
+            <td class="font-monospace text-muted">{{ row.cd_code if row.cd_code != None else '' }}</td>
+            <td>{{ row.cd_name or '' }}</td>
+            <td class="font-monospace text-muted">{{ row.pd_code if row.pd_code != None else '' }}</td>
+            <td>{{ row.pd_name or '' }}</td>
+            <td class="font-monospace text-muted">{{ row.harm_code if row.harm_code != None else '' }}</td>
+            <td>{{ row.harm_name or '' }}</td>
+            <td>
+              <span class="badge-sh badge-{{ row.harm_status }}">{{ row.harm_status | badge_label }}</span>
+              {% if row.remarks and row.remarks != 'nan' %}
+                <div class="text-muted rem-cell">{{ row.remarks }}</div>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endfor %}
+
+  {# ── Changelog ── #}
+  {% if fc.changelog %}
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Changelog</div>
+    <div class="card-body p-0">
+      {% for cl in fc.changelog %}
+      {% set meta = cl.change_type | cl_meta %}
+      <div class="cl-entry d-flex gap-3 px-3 py-2 border-bottom">
+        <span class="cl-date text-muted">{{ cl.change_date | format_date }}</span>
+        <div class="cl-change {{ meta.cls }} flex-grow-1">
+          {{ cl.change_text }}
+          <div class="cl-badge text-muted">
+            {{ meta.label }}
+            {% if cl.source and cl.source != 'nan' %} · {{ cl.source }}{% endif %}
+            {% if cl.version and cl.version not in ('nan', '0.0') %} · v{{ cl.version }}{% endif %}
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+
+</div>
+
+<script>
+function domFilter(btn, status) {
+  const wrap = btn.closest('.dom-filter');
+  wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const tbl = document.getElementById(wrap.dataset.table);
+  tbl.querySelectorAll('tbody tr').forEach(row => {
+    row.style.display = (status === 'All' || row.dataset.status === status) ? '' : 'none';
+  });
+}
+</script>
+{% endblock %}

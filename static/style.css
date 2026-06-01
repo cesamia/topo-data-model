@@ -1,0 +1,97 @@
+/* ── Layout ─────────────────────────────────────────────────── */
+.sh-header {
+  background: #1a3a5c;
+  color: #fff;
+  height: 48px;
+  flex-shrink: 0;
+  font-size: 15px;
+}
+.sh-sub { font-size: 12px; color: #a8c4d8; }
+
+.sh-sidebar { width: 260px; min-width: 220px; }
+
+.fc-list { padding: 4px 0; }
+
+.fc-item {
+  border-left: 3px solid transparent;
+  font-size: 12.5px;
+  color: #3a4c60;
+  transition: background .12s, border-color .12s;
+}
+.fc-item:hover  { background: #eef4fb; color: #1a3a5c; }
+.fc-item-active { background: #e3f0fb; border-left-color: #2e7d9e; color: #1a3a5c; font-weight: 600; }
+
+/* ── Status badges ──────────────────────────────────────────── */
+.badge-sh {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 10px;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  min-width: 34px;
+  text-align: center;
+  border: 1px solid transparent;
+}
+.badge-Retained  { background: #e8f5ee; color: #1e7e48; border-color: #c6e8d5; }
+.badge-Modified  { background: #e8f0fd; color: #2563a8; border-color: #c6d8f5; }
+.badge-Removed   { background: #fde8e8; color: #c0392b; border-color: #f5c6c6; }
+.badge-Added     { background: #f0fae8; color: #4a7c1e; border-color: #d0e8b8; }
+
+/* ── Action chips ───────────────────────────────────────────── */
+.ac {
+  display: inline-block;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ac-retain { background: #e8f5ee; color: #1e7e48; }
+.ac-remove { background: #fde8e8; color: #c0392b; }
+.ac-add    { background: #e8f0fd; color: #2563a8; }
+.ac-edit   { background: #f5eeff; color: #7c3aed; }
+.ac-tbda   { background: #fef9e8; color: #b7860d; }
+.ac-other  { background: #f0f2f5; color: #5a6e82; }
+
+/* ── Tables ─────────────────────────────────────────────────── */
+.sh-table { font-size: 12.5px; }
+.sh-table th { font-size: 10px; text-transform: uppercase; letter-spacing: .6px; color: #7a8ba0; }
+.sh-section-header { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; color: #5a6e82; background: #f8f9fb; }
+
+/* Domain table group headers */
+.th-50k   { background: #edf4ff; color: #1a4a8e; }
+.th-10k   { background: #edfff5; color: #1a6e3a; }
+.th-harm  { background: #f5eeff; color: #5b21b6; }
+
+/* ── Alias chips ────────────────────────────────────────────── */
+.alias-lbl  { font-size: 10px; font-weight: 700; text-transform: uppercase; color: #9baab8; letter-spacing: .5px; }
+.alias-chip { display: inline-block; font-size: 11.5px; padding: 2px 9px; border-radius: 5px; border: 1px solid; font-family: 'Consolas', monospace; }
+.chip-10k   { background: #edfff5; color: #1a6e3a; border-color: #a8dfc0; }
+.chip-50k   { background: #edf4ff; color: #1a4a8e; border-color: #a8c4f0; }
+
+/* ── F-code badge ───────────────────────────────────────────── */
+.fcode {
+  font-family: 'Consolas', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  background: #eef1f6;
+  border: 1px solid #dde3ec;
+  padding: 1px 7px;
+  border-radius: 4px;
+  color: #2e7d9e;
+}
+
+/* ── Changelog ──────────────────────────────────────────────── */
+.cl-date   { font-size: 11px; color: #9baab8; min-width: 90px; flex-shrink: 0; padding-top: 2px; }
+.cl-badge  { font-size: 10px; color: #9baab8; margin-top: 3px; }
+.cl-change { font-size: 12.5px; line-height: 1.5; padding-left: 10px; border-left: 3px solid; }
+.cl-schema   { border-left-color: #2e7d9e; }
+.cl-domain   { border-left-color: #7c3aed; }
+.cl-fcdelete { border-left-color: #c0392b; }
+.cl-mapping  { border-left-color: #0e7490; }
+
+/* ── Misc ───────────────────────────────────────────────────── */
+.rem-td   { font-size: 12px; color: #5a6e82; }
+.rem-cell { font-size: 11px; color: #9baab8; font-style: italic; display: block; margin-top: 2px; }
