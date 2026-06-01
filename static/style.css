@@ -10,12 +10,18 @@
 
 .sh-sidebar { width: 260px; min-width: 220px; }
 
-.fc-list { padding: 4px 0; }
+.fc-list {
+  display: flex !important;
+  flex-direction: column;
+  padding: 4px 0;
+}
 
 .fc-item {
   display: flex !important;
+  flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+  width: 100%;
   border-left: 3px solid transparent;
   font-size: 12.5px;
   color: #3a4c60;
