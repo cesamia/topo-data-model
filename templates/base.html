@@ -47,10 +47,10 @@
       <span id="badgeReset" class="d-none ms-auto sb-reset" onclick="resetBadge()" title="Clear filter">✕</span>
     </div>
     <!-- FC list -->
-    <nav class="fc-list overflow-y-auto flex-grow-1">
+    <nav id="fcNav" class="fc-list overflow-y-auto flex-grow-1" style="visibility:hidden">
       {% for item in sidebar_items %}
       <a href="{{ static_prefix }}fc/{{ item.canonical_name }}.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark{% if active == item.canonical_name %} fc-item-active{% endif %}"
+         class="fc-item px-2 py-1 text-decoration-none text-dark{% if active == item.canonical_name %} fc-item-active{% endif %}"
          data-name="{{ item.display_name.lower() }}"
          data-list="{{ item.scale }}"
          data-badge="{{ item.display_badge }}">
@@ -114,32 +114,31 @@
     const q = document.getElementById('searchInput').value.toLowerCase();
     let vis = 0;
     document.querySelectorAll('.fc-item').forEach(el => {
-      const matchScale  = el.dataset.list  === activeScale;
-      const matchBadge  = !activeBadge || el.dataset.badge === activeBadge;
-      const matchSearch = !q || (el.dataset.name || '').includes(q);
-      const show = matchScale && matchBadge && matchSearch;
-      el.classList.toggle('fc-hidden', !show);
+      const show = el.dataset.list === activeScale
+                && (!activeBadge  || el.dataset.badge === activeBadge)
+                && (!q            || el.dataset.name.includes(q));
+      el.style.display = show ? 'flex' : 'none';
       if (show) vis++;
     });
     document.getElementById('fcCount').textContent = vis + ' feature classes';
+    document.getElementById('fcNav').style.visibility = 'visible';
   }
 
-  // Restore UI state on load
-  (function restoreState() {
+  // Restore state on every page load
+  (function () {
     const isHdm = activeScale === 'hdm';
     document.querySelectorAll('[data-scale]').forEach(b =>
       b.classList.toggle('active', b.dataset.scale === activeScale));
     document.querySelectorAll('.leg-hdm').forEach(el => el.classList.toggle('d-none', !isHdm));
-    document.querySelectorAll('.leg-src').forEach(el => el.classList.toggle('d-none', isHdm));
+    document.querySelectorAll('.leg-src').forEach(el => el.classList.toggle('d-none',  isHdm));
     if (activeBadge) {
-      document.querySelectorAll('.sb-badge-btn').forEach(b => {
-        if (b.dataset.badge === activeBadge) b.classList.add('sb-badge-active');
-      });
+      document.querySelectorAll('.sb-badge-btn').forEach(b =>
+        b.classList.toggle('sb-badge-active', b.dataset.badge === activeBadge));
       document.getElementById('badgeReset').classList.remove('d-none');
     }
     applyFilter();
-    const active = document.querySelector('.fc-item-active:not(.fc-hidden)');
-    if (active) active.scrollIntoView({ block: 'nearest' });
+    const cur = document.querySelector('.fc-item-active[style*="flex"]');
+    if (cur) cur.scrollIntoView({ block: 'nearest' });
   })();
 </script>
 </body>

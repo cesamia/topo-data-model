@@ -47,10 +47,10 @@
       <span id="badgeReset" class="d-none ms-auto sb-reset" onclick="resetBadge()" title="Clear filter">✕</span>
     </div>
     <!-- FC list -->
-    <nav class="fc-list overflow-y-auto flex-grow-1">
+    <nav id="fcNav" class="fc-list overflow-y-auto flex-grow-1" style="visibility:hidden">
       
       <a href="../fc/AerofacA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aerofaca"
          data-list="hdm"
          data-badge="Modified">
@@ -59,7 +59,7 @@
       </a>
       
       <a href="../fc/AerofacP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aerofacp"
          data-list="hdm"
          data-badge="Modified">
@@ -68,7 +68,7 @@
       </a>
       
       <a href="../fc/AquedctC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aquedctc"
          data-list="hdm"
          data-badge="Retained">
@@ -77,7 +77,7 @@
       </a>
       
       <a href="../fc/AquedctL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aquedctl"
          data-list="hdm"
          data-badge="Retained">
@@ -86,7 +86,7 @@
       </a>
       
       <a href="../fc/BarrierL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="barrierl"
          data-list="hdm"
          data-badge="Modified">
@@ -95,7 +95,7 @@
       </a>
       
       <a href="../fc/BluffL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bluffl"
          data-list="hdm"
          data-badge="Retained">
@@ -104,7 +104,7 @@
       </a>
       
       <a href="../fc/BndvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bndvoida"
          data-list="hdm"
          data-badge="Modified">
@@ -113,7 +113,7 @@
       </a>
       
       <a href="../fc/BridgeC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bridgec"
          data-list="hdm"
          data-badge="Modified">
@@ -122,7 +122,7 @@
       </a>
       
       <a href="../fc/BridgeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bridgel"
          data-list="hdm"
          data-badge="Modified">
@@ -131,7 +131,7 @@
       </a>
       
       <a href="../fc/BuildA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="builda"
          data-list="hdm"
          data-badge="Modified">
@@ -140,7 +140,7 @@
       </a>
       
       <a href="../fc/BuildL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="buildl"
          data-list="hdm"
          data-badge="Retained">
@@ -149,7 +149,7 @@
       </a>
       
       <a href="../fc/BuildP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="buildp"
          data-list="hdm"
          data-badge="Modified">
@@ -158,7 +158,7 @@
       </a>
       
       <a href="../fc/BuiltupA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="builtupa"
          data-list="hdm"
          data-badge="Retained">
@@ -167,7 +167,7 @@
       </a>
       
       <a href="../fc/CoastA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coasta"
          data-list="hdm"
          data-badge="Modified">
@@ -176,7 +176,7 @@
       </a>
       
       <a href="../fc/CoastL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coastl"
          data-list="hdm"
          data-badge="Modified">
@@ -185,7 +185,7 @@
       </a>
       
       <a href="../fc/CommP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="commp"
          data-list="hdm"
          data-badge="Modified">
@@ -194,7 +194,7 @@
       </a>
       
       <a href="../fc/ContourL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="contourl"
          data-list="hdm"
          data-badge="Modified">
@@ -203,7 +203,7 @@
       </a>
       
       <a href="../fc/CropA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="cropa"
          data-list="hdm"
          data-badge="Modified">
@@ -212,7 +212,7 @@
       </a>
       
       <a href="../fc/CulvertC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="culvertc"
          data-list="hdm"
          data-badge="Modified">
@@ -221,7 +221,7 @@
       </a>
       
       <a href="../fc/DamA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dama"
          data-list="hdm"
          data-badge="Retained">
@@ -230,7 +230,7 @@
       </a>
       
       <a href="../fc/DamC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="damc"
          data-list="hdm"
          data-badge="Retained">
@@ -239,7 +239,7 @@
       </a>
       
       <a href="../fc/DamL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="daml"
          data-list="hdm"
          data-badge="Modified">
@@ -248,7 +248,7 @@
       </a>
       
       <a href="../fc/DangerA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dangera"
          data-list="hdm"
          data-badge="Modified">
@@ -257,7 +257,7 @@
       </a>
       
       <a href="../fc/DangerL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dangerl"
          data-list="hdm"
          data-badge="Modified">
@@ -266,7 +266,7 @@
       </a>
       
       <a href="../fc/DangerP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dangerp"
          data-list="hdm"
          data-badge="Modified">
@@ -275,7 +275,7 @@
       </a>
       
       <a href="../fc/DepthL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="depthl"
          data-list="hdm"
          data-badge="Retained">
@@ -284,7 +284,7 @@
       </a>
       
       <a href="../fc/DisposeA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="disposea"
          data-list="hdm"
          data-badge="Retained">
@@ -293,7 +293,7 @@
       </a>
       
       <a href="../fc/ElevP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="elevp"
          data-list="hdm"
          data-badge="Modified">
@@ -302,7 +302,7 @@
       </a>
       
       <a href="../fc/EmbankA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="embanka"
          data-list="hdm"
          data-badge="Modified">
@@ -311,7 +311,7 @@
       </a>
       
       <a href="../fc/EmbankL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="embankl"
          data-list="hdm"
          data-badge="Modified">
@@ -320,7 +320,7 @@
       </a>
       
       <a href="../fc/ExtractA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="extracta"
          data-list="hdm"
          data-badge="Modified">
@@ -329,7 +329,7 @@
       </a>
       
       <a href="../fc/ExtractP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="extractp"
          data-list="hdm"
          data-badge="Modified">
@@ -338,7 +338,7 @@
       </a>
       
       <a href="../fc/FerryL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ferryl"
          data-list="hdm"
          data-badge="Modified">
@@ -347,7 +347,7 @@
       </a>
       
       <a href="../fc/FordC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fordc"
          data-list="hdm"
          data-badge="Retained">
@@ -356,7 +356,7 @@
       </a>
       
       <a href="../fc/FordL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fordl"
          data-list="hdm"
          data-badge="Retained">
@@ -365,7 +365,7 @@
       </a>
       
       <a href="../fc/FortA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="forta"
          data-list="hdm"
          data-badge="Retained">
@@ -374,7 +374,7 @@
       </a>
       
       <a href="../fc/FortP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fortp"
          data-list="hdm"
          data-badge="Retained">
@@ -383,7 +383,7 @@
       </a>
       
       <a href="../fc/GrassA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="grassa"
          data-list="hdm"
          data-badge="Modified">
@@ -392,7 +392,7 @@
       </a>
       
       <a href="../fc/GroundA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="grounda"
          data-list="hdm"
          data-badge="Modified">
@@ -401,7 +401,7 @@
       </a>
       
       <a href="../fc/HarborP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="harborp"
          data-list="hdm"
          data-badge="Retained">
@@ -410,7 +410,7 @@
       </a>
       
       <a href="../fc/InterL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="interl"
          data-list="hdm"
          data-badge="Retained">
@@ -419,7 +419,7 @@
       </a>
       
       <a href="../fc/LakeresA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lakeresa"
          data-list="hdm"
          data-badge="Modified">
@@ -428,7 +428,7 @@
       </a>
       
       <a href="../fc/LandfrmL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landfrml"
          data-list="hdm"
          data-badge="Modified">
@@ -437,7 +437,7 @@
       </a>
       
       <a href="../fc/LandfrmP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landfrmp"
          data-list="hdm"
          data-badge="Retained">
@@ -446,7 +446,7 @@
       </a>
       
       <a href="../fc/LandmrkA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landmrka"
          data-list="hdm"
          data-badge="Modified">
@@ -455,7 +455,7 @@
       </a>
       
       <a href="../fc/LandmrkL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landmrkl"
          data-list="hdm"
          data-badge="Modified">
@@ -464,7 +464,7 @@
       </a>
       
       <a href="../fc/LandmrkP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landmrkp"
          data-list="hdm"
          data-badge="Modified">
@@ -473,7 +473,7 @@
       </a>
       
       <a href="../fc/LiftL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="liftl"
          data-list="hdm"
          data-badge="Retained">
@@ -482,7 +482,7 @@
       </a>
       
       <a href="../fc/Lndfrm2A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lndfrm2a"
          data-list="hdm"
          data-badge="Modified">
@@ -491,7 +491,7 @@
       </a>
       
       <a href="../fc/LockA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="locka"
          data-list="hdm"
          data-badge="Retained">
@@ -500,7 +500,7 @@
       </a>
       
       <a href="../fc/MarkersP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="markersp"
          data-list="hdm"
          data-badge="Modified">
@@ -509,7 +509,7 @@
       </a>
       
       <a href="../fc/MisaeroP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="misaerop"
          data-list="hdm"
          data-badge="Modified">
@@ -518,7 +518,7 @@
       </a>
       
       <a href="../fc/MiscL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="miscl"
          data-list="hdm"
          data-badge="Modified">
@@ -527,7 +527,7 @@
       </a>
       
       <a href="../fc/MtnP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mtnp"
          data-list="hdm"
          data-badge="Modified">
@@ -536,7 +536,7 @@
       </a>
       
       <a href="../fc/NamedLocP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="namedlocp"
          data-list="hdm"
          data-badge="Added">
@@ -545,7 +545,7 @@
       </a>
       
       <a href="../fc/OrchardA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="orcharda"
          data-list="hdm"
          data-badge="Modified">
@@ -554,7 +554,7 @@
       </a>
       
       <a href="../fc/PierA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="piera"
          data-list="hdm"
          data-badge="Modified">
@@ -563,7 +563,7 @@
       </a>
       
       <a href="../fc/PierL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pierl"
          data-list="hdm"
          data-badge="Retained">
@@ -572,7 +572,7 @@
       </a>
       
       <a href="../fc/PipeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pipel"
          data-list="hdm"
          data-badge="Modified">
@@ -581,7 +581,7 @@
       </a>
       
       <a href="../fc/PolbndA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="polbnda"
          data-list="hdm"
          data-badge="Modified">
@@ -590,7 +590,7 @@
       </a>
       
       <a href="../fc/PolbndL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="polbndl"
          data-list="hdm"
          data-badge="Modified">
@@ -599,7 +599,7 @@
       </a>
       
       <a href="../fc/PolbndP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="polbndp"
          data-list="hdm"
          data-badge="Retained">
@@ -608,7 +608,7 @@
       </a>
       
       <a href="../fc/PowerA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powera"
          data-list="hdm"
          data-badge="Modified">
@@ -617,7 +617,7 @@
       </a>
       
       <a href="../fc/PowerL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powerl"
          data-list="hdm"
          data-badge="Modified">
@@ -626,7 +626,7 @@
       </a>
       
       <a href="../fc/PowerP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powerp"
          data-list="hdm"
          data-badge="Modified">
@@ -635,7 +635,7 @@
       </a>
       
       <a href="../fc/RailrdL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="railrdl"
          data-list="hdm"
          data-badge="Modified">
@@ -644,7 +644,7 @@
       </a>
       
       <a href="../fc/RapidsC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rapidsc"
          data-list="hdm"
          data-badge="Modified">
@@ -653,7 +653,7 @@
       </a>
       
       <a href="../fc/RigwellP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rigwellp"
          data-list="hdm"
          data-badge="Modified">
@@ -662,7 +662,7 @@
       </a>
       
       <a href="../fc/RoadL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="roadl"
          data-list="hdm"
          data-badge="Modified">
@@ -671,7 +671,7 @@
       </a>
       
       <a href="../fc/RouteP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="routep"
          data-list="hdm"
          data-badge="Retained">
@@ -680,7 +680,7 @@
       </a>
       
       <a href="../fc/RuinsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ruinsa"
          data-list="hdm"
          data-badge="Modified">
@@ -689,7 +689,7 @@
       </a>
       
       <a href="../fc/RuinsP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ruinsp"
          data-list="hdm"
          data-badge="Retained">
@@ -698,7 +698,7 @@
       </a>
       
       <a href="../fc/RunwayA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="runwaya"
          data-list="hdm"
          data-badge="Modified">
@@ -707,7 +707,7 @@
       </a>
       
       <a href="../fc/SeastrtA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="seastrta"
          data-list="hdm"
          data-badge="Modified">
@@ -716,7 +716,7 @@
       </a>
       
       <a href="../fc/SeastrtL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="seastrtl"
          data-list="hdm"
          data-badge="Retained">
@@ -725,7 +725,7 @@
       </a>
       
       <a href="../fc/SportA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="sporta"
          data-list="hdm"
          data-badge="Modified">
@@ -734,7 +734,7 @@
       </a>
       
       <a href="../fc/StorageA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="storagea"
          data-list="hdm"
          data-badge="Modified">
@@ -743,7 +743,7 @@
       </a>
       
       <a href="../fc/StorageP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="storagep"
          data-list="hdm"
          data-badge="Modified">
@@ -752,7 +752,7 @@
       </a>
       
       <a href="../fc/SubstatA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="substata"
          data-list="hdm"
          data-badge="Retained">
@@ -761,7 +761,7 @@
       </a>
       
       <a href="../fc/SubstatP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="substatp"
          data-list="hdm"
          data-badge="Retained">
@@ -770,7 +770,7 @@
       </a>
       
       <a href="../fc/SwampA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="swampa"
          data-list="hdm"
          data-badge="Modified">
@@ -779,7 +779,7 @@
       </a>
       
       <a href="../fc/ThermalP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="thermalp"
          data-list="hdm"
          data-badge="Modified">
@@ -788,7 +788,7 @@
       </a>
       
       <a href="../fc/TlmhydroP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmhydrop"
          data-list="hdm"
          data-badge="Modified">
@@ -797,7 +797,7 @@
       </a>
       
       <a href="../fc/TlmutilP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmutilp"
          data-list="hdm"
          data-badge="Modified">
@@ -806,7 +806,7 @@
       </a>
       
       <a href="../fc/TrackL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="trackl"
          data-list="hdm"
          data-badge="Retained">
@@ -815,7 +815,7 @@
       </a>
       
       <a href="../fc/TrailL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="traill"
          data-list="hdm"
          data-badge="Modified">
@@ -824,7 +824,7 @@
       </a>
       
       <a href="../fc/TreatA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treata"
          data-list="hdm"
          data-badge="Modified">
@@ -833,7 +833,7 @@
       </a>
       
       <a href="../fc/TreesA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treesa"
          data-list="hdm"
          data-badge="Modified">
@@ -842,7 +842,7 @@
       </a>
       
       <a href="../fc/TreesP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treesp"
          data-list="hdm"
          data-badge="Retained">
@@ -851,7 +851,7 @@
       </a>
       
       <a href="../fc/TunnelC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tunnelc"
          data-list="hdm"
          data-badge="Retained">
@@ -860,7 +860,7 @@
       </a>
       
       <a href="../fc/TunnelL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tunnell"
          data-list="hdm"
          data-badge="Modified">
@@ -869,7 +869,7 @@
       </a>
       
       <a href="../fc/WatrcrsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="watrcrsa"
          data-list="hdm"
          data-badge="Modified">
@@ -878,7 +878,7 @@
       </a>
       
       <a href="../fc/WatrcrsL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="watrcrsl"
          data-list="hdm"
          data-badge="Modified">
@@ -887,7 +887,7 @@
       </a>
       
       <a href="../fc/WellsprP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="wellsprp"
          data-list="hdm"
          data-badge="Modified">
@@ -896,7 +896,7 @@
       </a>
       
       <a href="../fc/PolbndA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="administrativeboundary_a"
          data-list="10k"
          data-badge="Mapped">
@@ -905,7 +905,7 @@
       </a>
       
       <a href="../fc/PolbndL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="administrativeboundary_l"
          data-list="10k"
          data-badge="Mapped">
@@ -914,7 +914,7 @@
       </a>
       
       <a href="../fc/RunwayA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="airportairfield_a"
          data-list="10k"
          data-badge="Mapped">
@@ -923,7 +923,7 @@
       </a>
       
       <a href="../fc/Alley_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="alley_l"
          data-list="10k"
          data-badge="Deleted">
@@ -932,7 +932,7 @@
       </a>
       
       <a href="../fc/BridgeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bridge_l"
          data-list="10k"
          data-badge="Mapped">
@@ -941,7 +941,7 @@
       </a>
       
       <a href="../fc/BridgeC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bridge_p"
          data-list="10k"
          data-badge="Mapped">
@@ -950,7 +950,7 @@
       </a>
       
       <a href="../fc/BuildA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="building_a"
          data-list="10k"
          data-badge="Mapped">
@@ -959,7 +959,7 @@
       </a>
       
       <a href="../fc/BuildP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="building_p"
          data-list="10k"
          data-badge="Mapped">
@@ -968,7 +968,7 @@
       </a>
       
       <a href="../fc/WatrcrsL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="canal_l"
          data-list="10k"
          data-badge="Mapped">
@@ -977,7 +977,7 @@
       </a>
       
       <a href="../fc/LandmrkA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="cemetery_a"
          data-list="10k"
          data-badge="Mapped">
@@ -986,7 +986,7 @@
       </a>
       
       <a href="../fc/LandmrkP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="cemetery_p"
          data-list="10k"
          data-badge="Mapped">
@@ -995,7 +995,7 @@
       </a>
       
       <a href="../fc/BndvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="cloud_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1004,7 +1004,7 @@
       </a>
       
       <a href="../fc/CoastA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coast_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1013,7 +1013,7 @@
       </a>
       
       <a href="../fc/CoastL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coast_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1022,7 +1022,7 @@
       </a>
       
       <a href="../fc/CommP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="communicationtower_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1031,7 +1031,7 @@
       </a>
       
       <a href="../fc/ComplexOutline_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="complexoutline_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1040,7 +1040,7 @@
       </a>
       
       <a href="../fc/ContourL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="contour_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1049,7 +1049,7 @@
       </a>
       
       <a href="../fc/DangerA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coralreef_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1058,7 +1058,7 @@
       </a>
       
       <a href="../fc/DangerL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coralreef_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1067,7 +1067,7 @@
       </a>
       
       <a href="../fc/DangerP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coralreef_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1076,7 +1076,7 @@
       </a>
       
       <a href="../fc/CropA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="crop_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1085,7 +1085,7 @@
       </a>
       
       <a href="../fc/DamL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dam_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1094,7 +1094,7 @@
       </a>
       
       <a href="../fc/WatrcrsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ditch_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1103,7 +1103,7 @@
       </a>
       
       <a href="../fc/WatrcrsL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ditch_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1112,7 +1112,7 @@
       </a>
       
       <a href="../fc/BarrierL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fence_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1121,7 +1121,7 @@
       </a>
       
       <a href="../fc/FerryL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ferry_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1130,7 +1130,7 @@
       </a>
       
       <a href="../fc/Fort_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fort_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1139,7 +1139,7 @@
       </a>
       
       <a href="../fc/GrassA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="grass_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1148,7 +1148,7 @@
       </a>
       
       <a href="../fc/GroundA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ground_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1157,7 +1157,7 @@
       </a>
       
       <a href="../fc/AerofacP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="heliport_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1166,7 +1166,7 @@
       </a>
       
       <a href="../fc/TlmhydroP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="icmhydro_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1175,7 +1175,7 @@
       </a>
       
       <a href="../fc/LakeresA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lakepond_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1184,7 +1184,7 @@
       </a>
       
       <a href="../fc/LakePond_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lakepond_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1193,7 +1193,7 @@
       </a>
       
       <a href="../fc/Lighthouse_P.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lighthouse_p"
          data-list="10k"
          data-badge="Deleted">
@@ -1202,7 +1202,7 @@
       </a>
       
       <a href="../fc/MarkersP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="markers_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1211,7 +1211,7 @@
       </a>
       
       <a href="../fc/Military_P.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="military_p"
          data-list="10k"
          data-badge="Deleted">
@@ -1220,7 +1220,7 @@
       </a>
       
       <a href="../fc/ExtractP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mine_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1229,7 +1229,7 @@
       </a>
       
       <a href="../fc/MiscL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="misc_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1238,7 +1238,7 @@
       </a>
       
       <a href="../fc/LandmrkP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="monument_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1247,7 +1247,7 @@
       </a>
       
       <a href="../fc/MtnP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mtn_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1256,7 +1256,7 @@
       </a>
       
       <a href="../fc/OrchardA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="orchard_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1265,7 +1265,7 @@
       </a>
       
       <a href="../fc/LandmrkP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="park_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1274,7 +1274,7 @@
       </a>
       
       <a href="../fc/Pavement_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pavement_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1283,7 +1283,7 @@
       </a>
       
       <a href="../fc/PierA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pier_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1292,7 +1292,7 @@
       </a>
       
       <a href="../fc/PipeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pipe_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1301,7 +1301,7 @@
       </a>
       
       <a href="../fc/PowerL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powerline_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1310,7 +1310,7 @@
       </a>
       
       <a href="../fc/ExtractA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="quarry_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1319,7 +1319,7 @@
       </a>
       
       <a href="../fc/Quarry_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="quarry_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1328,7 +1328,7 @@
       </a>
       
       <a href="../fc/RailrdL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="railroad_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1337,7 +1337,7 @@
       </a>
       
       <a href="../fc/WatrcrsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="riverstream_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1346,7 +1346,7 @@
       </a>
       
       <a href="../fc/WatrcrsL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="riverstream_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1355,7 +1355,7 @@
       </a>
       
       <a href="../fc/Road_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="road_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1364,7 +1364,7 @@
       </a>
       
       <a href="../fc/RoadL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="road_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1373,7 +1373,7 @@
       </a>
       
       <a href="../fc/RoadCasement_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="roadcasement_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1382,7 +1382,7 @@
       </a>
       
       <a href="../fc/RoadMedian_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="roadmedian_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1391,7 +1391,7 @@
       </a>
       
       <a href="../fc/RuinsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ruins_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1400,7 +1400,7 @@
       </a>
       
       <a href="../fc/SideWalk_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="sidewalk_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1409,7 +1409,7 @@
       </a>
       
       <a href="../fc/Slope_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="slope_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1418,7 +1418,7 @@
       </a>
       
       <a href="../fc/SportA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="sport_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1427,7 +1427,7 @@
       </a>
       
       <a href="../fc/ElevP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="spotelevation_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1436,7 +1436,7 @@
       </a>
       
       <a href="../fc/Swamp_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="swamp_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1445,7 +1445,7 @@
       </a>
       
       <a href="../fc/StorageA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tank_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1454,7 +1454,7 @@
       </a>
       
       <a href="../fc/StorageP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tank_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1463,7 +1463,7 @@
       </a>
       
       <a href="../fc/TlmutilP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tower_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1472,7 +1472,7 @@
       </a>
       
       <a href="../fc/TrailL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="trail_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1481,7 +1481,7 @@
       </a>
       
       <a href="../fc/Trans_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="trans_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1490,7 +1490,7 @@
       </a>
       
       <a href="../fc/TreatA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treat_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1499,7 +1499,7 @@
       </a>
       
       <a href="../fc/Treat_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treat_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1508,7 +1508,7 @@
       </a>
       
       <a href="../fc/TreesA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="trees_a"
          data-list="10k"
          data-badge="Mapped">
@@ -1517,7 +1517,7 @@
       </a>
       
       <a href="../fc/Trees_P.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="trees_p"
          data-list="10k"
          data-badge="Deleted">
@@ -1526,7 +1526,7 @@
       </a>
       
       <a href="../fc/TunnelL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tunnel_l"
          data-list="10k"
          data-badge="Mapped">
@@ -1535,7 +1535,7 @@
       </a>
       
       <a href="../fc/Veg_A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="veg_a"
          data-list="10k"
          data-badge="Deleted">
@@ -1544,7 +1544,7 @@
       </a>
       
       <a href="../fc/Veg_L.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="veg_l"
          data-list="10k"
          data-badge="Deleted">
@@ -1553,7 +1553,7 @@
       </a>
       
       <a href="../fc/RigwellP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="wellspr_p"
          data-list="10k"
          data-badge="Mapped">
@@ -1562,7 +1562,7 @@
       </a>
       
       <a href="../fc/AerofacA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aerofaca"
          data-list="50k"
          data-badge="Mapped">
@@ -1571,7 +1571,7 @@
       </a>
       
       <a href="../fc/AerofacP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aerofacp"
          data-list="50k"
          data-badge="Mapped">
@@ -1580,7 +1580,7 @@
       </a>
       
       <a href="../fc/AgristrA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="agristra"
          data-list="50k"
          data-badge="Deleted">
@@ -1589,7 +1589,7 @@
       </a>
       
       <a href="../fc/AgristrP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="agristrp"
          data-list="50k"
          data-badge="Deleted">
@@ -1598,7 +1598,7 @@
       </a>
       
       <a href="../fc/AquedctC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aquedctc"
          data-list="50k"
          data-badge="Mapped">
@@ -1607,7 +1607,7 @@
       </a>
       
       <a href="../fc/AquedctL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="aquedctl"
          data-list="50k"
          data-badge="Mapped">
@@ -1616,7 +1616,7 @@
       </a>
       
       <a href="../fc/AsphaltA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="asphalta"
          data-list="50k"
          data-badge="Deleted">
@@ -1625,7 +1625,7 @@
       </a>
       
       <a href="../fc/BarrierL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="barrierl"
          data-list="50k"
          data-badge="Mapped">
@@ -1634,7 +1634,7 @@
       </a>
       
       <a href="../fc/BluffL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bluffl"
          data-list="50k"
          data-badge="Mapped">
@@ -1643,7 +1643,7 @@
       </a>
       
       <a href="../fc/BndvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bndvoida"
          data-list="50k"
          data-badge="Mapped">
@@ -1652,7 +1652,7 @@
       </a>
       
       <a href="../fc/BridgeC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bridgec"
          data-list="50k"
          data-badge="Mapped">
@@ -1661,7 +1661,7 @@
       </a>
       
       <a href="../fc/BridgeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="bridgel"
          data-list="50k"
          data-badge="Mapped">
@@ -1670,7 +1670,7 @@
       </a>
       
       <a href="../fc/BuildA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="builda"
          data-list="50k"
          data-badge="Mapped">
@@ -1679,7 +1679,7 @@
       </a>
       
       <a href="../fc/BuildL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="buildl"
          data-list="50k"
          data-badge="Mapped">
@@ -1688,7 +1688,7 @@
       </a>
       
       <a href="../fc/BuildP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="buildp"
          data-list="50k"
          data-badge="Mapped">
@@ -1697,7 +1697,7 @@
       </a>
       
       <a href="../fc/BuiltupA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="builtupa"
          data-list="50k"
          data-badge="Mapped">
@@ -1706,7 +1706,7 @@
       </a>
       
       <a href="../fc/CisternP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="cisternp"
          data-list="50k"
          data-badge="Deleted">
@@ -1715,7 +1715,7 @@
       </a>
       
       <a href="../fc/CoastA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coasta"
          data-list="50k"
          data-badge="Mapped">
@@ -1724,7 +1724,7 @@
       </a>
       
       <a href="../fc/CoastL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="coastl"
          data-list="50k"
          data-badge="Mapped">
@@ -1733,7 +1733,7 @@
       </a>
       
       <a href="../fc/CommA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="comma"
          data-list="50k"
          data-badge="Deleted">
@@ -1742,7 +1742,7 @@
       </a>
       
       <a href="../fc/CommP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="commp"
          data-list="50k"
          data-badge="Mapped">
@@ -1751,7 +1751,7 @@
       </a>
       
       <a href="../fc/ContourL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="contourl"
          data-list="50k"
          data-badge="Mapped">
@@ -1760,7 +1760,7 @@
       </a>
       
       <a href="../fc/CropA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="cropa"
          data-list="50k"
          data-badge="Mapped">
@@ -1769,7 +1769,7 @@
       </a>
       
       <a href="../fc/CulvertC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="culvertc"
          data-list="50k"
          data-badge="Mapped">
@@ -1778,7 +1778,7 @@
       </a>
       
       <a href="../fc/DamA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dama"
          data-list="50k"
          data-badge="Mapped">
@@ -1787,7 +1787,7 @@
       </a>
       
       <a href="../fc/DamC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="damc"
          data-list="50k"
          data-badge="Mapped">
@@ -1796,7 +1796,7 @@
       </a>
       
       <a href="../fc/DamL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="daml"
          data-list="50k"
          data-badge="Mapped">
@@ -1805,7 +1805,7 @@
       </a>
       
       <a href="../fc/DangerA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dangera"
          data-list="50k"
          data-badge="Mapped">
@@ -1814,7 +1814,7 @@
       </a>
       
       <a href="../fc/DangerL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dangerl"
          data-list="50k"
          data-badge="Mapped">
@@ -1823,7 +1823,7 @@
       </a>
       
       <a href="../fc/DangerP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="dangerp"
          data-list="50k"
          data-badge="Mapped">
@@ -1832,7 +1832,7 @@
       </a>
       
       <a href="../fc/DepthL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="depthl"
          data-list="50k"
          data-badge="Mapped">
@@ -1841,7 +1841,7 @@
       </a>
       
       <a href="../fc/DisposeA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="disposea"
          data-list="50k"
          data-badge="Mapped">
@@ -1850,7 +1850,7 @@
       </a>
       
       <a href="../fc/ElevoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="elevoida"
          data-list="50k"
          data-badge="Deleted">
@@ -1859,7 +1859,7 @@
       </a>
       
       <a href="../fc/ElevP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="elevp"
          data-list="50k"
          data-badge="Mapped">
@@ -1868,7 +1868,7 @@
       </a>
       
       <a href="../fc/EmbankA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="embanka"
          data-list="50k"
          data-badge="Mapped">
@@ -1877,7 +1877,7 @@
       </a>
       
       <a href="../fc/EmbankL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="embankl"
          data-list="50k"
          data-badge="Mapped">
@@ -1886,7 +1886,7 @@
       </a>
       
       <a href="../fc/ExtractA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="extracta"
          data-list="50k"
          data-badge="Mapped">
@@ -1895,7 +1895,7 @@
       </a>
       
       <a href="../fc/ExtractP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="extractp"
          data-list="50k"
          data-badge="Mapped">
@@ -1904,7 +1904,7 @@
       </a>
       
       <a href="../fc/FerryC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ferryc"
          data-list="50k"
          data-badge="Deleted">
@@ -1913,7 +1913,7 @@
       </a>
       
       <a href="../fc/FerryL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ferryl"
          data-list="50k"
          data-badge="Mapped">
@@ -1922,7 +1922,7 @@
       </a>
       
       <a href="../fc/FirebrkL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="firebrkl"
          data-list="50k"
          data-badge="Deleted">
@@ -1931,7 +1931,7 @@
       </a>
       
       <a href="../fc/FordC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fordc"
          data-list="50k"
          data-badge="Mapped">
@@ -1940,7 +1940,7 @@
       </a>
       
       <a href="../fc/FordL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fordl"
          data-list="50k"
          data-badge="Mapped">
@@ -1949,7 +1949,7 @@
       </a>
       
       <a href="../fc/FortA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="forta"
          data-list="50k"
          data-badge="Mapped">
@@ -1958,7 +1958,7 @@
       </a>
       
       <a href="../fc/FortP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="fortp"
          data-list="50k"
          data-badge="Mapped">
@@ -1967,7 +1967,7 @@
       </a>
       
       <a href="../fc/GrassA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="grassa"
          data-list="50k"
          data-badge="Mapped">
@@ -1976,7 +1976,7 @@
       </a>
       
       <a href="../fc/GroundA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="grounda"
          data-list="50k"
          data-badge="Mapped">
@@ -1985,7 +1985,7 @@
       </a>
       
       <a href="../fc/GroundP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="groundp"
          data-list="50k"
          data-badge="Deleted">
@@ -1994,7 +1994,7 @@
       </a>
       
       <a href="../fc/GroundTxt.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="groundtxt"
          data-list="50k"
          data-badge="Deleted">
@@ -2003,7 +2003,7 @@
       </a>
       
       <a href="../fc/HarborA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="harbora"
          data-list="50k"
          data-badge="Deleted">
@@ -2012,7 +2012,7 @@
       </a>
       
       <a href="../fc/HarborP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="harborp"
          data-list="50k"
          data-badge="Mapped">
@@ -2021,7 +2021,7 @@
       </a>
       
       <a href="../fc/HedgeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="hedgel"
          data-list="50k"
          data-badge="Deleted">
@@ -2030,7 +2030,7 @@
       </a>
       
       <a href="../fc/HydroP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="hydrop"
          data-list="50k"
          data-badge="Deleted">
@@ -2039,7 +2039,7 @@
       </a>
       
       <a href="../fc/HydroTxt.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="hydrotxt"
          data-list="50k"
          data-badge="Deleted">
@@ -2048,7 +2048,7 @@
       </a>
       
       <a href="../fc/HydvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="hydvoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2057,7 +2057,7 @@
       </a>
       
       <a href="../fc/IndL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark fc-item-active"
+         class="fc-item px-2 py-1 text-decoration-none text-dark fc-item-active"
          data-name="indl"
          data-list="50k"
          data-badge="Deleted">
@@ -2066,7 +2066,7 @@
       </a>
       
       <a href="../fc/IndvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="indvoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2075,7 +2075,7 @@
       </a>
       
       <a href="../fc/InterL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="interl"
          data-list="50k"
          data-badge="Mapped">
@@ -2084,7 +2084,7 @@
       </a>
       
       <a href="../fc/InundA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="inunda"
          data-list="50k"
          data-badge="Deleted">
@@ -2093,7 +2093,7 @@
       </a>
       
       <a href="../fc/LakeresA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lakeresa"
          data-list="50k"
          data-badge="Mapped">
@@ -2102,7 +2102,7 @@
       </a>
       
       <a href="../fc/LandfrmL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landfrml"
          data-list="50k"
          data-badge="Mapped">
@@ -2111,7 +2111,7 @@
       </a>
       
       <a href="../fc/LandfrmP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landfrmp"
          data-list="50k"
          data-badge="Mapped">
@@ -2120,7 +2120,7 @@
       </a>
       
       <a href="../fc/LandmrkA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landmrka"
          data-list="50k"
          data-badge="Mapped">
@@ -2129,7 +2129,7 @@
       </a>
       
       <a href="../fc/LandmrkL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landmrkl"
          data-list="50k"
          data-badge="Mapped">
@@ -2138,7 +2138,7 @@
       </a>
       
       <a href="../fc/LandmrkP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="landmrkp"
          data-list="50k"
          data-badge="Mapped">
@@ -2147,7 +2147,7 @@
       </a>
       
       <a href="../fc/LiftL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="liftl"
          data-list="50k"
          data-badge="Mapped">
@@ -2156,7 +2156,7 @@
       </a>
       
       <a href="../fc/Lndfrm1A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lndfrm1a"
          data-list="50k"
          data-badge="Deleted">
@@ -2165,7 +2165,7 @@
       </a>
       
       <a href="../fc/Lndfrm2A.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="lndfrm2a"
          data-list="50k"
          data-badge="Mapped">
@@ -2174,7 +2174,7 @@
       </a>
       
       <a href="../fc/LockA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="locka"
          data-list="50k"
          data-badge="Mapped">
@@ -2183,7 +2183,7 @@
       </a>
       
       <a href="../fc/MarkersP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="markersp"
          data-list="50k"
          data-badge="Mapped">
@@ -2192,7 +2192,7 @@
       </a>
       
       <a href="../fc/MisaeroP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="misaerop"
          data-list="50k"
          data-badge="Mapped">
@@ -2201,7 +2201,7 @@
       </a>
       
       <a href="../fc/MiscA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="misca"
          data-list="50k"
          data-badge="Deleted">
@@ -2210,7 +2210,7 @@
       </a>
       
       <a href="../fc/MiscL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="miscl"
          data-list="50k"
          data-badge="Mapped">
@@ -2219,7 +2219,7 @@
       </a>
       
       <a href="../fc/MiscP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="miscp"
          data-list="50k"
          data-badge="Deleted">
@@ -2228,7 +2228,7 @@
       </a>
       
       <a href="../fc/MispopA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mispopa"
          data-list="50k"
          data-badge="Deleted">
@@ -2237,7 +2237,7 @@
       </a>
       
       <a href="../fc/MispopP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mispopp"
          data-list="50k"
          data-badge="Deleted">
@@ -2246,7 +2246,7 @@
       </a>
       
       <a href="../fc/MobileA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mobilea"
          data-list="50k"
          data-badge="Deleted">
@@ -2255,7 +2255,7 @@
       </a>
       
       <a href="../fc/MtnP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="mtnp"
          data-list="50k"
          data-badge="Mapped">
@@ -2264,7 +2264,7 @@
       </a>
       
       <a href="../fc/NuclearA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="nucleara"
          data-list="50k"
          data-badge="Deleted">
@@ -2273,7 +2273,7 @@
       </a>
       
       <a href="../fc/ObstrP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="obstrp"
          data-list="50k"
          data-badge="Deleted">
@@ -2282,7 +2282,7 @@
       </a>
       
       <a href="../fc/OrchardA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="orcharda"
          data-list="50k"
          data-badge="Mapped">
@@ -2291,7 +2291,7 @@
       </a>
       
       <a href="../fc/PhyvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="phyvoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2300,7 +2300,7 @@
       </a>
       
       <a href="../fc/PierA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="piera"
          data-list="50k"
          data-badge="Mapped">
@@ -2309,7 +2309,7 @@
       </a>
       
       <a href="../fc/PierL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pierl"
          data-list="50k"
          data-badge="Mapped">
@@ -2318,7 +2318,7 @@
       </a>
       
       <a href="../fc/PipeL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pipel"
          data-list="50k"
          data-badge="Mapped">
@@ -2327,7 +2327,7 @@
       </a>
       
       <a href="../fc/PlazaA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="plazaa"
          data-list="50k"
          data-badge="Deleted">
@@ -2336,7 +2336,7 @@
       </a>
       
       <a href="../fc/PolbndA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="polbnda"
          data-list="50k"
          data-badge="Mapped">
@@ -2345,7 +2345,7 @@
       </a>
       
       <a href="../fc/PolbndL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="polbndl"
          data-list="50k"
          data-badge="Mapped">
@@ -2354,7 +2354,7 @@
       </a>
       
       <a href="../fc/PolbndP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="polbndp"
          data-list="50k"
          data-badge="Mapped">
@@ -2363,7 +2363,7 @@
       </a>
       
       <a href="../fc/PopvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="popvoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2372,7 +2372,7 @@
       </a>
       
       <a href="../fc/PowerA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powera"
          data-list="50k"
          data-badge="Mapped">
@@ -2381,7 +2381,7 @@
       </a>
       
       <a href="../fc/PowerL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powerl"
          data-list="50k"
          data-badge="Mapped">
@@ -2390,7 +2390,7 @@
       </a>
       
       <a href="../fc/PowerP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="powerp"
          data-list="50k"
          data-badge="Mapped">
@@ -2399,7 +2399,7 @@
       </a>
       
       <a href="../fc/ProcessA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="processa"
          data-list="50k"
          data-badge="Deleted">
@@ -2408,7 +2408,7 @@
       </a>
       
       <a href="../fc/ProcessP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="processp"
          data-list="50k"
          data-badge="Deleted">
@@ -2417,7 +2417,7 @@
       </a>
       
       <a href="../fc/PumpingA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pumpinga"
          data-list="50k"
          data-badge="Deleted">
@@ -2426,7 +2426,7 @@
       </a>
       
       <a href="../fc/PumpingP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="pumpingp"
          data-list="50k"
          data-badge="Deleted">
@@ -2435,7 +2435,7 @@
       </a>
       
       <a href="../fc/RailrdL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="railrdl"
          data-list="50k"
          data-badge="Mapped">
@@ -2444,7 +2444,7 @@
       </a>
       
       <a href="../fc/RampL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rampl"
          data-list="50k"
          data-badge="Deleted">
@@ -2453,7 +2453,7 @@
       </a>
       
       <a href="../fc/RapidsC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rapidsc"
          data-list="50k"
          data-badge="Mapped">
@@ -2462,7 +2462,7 @@
       </a>
       
       <a href="../fc/RapidsL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rapidsl"
          data-list="50k"
          data-badge="Deleted">
@@ -2471,7 +2471,7 @@
       </a>
       
       <a href="../fc/RestA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="resta"
          data-list="50k"
          data-badge="Deleted">
@@ -2480,7 +2480,7 @@
       </a>
       
       <a href="../fc/RigwellP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rigwellp"
          data-list="50k"
          data-badge="Mapped">
@@ -2489,7 +2489,7 @@
       </a>
       
       <a href="../fc/RoadL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="roadl"
          data-list="50k"
          data-badge="Mapped">
@@ -2498,7 +2498,7 @@
       </a>
       
       <a href="../fc/RouteP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="routep"
          data-list="50k"
          data-badge="Mapped">
@@ -2507,7 +2507,7 @@
       </a>
       
       <a href="../fc/RrturnC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rrturnc"
          data-list="50k"
          data-badge="Deleted">
@@ -2516,7 +2516,7 @@
       </a>
       
       <a href="../fc/RryardA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rryarda"
          data-list="50k"
          data-badge="Deleted">
@@ -2525,7 +2525,7 @@
       </a>
       
       <a href="../fc/RryardP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="rryardp"
          data-list="50k"
          data-badge="Deleted">
@@ -2534,7 +2534,7 @@
       </a>
       
       <a href="../fc/RuinsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ruinsa"
          data-list="50k"
          data-badge="Mapped">
@@ -2543,7 +2543,7 @@
       </a>
       
       <a href="../fc/RuinsP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="ruinsp"
          data-list="50k"
          data-badge="Mapped">
@@ -2552,7 +2552,7 @@
       </a>
       
       <a href="../fc/RunwayA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="runwaya"
          data-list="50k"
          data-badge="Mapped">
@@ -2561,7 +2561,7 @@
       </a>
       
       <a href="../fc/SeastrtA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="seastrta"
          data-list="50k"
          data-badge="Mapped">
@@ -2570,7 +2570,7 @@
       </a>
       
       <a href="../fc/SeastrtL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="seastrtl"
          data-list="50k"
          data-badge="Mapped">
@@ -2579,7 +2579,7 @@
       </a>
       
       <a href="../fc/ShedC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="shedc"
          data-list="50k"
          data-badge="Deleted">
@@ -2588,7 +2588,7 @@
       </a>
       
       <a href="../fc/ShedL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="shedl"
          data-list="50k"
          data-badge="Deleted">
@@ -2597,7 +2597,7 @@
       </a>
       
       <a href="../fc/SportA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="sporta"
          data-list="50k"
          data-badge="Mapped">
@@ -2606,7 +2606,7 @@
       </a>
       
       <a href="../fc/StoragA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="storaga"
          data-list="50k"
          data-badge="Deleted">
@@ -2615,7 +2615,7 @@
       </a>
       
       <a href="../fc/StorageA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="storagea"
          data-list="50k"
          data-badge="Mapped">
@@ -2624,7 +2624,7 @@
       </a>
       
       <a href="../fc/StorageP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="storagep"
          data-list="50k"
          data-badge="Mapped">
@@ -2633,7 +2633,7 @@
       </a>
       
       <a href="../fc/SubstatA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="substata"
          data-list="50k"
          data-badge="Mapped">
@@ -2642,7 +2642,7 @@
       </a>
       
       <a href="../fc/SubstatP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="substatp"
          data-list="50k"
          data-badge="Mapped">
@@ -2651,7 +2651,7 @@
       </a>
       
       <a href="../fc/SwampA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="swampa"
          data-list="50k"
          data-badge="Mapped">
@@ -2660,7 +2660,7 @@
       </a>
       
       <a href="../fc/TeethA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="teetha"
          data-list="50k"
          data-badge="Deleted">
@@ -2669,7 +2669,7 @@
       </a>
       
       <a href="../fc/TeethL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="teethl"
          data-list="50k"
          data-badge="Deleted">
@@ -2678,7 +2678,7 @@
       </a>
       
       <a href="../fc/TeleL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="telel"
          data-list="50k"
          data-badge="Deleted">
@@ -2687,7 +2687,7 @@
       </a>
       
       <a href="../fc/ThermalP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="thermalp"
          data-list="50k"
          data-badge="Mapped">
@@ -2696,7 +2696,7 @@
       </a>
       
       <a href="../fc/TlmbndC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmbndc"
          data-list="50k"
          data-badge="Deleted">
@@ -2705,7 +2705,7 @@
       </a>
       
       <a href="../fc/TlmBndL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmbndl"
          data-list="50k"
          data-badge="Deleted">
@@ -2714,7 +2714,7 @@
       </a>
       
       <a href="../fc/TlmhydroA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmhydroa"
          data-list="50k"
          data-badge="Deleted">
@@ -2723,7 +2723,7 @@
       </a>
       
       <a href="../fc/TlmhydroC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmhydroc"
          data-list="50k"
          data-badge="Deleted">
@@ -2732,7 +2732,7 @@
       </a>
       
       <a href="../fc/TlmhydroL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmhydrol"
          data-list="50k"
          data-badge="Deleted">
@@ -2741,7 +2741,7 @@
       </a>
       
       <a href="../fc/TlmhydroP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmhydrop"
          data-list="50k"
          data-badge="Mapped">
@@ -2750,7 +2750,7 @@
       </a>
       
       <a href="../fc/TlmindP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmindp"
          data-list="50k"
          data-badge="Deleted">
@@ -2759,7 +2759,7 @@
       </a>
       
       <a href="../fc/TlmphysA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmphysa"
          data-list="50k"
          data-badge="Deleted">
@@ -2768,7 +2768,7 @@
       </a>
       
       <a href="../fc/TlmpopA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmpopa"
          data-list="50k"
          data-badge="Deleted">
@@ -2777,7 +2777,7 @@
       </a>
       
       <a href="../fc/TlmpopP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmpopp"
          data-list="50k"
          data-badge="Deleted">
@@ -2786,7 +2786,7 @@
       </a>
       
       <a href="../fc/TlmtransA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmtransa"
          data-list="50k"
          data-badge="Deleted">
@@ -2795,7 +2795,7 @@
       </a>
       
       <a href="../fc/TlmtransC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmtransc"
          data-list="50k"
          data-badge="Deleted">
@@ -2804,7 +2804,7 @@
       </a>
       
       <a href="../fc/TlmtransL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmtransl"
          data-list="50k"
          data-badge="Deleted">
@@ -2813,7 +2813,7 @@
       </a>
       
       <a href="../fc/TlmtransP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmtransp"
          data-list="50k"
          data-badge="Deleted">
@@ -2822,7 +2822,7 @@
       </a>
       
       <a href="../fc/TlmutilP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmutilp"
          data-list="50k"
          data-badge="Mapped">
@@ -2831,7 +2831,7 @@
       </a>
       
       <a href="../fc/TlmvegA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tlmvega"
          data-list="50k"
          data-badge="Deleted">
@@ -2840,7 +2840,7 @@
       </a>
       
       <a href="../fc/TowerP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="towerp"
          data-list="50k"
          data-badge="Deleted">
@@ -2849,7 +2849,7 @@
       </a>
       
       <a href="../fc/TrackL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="trackl"
          data-list="50k"
          data-badge="Mapped">
@@ -2858,7 +2858,7 @@
       </a>
       
       <a href="../fc/TrailL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="traill"
          data-list="50k"
          data-badge="Mapped">
@@ -2867,7 +2867,7 @@
       </a>
       
       <a href="../fc/TravoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="travoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2876,7 +2876,7 @@
       </a>
       
       <a href="../fc/TreatA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treata"
          data-list="50k"
          data-badge="Mapped">
@@ -2885,7 +2885,7 @@
       </a>
       
       <a href="../fc/TreesA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treesa"
          data-list="50k"
          data-badge="Mapped">
@@ -2894,7 +2894,7 @@
       </a>
       
       <a href="../fc/TreesP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="treesp"
          data-list="50k"
          data-badge="Mapped">
@@ -2903,7 +2903,7 @@
       </a>
       
       <a href="../fc/TundraA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tundraa"
          data-list="50k"
          data-badge="Deleted">
@@ -2912,7 +2912,7 @@
       </a>
       
       <a href="../fc/TunnelC.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tunnelc"
          data-list="50k"
          data-badge="Mapped">
@@ -2921,7 +2921,7 @@
       </a>
       
       <a href="../fc/TunnelL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="tunnell"
          data-list="50k"
          data-badge="Mapped">
@@ -2930,7 +2930,7 @@
       </a>
       
       <a href="../fc/UtivoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="utivoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2939,7 +2939,7 @@
       </a>
       
       <a href="../fc/VegvoidA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="vegvoida"
          data-list="50k"
          data-badge="Deleted">
@@ -2948,7 +2948,7 @@
       </a>
       
       <a href="../fc/WatrcrsA.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="watrcrsa"
          data-list="50k"
          data-badge="Mapped">
@@ -2957,7 +2957,7 @@
       </a>
       
       <a href="../fc/WatrcrsL.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="watrcrsl"
          data-list="50k"
          data-badge="Mapped">
@@ -2966,7 +2966,7 @@
       </a>
       
       <a href="../fc/WellsprP.html"
-         class="fc-item fc-hidden px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="wellsprp"
          data-list="50k"
          data-badge="Mapped">
@@ -3153,32 +3153,31 @@ function domFilter(btn, status) {
     const q = document.getElementById('searchInput').value.toLowerCase();
     let vis = 0;
     document.querySelectorAll('.fc-item').forEach(el => {
-      const matchScale  = el.dataset.list  === activeScale;
-      const matchBadge  = !activeBadge || el.dataset.badge === activeBadge;
-      const matchSearch = !q || (el.dataset.name || '').includes(q);
-      const show = matchScale && matchBadge && matchSearch;
-      el.classList.toggle('fc-hidden', !show);
+      const show = el.dataset.list === activeScale
+                && (!activeBadge  || el.dataset.badge === activeBadge)
+                && (!q            || el.dataset.name.includes(q));
+      el.style.display = show ? 'flex' : 'none';
       if (show) vis++;
     });
     document.getElementById('fcCount').textContent = vis + ' feature classes';
+    document.getElementById('fcNav').style.visibility = 'visible';
   }
 
-  // Restore UI state on load
-  (function restoreState() {
+  // Restore state on every page load
+  (function () {
     const isHdm = activeScale === 'hdm';
     document.querySelectorAll('[data-scale]').forEach(b =>
       b.classList.toggle('active', b.dataset.scale === activeScale));
     document.querySelectorAll('.leg-hdm').forEach(el => el.classList.toggle('d-none', !isHdm));
-    document.querySelectorAll('.leg-src').forEach(el => el.classList.toggle('d-none', isHdm));
+    document.querySelectorAll('.leg-src').forEach(el => el.classList.toggle('d-none',  isHdm));
     if (activeBadge) {
-      document.querySelectorAll('.sb-badge-btn').forEach(b => {
-        if (b.dataset.badge === activeBadge) b.classList.add('sb-badge-active');
-      });
+      document.querySelectorAll('.sb-badge-btn').forEach(b =>
+        b.classList.toggle('sb-badge-active', b.dataset.badge === activeBadge));
       document.getElementById('badgeReset').classList.remove('d-none');
     }
     applyFilter();
-    const active = document.querySelector('.fc-item-active:not(.fc-hidden)');
-    if (active) active.scrollIntoView({ block: 'nearest' });
+    const cur = document.querySelector('.fc-item-active[style*="flex"]');
+    if (cur) cur.scrollIntoView({ block: 'nearest' });
   })();
 </script>
 </body>
