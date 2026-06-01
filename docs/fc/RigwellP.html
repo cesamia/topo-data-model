@@ -37,12 +37,13 @@
              placeholder="Search…" oninput="applyFilter()"/>
       <div id="fcCount" class="text-muted mt-1" style="font-size:11px"></div>
     </div>
-    <!-- Legend -->
-    <div class="d-flex gap-1 px-2 py-1 border-bottom bg-light flex-wrap">
-      <span class="badge-sh badge-Retained">RET</span>
-      <span class="badge-sh badge-Modified">MOD</span>
-      <span class="badge-sh badge-Removed">DEL</span>
-      <span class="badge-sh badge-Added">ADD</span>
+    <!-- Legend (switches with active tab) -->
+    <div class="d-flex gap-1 px-2 py-1 border-bottom bg-light flex-wrap" id="sbLegend">
+      <span class="leg-hdm badge-sh badge-Retained">RET</span>
+      <span class="leg-hdm badge-sh badge-Modified">MOD</span>
+      <span class="leg-hdm badge-sh badge-Added">ADD</span>
+      <span class="leg-src badge-sh badge-Mapped  d-none">MAP</span>
+      <span class="leg-src badge-sh badge-Deleted d-none">DEL</span>
     </div>
     <!-- FC list -->
     <nav class="fc-list overflow-y-auto flex-grow-1">
@@ -1023,14 +1024,6 @@
         <span class="text-truncate" style="font-size:12.5px">Grass_A</span>
       </a>
       
-      <a href="../fc/Grid.html"
-         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
-         data-name="grid"
-         data-list="10k">
-        <span class="badge-sh badge-Deleted flex-shrink-0">DEL</span>
-        <span class="text-truncate" style="font-size:12.5px">Grid</span>
-      </a>
-      
       <a href="../fc/GroundA.html"
          class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
          data-name="ground_a"
@@ -1053,14 +1046,6 @@
          data-list="10k">
         <span class="badge-sh badge-Mapped flex-shrink-0">MAP</span>
         <span class="text-truncate" style="font-size:12.5px">ICMHydro_P</span>
-      </a>
-      
-      <a href="../fc/IndexMap.html"
-         class="fc-item d-flex align-items-center gap-2 px-2 py-1 text-decoration-none text-dark"
-         data-name="indexmap"
-         data-list="10k">
-        <span class="badge-sh badge-Deleted flex-shrink-0">DEL</span>
-        <span class="text-truncate" style="font-size:12.5px">IndexMap</span>
       </a>
       
       <a href="../fc/LakeresA.html"
@@ -2805,6 +2790,9 @@ function domFilter(btn, status) {
     activeScale = scale;
     document.querySelectorAll('[data-scale]').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+    const isHdm = scale === 'hdm';
+    document.querySelectorAll('.leg-hdm').forEach(el => el.classList.toggle('d-none', !isHdm));
+    document.querySelectorAll('.leg-src').forEach(el => el.classList.toggle('d-none', isHdm));
     applyFilter();
   }
 
