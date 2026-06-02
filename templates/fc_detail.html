@@ -19,23 +19,25 @@
     <span class="badge-sh badge-{{ fc.badge }} fs-sm">{{ fc.badge | badge_label }}</span>
   </div>
 
-  {# Aliases #}
+  {# Lineage — which 10k / 50k FCs map to this HDM FC #}
   <div class="d-flex align-items-center flex-wrap gap-1 mb-3">
-    {% if fc.aliases_10k %}
+    {% if fc.sources_10k %}
       <span class="alias-lbl">10k</span>
-      {% for a in fc.aliases_10k %}
+      {% for a in fc.sources_10k %}
         <span class="alias-chip chip-10k">{{ a }}</span>
       {% endfor %}
     {% endif %}
-    {% if fc.aliases_50k and fc.aliases_50k[0] != fc.canonical_name %}
-      {% if fc.aliases_10k %}<span class="text-muted">|</span>{% endif %}
+    {% if fc.sources_10k and fc.sources_50k %}
+      <span class="text-muted mx-1">|</span>
+    {% endif %}
+    {% if fc.sources_50k %}
       <span class="alias-lbl">50k</span>
-      {% for a in fc.aliases_50k %}
+      {% for a in fc.sources_50k %}
         <span class="alias-chip chip-50k">{{ a }}</span>
       {% endfor %}
     {% endif %}
-    {% if not fc.aliases_10k and (not fc.aliases_50k or fc.aliases_50k[0] == fc.canonical_name) %}
-      <span class="text-muted" style="font-size:12px">No 10k feature class mapped.</span>
+    {% if not fc.sources_10k and not fc.sources_50k %}
+      <span class="text-muted" style="font-size:12px">No source FC mapped.</span>
     {% endif %}
   </div>
 

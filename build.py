@@ -115,6 +115,14 @@ def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
         "SELECT alias FROM fc_aliases WHERE fc_id=? AND scale='50k'", (fid,)
     ).fetchall()]
 
+    # Authoritative lineage from fc_membership (covers new FCs not in fc_aliases)
+    sources_10k = [r[0] for r in conn.execute(
+        "SELECT display_name FROM fc_membership WHERE fc_id=? AND scale='10k'", (fid,)
+    ).fetchall()]
+    sources_50k = [r[0] for r in conn.execute(
+        "SELECT display_name FROM fc_membership WHERE fc_id=? AND scale='50k'", (fid,)
+    ).fetchall()]
+
     subtypes = [dict(r) for r in conn.execute(
         "SELECT fcode, subtype_name, tms_action, hgdb_action, remarks"
         " FROM subtypes WHERE fc_id=? ORDER BY sort_order", (fid,)
@@ -141,6 +149,8 @@ def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
         "badge": fc_row["badge"],
         "aliases_10k": aliases_10k,
         "aliases_50k": aliases_50k,
+        "sources_10k": sources_10k,
+        "sources_50k": sources_50k,
         "subtypes": subtypes,
         "changelog": changelog,
         "domains": domains,
