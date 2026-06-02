@@ -17,7 +17,7 @@ DB   = "db/schemas.db"
 CORRECTIONS_10K = {
     "Alley_L":          "RoadL",          # primary mapping (stairways→TrailL is secondary)
     "ComplexOutline_A": "PolbndA",         # CORRECTED from old alias (was BndvoidA)
-    "Fort_L":           "FortA",           # stub → FortA (geometry change L→Polygon)
+    "Fort_L":           "FortL",           # maps to new HDM FC FortL (FortA was deleted)
     "Road_A":           "RoadA",           # stub → new HDM FC
     "RoadCasement_L":   "RoadCasementL",   # stub → new HDM FC (user confirmed no underscore)
     "Swamp_A":          "SwampA",          # was wrongly treated as dropped
@@ -30,7 +30,11 @@ CORRECTIONS_10K = {
 NEW_HDM_FCS = [
     ("RoadA",        "Added"),
     ("RoadCasementL","Added"),
+    ("FortL",        "Added"),   # FortA was deleted; FortL is the new HDM FC
 ]
+
+# FCs removed from HDM — strip HDM membership, set badge Removed
+REMOVED_FROM_HDM = ["FortA"]
 
 # ── Old stubs to remove once their 10k entries are re-pointed ────────────────
 REMOVE_STUBS = ["Road_A", "RoadCasement_L"]
@@ -190,6 +194,15 @@ if __name__ == "__main__":
 
     print("\n=== 4. Removing orphaned stubs ===")
     remove_stubs(conn)
+
+    print("\n=== 5. Removing FCs deleted from HDM ===")
+    for name in REMOVED_FROM_HDM:
+        fid = get_fc_id(conn, name)
+        if fid:
+            conn.execute("DELETE FROM fc_membership WHERE fc_id=? AND scale='hdm'", (fid,))
+            conn.execute("UPDATE feature_classes SET badge='Removed' WHERE id=?", (fid,))
+            print(f"  {name}: removed from HDM, badge -> Removed")
+    conn.commit()
 
     print("\n=== Summary ===")
     for scale in ("hdm", "10k", "50k"):

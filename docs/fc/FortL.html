@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RouteP — Schema Harmonization</title>
+  <title>FortL — Schema Harmonization</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="../static/style.css"/>
 </head>
@@ -365,7 +365,7 @@
       </a>
       
       <a href="../fc/FortL.html"
-         class="fc-item px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark fc-item-active"
          data-name="fortl"
          data-list="hdm"
          data-badge="Added">
@@ -689,7 +689,7 @@
       </a>
       
       <a href="../fc/RouteP.html"
-         class="fc-item px-2 py-1 text-decoration-none text-dark fc-item-active"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="routep"
          data-list="hdm"
          data-badge="Retained">
@@ -1148,7 +1148,7 @@
       </a>
       
       <a href="../fc/FortL.html"
-         class="fc-item px-2 py-1 text-decoration-none text-dark"
+         class="fc-item px-2 py-1 text-decoration-none text-dark fc-item-active"
          data-name="fort_l"
          data-list="10k"
          data-badge="Mapped">
@@ -2516,7 +2516,7 @@
       </a>
       
       <a href="../fc/RouteP.html"
-         class="fc-item px-2 py-1 text-decoration-none text-dark fc-item-active"
+         class="fc-item px-2 py-1 text-decoration-none text-dark"
          data-name="routep"
          data-list="50k"
          data-badge="Mapped">
@@ -3002,8 +3002,8 @@
 
   
   <div class="d-flex align-items-center gap-2 mb-1">
-    <h4 class="mb-0 fw-bold">RouteP</h4>
-    <span class="badge-sh badge-Retained fs-sm">RET</span>
+    <h4 class="mb-0 fw-bold">FortL</h4>
+    <span class="badge-sh badge-Added fs-sm">ADD</span>
   </div>
 
   
@@ -3017,61 +3017,11 @@
 
   
   
-  <div class="card mb-3 shadow-sm">
-    <div class="card-header sh-section-header">Subtypes &amp; Mapping Actions</div>
-    <div class="table-responsive">
-      <table class="table table-sm table-hover mb-0 sh-table">
-        <thead>
-          <tr>
-            <th>F-Code</th>
-            <th>Subtype</th>
-            <th>TMS Action <span class="text-muted fw-normal">(10k)</span></th>
-            <th>HGDB Action <span class="text-muted fw-normal">(50k)</span></th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td><code class="fcode">AQ119</code></td>
-            <td class="font-monospace" style="font-size:12px">RouteMarkerPoint</td>
-            <td><span class="ac ac-add">Add</span></td>
-            <td><span class="ac ac-retain">Retain</span></td>
-            <td class="text-muted rem-td">
-              Route Markers for road name / identification number (information from DPWH)
-            </td>
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-  </div>
-  
 
   
   
 
   
-  
-  <div class="card mb-3 shadow-sm">
-    <div class="card-header sh-section-header">Changelog</div>
-    <div class="card-body p-0">
-      
-      
-      <div class="cl-entry d-flex gap-3 px-3 py-2 border-bottom">
-        <span class="cl-date text-muted">2026-03-17</span>
-        <div class="cl-change cl-schema flex-grow-1">
-          Changed Default Value of Field [nam] from &#34;UNK&#34; to null.
-          <div class="cl-badge text-muted">
-            schema change
-             · Remove unnecessary element
-             · v4
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
   
 
 </div>
