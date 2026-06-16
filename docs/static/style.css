@@ -26,16 +26,18 @@
 
 /* ── Status badges ──────────────────────────────────────────── */
 .badge-sh {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 9px;
   font-weight: 700;
-  padding: 2px 6px;
+  padding: 2px 4px;
   border-radius: 10px;
   text-transform: uppercase;
   letter-spacing: .4px;
-  min-width: 34px;
-  text-align: center;
+  width: 40px;
   border: 1px solid transparent;
+  white-space: nowrap;
 }
 .badge-Retained  { background: #e8f5ee; color: #1e7e48; border-color: #c6e8d5; }
 .badge-Modified  { background: #e8f0fd; color: #2563a8; border-color: #c6d8f5; }
