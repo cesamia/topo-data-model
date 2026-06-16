@@ -39,6 +39,8 @@ REMOVED_FROM_HDM = ["FortA", "PolbndL", "PolbndA", "PolbndP"]
 # FCs whose badge needs explicit correction (schema/domain changes not auto-detected)
 BADGE_CORRECTIONS = {
     "BuildL":   "Modified",  # domain will not be migrated (v6 changelog)
+    "PolbndA":  "",          # removed from HDM but model still in progress
+    "PolbndP":  "",          # removed from HDM but model still in progress
     # Retained → Modified: have v4 changelog entries (default value / field changes)
     "BuiltupA": "Modified",
     "DamA":     "Modified",
@@ -269,6 +271,11 @@ if __name__ == "__main__":
         if fid:
             conn.execute("UPDATE feature_classes SET badge=? WHERE id=?", (badge, fid))
             print(f"  {name}: badge -> {badge}")
+    conn.commit()
+
+    print("\n=== 7. Converting remaining Retained -> Modified ===")
+    r = conn.execute("UPDATE feature_classes SET badge='Modified' WHERE badge='Retained'")
+    print(f"  {r.rowcount} FCs updated")
     conn.commit()
 
     print("\n=== Summary ===")

@@ -39,7 +39,6 @@
     </div>
     <!-- Legend — clickable badge filters -->
     <div class="d-flex align-items-center gap-1 px-2 py-1 border-bottom bg-light flex-wrap">
-      <span class="leg-hdm badge-sh badge-Retained sb-badge-btn" data-badge="Retained" onclick="toggleBadge('Retained',this)" title="Retained">RET</span>
       <span class="leg-hdm badge-sh badge-Modified sb-badge-btn" data-badge="Modified" onclick="toggleBadge('Modified',this)" title="Modified">MOD</span>
       <span class="leg-hdm badge-sh badge-Added    sb-badge-btn" data-badge="Added"    onclick="toggleBadge('Added',this)"    title="Added">ADD</span>
       <span class="leg-src badge-sh badge-Mapped   sb-badge-btn d-none" data-badge="Mapped"  onclick="toggleBadge('Mapped',this)"  title="Matched to HDM">MTCH</span>
@@ -215,7 +214,7 @@ function domFilter(btn, status) {
 <script>
   const FC_PREFIX   = "../fc/";
   const ACTIVE_FC   = "NamedLocP";
-  const BADGE_LABELS = {Modified:"MOD",Retained:"RET",Added:"ADD",Deleted:"DEL",Removed:"DEL",Mapped:"MTCH",Dropped:"DRP"};
+  const BADGE_LABELS = {Modified:"MOD",Added:"ADD",Removed:"DEL",Mapped:"MTCH",Dropped:"DRP"};
 </script>
 <script src="../static/nav-data.js"></script>
 <script>

@@ -16,7 +16,7 @@ Always run scripts from the repo root: `python apply_changelog.py` then `python 
 
 ## Change checklists
 
-### FC badge change (Retained / Modified / Added / Removed / clear)
+### FC badge change (Modified / Added / Removed / clear)
 1. `apply_changelog.py` — add FC to `BADGE_CORRECTIONS` (use `""` to clear) or `REMOVED_FROM_HDM`
 2. Run `python apply_changelog.py`
 3. Run `python build.py`
@@ -78,15 +78,19 @@ Always run scripts from the repo root: `python apply_changelog.py` then `python 
 
 ## Badge values
 
+**HDM FCs**
 | Value | Label | Meaning |
 |-------|-------|---------|
-| `Retained` | RET | FC carried over from source unchanged |
-| `Modified` | MOD | FC exists in source, changed in HDM |
-| `Added` | ADD | New FC in HDM, not in source |
+| `Modified` | MOD | FC exists in source and is carried into HDM with changes (applies to all — two common fields are removed from all HDM FCs) |
+| `Added` | ADD | FC exists in source but no suitable FC could house it; new FC created following VMAP naming conventions |
 | `Removed` | DEL | FC was in HDM, now removed |
 | `""` (empty) | *(none)* | Status not yet confirmed |
+
+**10k / 50k FCs**
+| Value | Label | Meaning |
+|-------|-------|---------|
 | `Mapped` | MTCH | 10k/50k FC matched to an HDM FC |
-| `Deleted` | DEL | 10k/50k FC has no HDM equivalent |
+| `Dropped` | DRP | 10k/50k FC has no HDM equivalent — not carried over |
 
 ## After any change — always end with
 ```
