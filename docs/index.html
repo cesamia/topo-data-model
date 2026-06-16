@@ -161,6 +161,7 @@
     document.querySelectorAll('.sb-badge-btn').forEach(b => b.classList.remove('sb-badge-active'));
     document.getElementById('badgeReset').classList.add('d-none');
     applyFilter();
+    if (typeof updateFcHeader === 'function') updateFcHeader(scale);
   }
 
   function toggleBadge(badge, el) {
@@ -215,6 +216,7 @@
       document.getElementById('badgeReset').classList.remove('d-none');
     }
     applyFilter();
+    if (typeof updateFcHeader === 'function') updateFcHeader(activeScale);
     const cur = document.querySelector('.fc-item-active[style*="flex"]');
     if (cur) cur.scrollIntoView({ block: 'nearest' });
   })();

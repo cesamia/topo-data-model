@@ -56,29 +56,90 @@
 
   
   <div class="d-flex align-items-center gap-2 mb-1">
-    <h4 class="mb-0 fw-bold">SportA</h4>
-    <span class="badge-sh badge-Modified fs-sm">MOD</span>
+    <h4 id="fc-heading" class="mb-0 fw-bold">SportA</h4>
+    <span id="fc-heading-badge"><span class="badge-sh badge-Modified">MOD</span></span>
   </div>
+  <div id="fc-lineage" class="d-flex align-items-center flex-wrap gap-1 mb-3"></div>
 
-  
-  <div class="d-flex align-items-center flex-wrap gap-1 mb-3">
-    
-      <span class="alias-lbl">10k</span>
-      
-        <span class="alias-chip chip-10k">Sport_A</span>
-      
-    
-    
-      <span class="text-muted mx-1">|</span>
-    
-    
-      <span class="alias-lbl">50k</span>
-      
-        <span class="alias-chip chip-50k">SportA</span>
-      
-    
-    
-  </div>
+  <script>
+  const FC_HDM_NAME    = "SportA";
+  const FC_HDM_BADGE   = "Modified";
+  const FC_IN_HDM      = true;
+  const FC_SOURCES_10K = ["Sport_A"];
+  const FC_SOURCES_50K = ["SportA"];
+
+  function updateFcHeader(scale) {
+    const hdg = document.getElementById('fc-heading');
+    const bdg = document.getElementById('fc-heading-badge');
+    const lin = document.getElementById('fc-lineage');
+    if (!hdg) return;
+
+    // Heading name
+    let headName = FC_HDM_NAME;
+    if (scale === '10k' && FC_SOURCES_10K.length) headName = FC_SOURCES_10K[0];
+    else if (scale === '50k' && FC_SOURCES_50K.length) headName = FC_SOURCES_50K[0];
+    hdg.textContent = headName;
+
+    // Badge in heading — only on HDM scale
+    const bl = (typeof BADGE_LABELS !== 'undefined' && BADGE_LABELS[FC_HDM_BADGE]) || '';
+    bdg.innerHTML = (scale === 'hdm' && FC_HDM_BADGE && bl)
+      ? `<span class="badge-sh badge-${FC_HDM_BADGE}">${bl}</span>`
+      : '';
+
+    // Source badge (MTCH vs DRP) for 10k/50k entries in subheading
+    const srcBadge = FC_IN_HDM ? 'Mapped' : 'Dropped';
+    const srcLbl   = FC_IN_HDM ? 'MTCH'   : 'DRP';
+
+    function srcBadgeHtml() {
+      return `<span class="badge-sh badge-${srcBadge}" style="width:auto;padding:1px 5px">${srcLbl}</span>`;
+    }
+    function hdmBadgeHtml() {
+      return (FC_HDM_BADGE && bl)
+        ? `<span class="badge-sh badge-${FC_HDM_BADGE}" style="width:auto;padding:1px 5px">${bl}</span>`
+        : '';
+    }
+
+    function chips10k(withBadge) {
+      if (!FC_SOURCES_10K.length) return null;
+      const chips = FC_SOURCES_10K.map(n => `<span class="alias-chip chip-10k">${n}</span>`).join(' ');
+      return `<span class="alias-lbl">10k</span>${chips}${withBadge ? ' ' + srcBadgeHtml() : ''}`;
+    }
+    function chips50k(withBadge) {
+      if (!FC_SOURCES_50K.length) return null;
+      const chips = FC_SOURCES_50K.map(n => `<span class="alias-chip chip-50k">${n}</span>`).join(' ');
+      return `<span class="alias-lbl">50k</span>${chips}${withBadge ? ' ' + srcBadgeHtml() : ''}`;
+    }
+    function chipsHdm() {
+      return `<span class="alias-lbl">HDM</span><span class="alias-chip" style="background:#f0f0f5;border-color:#d0d0e0;color:#333;font-family:Consolas,monospace">${FC_HDM_NAME}</span> ${hdmBadgeHtml()}`;
+    }
+
+    const parts = [];
+    if (scale === 'hdm') {
+      // Subheading: source names only, no badges (badge is already in the heading)
+      const p10 = chips10k(false); if (p10) parts.push(p10);
+      const p50 = chips50k(false); if (p50) parts.push(p50);
+    } else if (scale === '10k') {
+      const p50 = chips50k(true); if (p50) parts.push(p50);
+      parts.push(chipsHdm());
+    } else {
+      const p10 = chips10k(true); if (p10) parts.push(p10);
+      parts.push(chipsHdm());
+    }
+
+    lin.innerHTML = parts.length
+      ? parts.join('<span class="text-muted mx-1">|</span>')
+      : '<span class="text-muted" style="font-size:12px">No source FC mapped.</span>';
+  }
+
+  // Run immediately for the parts that don't need BADGE_LABELS
+  (function () {
+    const _scale = sessionStorage.getItem('sb_scale') || 'hdm';
+    const hdg = document.getElementById('fc-heading');
+    if (hdg && _scale === '10k' && FC_SOURCES_10K.length) hdg.textContent = FC_SOURCES_10K[0];
+    else if (hdg && _scale === '50k' && FC_SOURCES_50K.length) hdg.textContent = FC_SOURCES_50K[0];
+    if (_scale !== 'hdm') document.getElementById('fc-heading-badge').innerHTML = '';
+  })();
+  </script>
 
   
   
@@ -222,6 +283,7 @@ function domFilter(btn, status) {
     document.querySelectorAll('.sb-badge-btn').forEach(b => b.classList.remove('sb-badge-active'));
     document.getElementById('badgeReset').classList.add('d-none');
     applyFilter();
+    if (typeof updateFcHeader === 'function') updateFcHeader(scale);
   }
 
   function toggleBadge(badge, el) {
@@ -276,6 +338,7 @@ function domFilter(btn, status) {
       document.getElementById('badgeReset').classList.remove('d-none');
     }
     applyFilter();
+    if (typeof updateFcHeader === 'function') updateFcHeader(activeScale);
     const cur = document.querySelector('.fc-item-active[style*="flex"]');
     if (cur) cur.scrollIntoView({ block: 'nearest' });
   })();

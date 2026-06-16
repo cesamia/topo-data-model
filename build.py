@@ -156,9 +156,14 @@ def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
         ).fetchall()]
         domains.append({"field_name": dom["field_name"], "field_alias": dom["field_alias"], "rows": dr})
 
+    in_hdm = conn.execute(
+        "SELECT 1 FROM fc_membership WHERE fc_id=? AND scale='hdm'", (fid,)
+    ).fetchone() is not None
+
     return {
         "canonical_name": fc_row["canonical_name"],
         "badge": fc_row["badge"],
+        "in_hdm": in_hdm,
         "aliases_10k": aliases_10k,
         "aliases_50k": aliases_50k,
         "sources_10k": sources_10k,
