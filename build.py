@@ -50,7 +50,7 @@ def badge_label(badge: str) -> str:
         "Added":    "ADD",
         "Removed":  "REM",
         "Deleted":  "DEL",
-        "Mapped":   "MAP",
+        "Mapped":   "MTCH",
     }.get(badge, "RET")
 
 
