@@ -46,6 +46,7 @@
 /* 10k / 50k sidebar badges */
 .badge-Mapped    { background: #e0f7fa; color: #00695c; border-color: #80cbc4; }
 .badge-Deleted   { background: #fde8e8; color: #c0392b; border-color: #f5c6c6; }
+.badge-Dropped   { background: #fef3e2; color: #b45309; border-color: #fcd88a; }
 
 /* ── Action chips ───────────────────────────────────────────── */
 .ac {

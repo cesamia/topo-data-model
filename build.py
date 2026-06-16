@@ -61,6 +61,7 @@ def badge_label(badge: str | None) -> str:
         "Deleted":  "DEL",
         "Mapped":   "MTCH",
         "Retained": "RET",
+        "Dropped":  "DRP",
     }.get(badge or "", "")
 
 
@@ -102,7 +103,7 @@ def get_sidebar_items(conn: sqlite3.Connection) -> list[dict]:
                 display_badge = r["badge"]          # Retained / Modified / Added
             else:
                 display_badge = (
-                    "Mapped" if r["canonical_name"] in hdm_set else "Deleted"
+                    "Mapped" if r["canonical_name"] in hdm_set else "Dropped"
                 )
             items.append(
                 {

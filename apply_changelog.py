@@ -34,11 +34,10 @@ NEW_HDM_FCS = [
 ]
 
 # FCs removed from HDM — strip HDM membership, set badge Removed
-REMOVED_FROM_HDM = ["FortA", "PolbndL"]
+REMOVED_FROM_HDM = ["FortA", "PolbndL", "PolbndA", "PolbndP"]
 
 # FCs whose badge needs explicit correction (schema/domain changes not auto-detected)
 BADGE_CORRECTIONS = {
-    "PolbndP":  "Modified",  # field renames + deletions in changelog
     "BuildL":   "Modified",  # domain will not be migrated (v6 changelog)
     # Retained → Modified: have v4 changelog entries (default value / field changes)
     "BuiltupA": "Modified",
