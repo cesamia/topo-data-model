@@ -117,6 +117,28 @@ def get_sidebar_items(conn: sqlite3.Connection) -> list[dict]:
     return items
 
 
+def get_extraction_rule(conn, scale, fcode, subtype_name):
+    """3-tier match: fcode+name → fcode only → name only."""
+    if fcode:
+        r = conn.execute(
+            "SELECT * FROM extraction_rules WHERE scale=? AND fcode=? AND LOWER(source_subtype)=LOWER(?)",
+            (scale, fcode, subtype_name),
+        ).fetchone()
+        if r:
+            return dict(r)
+        r = conn.execute(
+            "SELECT * FROM extraction_rules WHERE scale=? AND fcode=? LIMIT 1",
+            (scale, fcode),
+        ).fetchone()
+        if r:
+            return dict(r)
+    r = conn.execute(
+        "SELECT * FROM extraction_rules WHERE scale=? AND LOWER(source_subtype)=LOWER(?)",
+        (scale, subtype_name),
+    ).fetchone()
+    return dict(r) if r else None
+
+
 def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
     fid = fc_row["id"]
 
@@ -144,6 +166,12 @@ def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
         "SELECT change_text, source, change_date, version, change_type"
         " FROM changelog WHERE fc_id=? ORDER BY sort_order", (fid,)
     ).fetchall()]
+
+    for st in subtypes:
+        fcode = st["fcode"] or ""
+        name  = st["subtype_name"] or ""
+        st["rule_10k"] = get_extraction_rule(conn, "10k", fcode, name)
+        st["rule_50k"] = get_extraction_rule(conn, "50k", fcode, name)
 
     domains_raw = conn.execute(
         "SELECT id, field_name, field_alias FROM domains WHERE fc_id=? ORDER BY sort_order", (fid,)

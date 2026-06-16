@@ -151,6 +151,10 @@
 
   
   
+  
+
+  
+  
 
   
   
@@ -204,6 +208,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

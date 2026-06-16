@@ -174,6 +174,96 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AQ130</code></td>
+            <td class="font-monospace" style="font-size:12px">TunnelLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">An underground passage that is open at both ends and usually contains a land transportation route (for example: a road and/or a railway).</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">An underground or underwater passage, open at both ends and usually containing a road, railroad, canal or aqueduct.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AQ130</code></td>
+            <td class="font-monospace" style="font-size:12px">TunnelLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">Delineate the perceived perimeter of the Tunnel, coincident with the centerline of the Road, Railway, Canal, or Aqueduct that passes through the Tunnel; Delineate the path of the centerline of the tunnel snapping on the edge of Road_L (road centerline)</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Line: L&gt;50 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Line: Delineate the path of the centerline of the tunnel, which should be coincident with the centerline of the hydro feature, passing through the tunnel.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -201,6 +291,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

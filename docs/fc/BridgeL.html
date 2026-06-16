@@ -174,6 +174,96 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AQ040</code></td>
+            <td class="font-monospace" style="font-size:12px">BridgeOverpassViaductLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">A structure that connects two locations and provides for the passage of a transportation route (for example: a road or a railway) over a terrain obstacle (for example: a waterbody, a gully, and/or a road); A man-made structure spanning and providing passage over a body of water, depression, or other obstacles; A bridge may serve, for example, as an overpass or a viaduct; Footbridge, Overpass; Pedestrian Overpass or Pedestrian bridges is an elevated structure typically includes access stairs and its build constructed for people allowing them to safely cross over roads, railways or others obstacles without interacting with vehicular traffics</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A man-made structure spanning and providing passage over a body of water, depression, or other obstacles.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AQ040</code></td>
+            <td class="font-monospace" style="font-size:12px">BridgeOverpassViaductLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">Extracted as single line parallel/aligned to road centerline at it extends; Delineate the centerline of the outer perimeter of the bridge/overpass/viaduct structure in the plane of the greatest horizontal extent. Beginning and end of the centerline should be at the abutments; Footbridge: extracted as single line across the river</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Line: L &gt;= 50 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Line: Delineate the centerline of the outer perimeter of the bridge/overpass/viaduct structure in the plane of the greatest horizontal extent. Beginning and end of the centerline should be at the abutments.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -227,6 +317,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

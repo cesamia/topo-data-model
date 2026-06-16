@@ -183,6 +183,140 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AN050</code></td>
+            <td class="font-monospace" style="font-size:12px">RailroadSidetrackLine</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A rail or set of parallel rails on which a train or tram runs.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AN010</code></td>
+            <td class="font-monospace" style="font-size:12px">RailroadTrackLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-2">Is a rail or set of parallel rails on which a train or tram runs; One or more railway tracks comprising a network that is operated for the conveyance of passengers and/or goods</div>
+                <button class="eg-toggle" onclick="egToggle('def10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A rail or set of parallel rails on which a train or tram runs.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AN050</code></td>
+            <td class="font-monospace" style="font-size:12px">RailroadSidetrackLine</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Length &gt;= 300 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Line: Delineate the centerline of the metal tracks and ties at the height of the track.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AN010</code></td>
+            <td class="font-monospace" style="font-size:12px">RailroadTrackLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-2">Delineate on the centerline of the metal tracks; Populate number of truck line; A railway consisting of numerous tracks on multiple railway beds requires multiple delineations, one for each bed; When a curve mainline railway forms an edge of a surface railway yard, delineate the two components to show them sharing an edge; For a dismantled railway, delineate the centerline of the roadbed at the surface level; All railways, including dismantled railways, must be collected</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">Length &gt;= 300 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Line: Delineate the centerline of the metal tracks and ties at the height of the track; for multiple tracks, delineate the centerline of the aggregate tracks.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -210,6 +344,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

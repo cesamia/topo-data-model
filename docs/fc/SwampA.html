@@ -183,6 +183,100 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH095</code></td>
+            <td class="font-monospace" style="font-size:12px">MarshSwampArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-2">A bog is defined as a poorly drained or periodically flooded area of soft, wet, spongy ground consisting of peat that supports mosses, herbaceous vegetation, and in some cases woody shrub vegetation and/or trees.; Marsh/Swamp is a saturated area, at times covered with water, supporting vegetation that may include trees.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A saturated area, at times covered with water, supporting vegetation which may include trees.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH095</code></td>
+            <td class="font-monospace" style="font-size:12px">MarshSwampArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-2">Delineate the perimeter of the contiguous bog or marsh area at ground water level. Features include interior features such as buildings, roads, railroads, ditches, etc., even if they qualify for separate extraction. If a marsh/swamp area contains woody vegetation of a height &gt;= 3m, with &gt;= 25% canopy cover, it would be a more accurate portrayal to extract it as a Marsh/Swamp area. Snapping to the Road Centerline (Road_L).</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">Area: L &gt; 150 meters, W &gt; 150 meters (&gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Area: Delineate the perimeter of the contiguous Marsh area at ground/water level, including interior features and/or structures. SMC = 200 Marsh is a wet, inundated region that has &lt; 25% tree canopy cover. SMC = 201 Swamp is a low-lying area of saturated ground covered with shallow water and supporting woody vegetation.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -223,6 +317,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

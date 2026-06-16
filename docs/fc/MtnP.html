@@ -183,6 +183,140 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">DB030</code></td>
+            <td class="font-monospace" style="font-size:12px">CavePoint</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A point feature on the opening of a natural underground hollow or chamber, typically large enough for a human to enter.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">DB150</code></td>
+            <td class="font-monospace" style="font-size:12px">MountainPassPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-2">Cave is a natural subterranean chamber or series of chambers open to the Earth&#39;s surface; Mountain Pass is a narrow route through a mountainous region or over a mountain range.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A natural route through a low place in a mountain range.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">DB030</code></td>
+            <td class="font-monospace" style="font-size:12px">CavePoint</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">All Required</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Point: Collect the center of the perimeter of the entrance to the natural subterranean chamber.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">DB150</code></td>
+            <td class="font-monospace" style="font-size:12px">MountainPassPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-2">Place a point at the center of the perimeter of the entrance to the natural subterranean chamber (cave); Place a point at the center of the pass, at the location of the summit at which slope equals zero (mountain pass); Place a point coincident with the associated transportation route within the perimeter of the Mountain Pass. A Mountain Pass is extracted only if so directed and it usually is associated with a transportation route through a mountainous region; If there is direction for extraction, the Mountain Pass is extracted as a single POINT placed on the highest point of the transportation route associated with the Mountain Pass to emphasize the elevation of the passage; The POINT Mountain Pass feature is collected primarily as a placeholder for a label with the Geographic Name of the pass.</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">All Required</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Point: Collect a point at the center of the pass, at the location of the summit at which slope equals zero.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -210,6 +344,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

@@ -183,6 +183,90 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AL070</code></td>
+            <td class="font-monospace" style="font-size:12px">FenceWallLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">A man-made barrier of relatively light structural material used as an enclosure or boundary; Similar structures that are constructed of heavy materials (for example: stone, rock or masonry) are classified as walls.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:50k</span>
+              
+            </td>
+          </tr>
+          
+          
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AL070</code></td>
+            <td class="font-monospace" style="font-size:12px">FenceWallLine</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">Delineate the centerline of the fence along its full extent and continuing through gates, small breaks, or changes in fence materials; Delineate along the top of the wall, including any attached gates as they appear in the closed position, showing its extent; The boundary, whether a fence or wall, should be delineate in a clockwise direction. This is to emphasize the substantial width (thickness) of the fence or wall within the property owned by the area&#39;s owner. Minimum length should be &gt;= 125 meters.</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:50k</span>
+              
+            </td>
+          </tr>
+          
+          
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -236,6 +320,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

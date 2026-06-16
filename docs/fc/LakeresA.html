@@ -183,6 +183,140 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">BH080</code></td>
+            <td class="font-monospace" style="font-size:12px">LakePondArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">An inland body of water with predominantly natural shoreline surrounded by land, where no appreciable current or flow pattern is evident; It may occur in a natural terrain depression in which water collects, or may be impounded;</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A body of water surrounded by land. A Polygon feature representing a natural or artificial body of standing water, typically inland, with a defined spatial extent.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH130</code></td>
+            <td class="font-monospace" style="font-size:12px">ReservoirArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A polygon feature of a designated body of stored water, usually artificial, created by damming a river or stream, used for purposes such as water supply, irrigation, hydroelectric power generation, flood control, or recreation.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">BH080</code></td>
+            <td class="font-monospace" style="font-size:12px">LakePondArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">Delineate the perimeter surface of the lake/pond.</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">L &gt;= 150 meters, W &gt;= 150 meter (Area &gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Area: Delineate the perimeter of the lake/pond at high water.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH130</code></td>
+            <td class="font-monospace" style="font-size:12px">ReservoirArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">L &gt;= 150 meters, W &gt;= 150 meter (Area &gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Area: Delineate the perimeter of the reservoir at the high water level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -236,6 +370,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

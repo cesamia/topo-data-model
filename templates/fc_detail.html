@@ -133,6 +133,105 @@
     {% endif %}
   </div>
 
+  {# ── Extraction Rules ── #}
+  {% set has_rules = fc.subtypes | selectattr('rule_10k') | list | length > 0
+                  or fc.subtypes | selectattr('rule_50k') | list | length > 0 %}
+  {% if has_rules %}
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    {# — Definitions table — #}
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for st in fc.subtypes %}
+          {% if st.rule_10k or st.rule_50k %}
+          <tr>
+            <td><code class="fcode">{{ st.fcode }}</code></td>
+            <td class="font-monospace" style="font-size:12px">{{ st.subtype_name }}</td>
+            <td class="eg-cell">
+              {% if st.rule_10k and st.rule_10k.definition %}
+                <div class="eg-text" id="def10-{{ loop.index }}">{{ st.rule_10k.definition }}</div>
+                <button class="eg-toggle" onclick="egToggle('def10-{{ loop.index }}',this)">Show more</button>
+              {% else %}
+                <span class="eg-missing">Not in 1:10k</span>
+              {% endif %}
+            </td>
+            <td class="eg-cell">
+              {% if st.rule_50k and st.rule_50k.definition %}
+                <div class="eg-text" id="def50-{{ loop.index }}">{{ st.rule_50k.definition }}</div>
+                <button class="eg-toggle" onclick="egToggle('def50-{{ loop.index }}',this)">Show more</button>
+              {% else %}
+                <span class="eg-missing">Not in 1:50k</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {# — Extraction Rules table — #}
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for st in fc.subtypes %}
+          {% if st.rule_10k or st.rule_50k %}
+          <tr>
+            <td><code class="fcode">{{ st.fcode }}</code></td>
+            <td class="font-monospace" style="font-size:12px">{{ st.subtype_name }}</td>
+            <td class="eg-cell">
+              {% if st.rule_10k and st.rule_10k.extraction_guide %}
+                <div class="eg-text" id="eg10-{{ loop.index }}">{{ st.rule_10k.extraction_guide }}</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-{{ loop.index }}',this)">Show more</button>
+              {% else %}
+                <span class="eg-missing">Not in 1:10k</span>
+              {% endif %}
+            </td>
+            <td class="eg-cell">
+              {% if st.rule_50k %}
+                {% if st.rule_50k.capture_conditions %}
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-{{ loop.index }}">{{ st.rule_50k.capture_conditions }}</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-{{ loop.index }}',this)">Show more</button>
+                {% endif %}
+                {% if st.rule_50k.extraction_guide %}
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-{{ loop.index }}">{{ st.rule_50k.extraction_guide }}</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-{{ loop.index }}',this)">Show more</button>
+                {% endif %}
+              {% else %}
+                <span class="eg-missing">Not in 1:50k</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
   {# ── Domains ── #}
   {% for dom in fc.domains %}
   {% set idx = loop.index %}
@@ -224,6 +323,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

@@ -192,6 +192,186 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">BH020</code></td>
+            <td class="font-monospace" style="font-size:12px">CanalArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A man-made or improved natural waterway used for transportation.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH030</code></td>
+            <td class="font-monospace" style="font-size:12px">DitchArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-2">A typically narrow artificial waterway created to contain water; Ditch is a channel constructed for the purpose of irrigation or drainage. (irrigation/canal)</div>
+                <button class="eg-toggle" onclick="egToggle('def10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A channel constructed for the purpose of irrigation or drainage.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH140</code></td>
+            <td class="font-monospace" style="font-size:12px">RiverStreamArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-3">A naturally flowing watercourse; a river is a natural flowing watercourse, usually meandering through a channel following the lowest topographic valley. A river is sometimes referred to as a stream and can also be defined as a moving body of water, confined to a channel and running downhill under the influence of gravity.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-3',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-3">A natural flowing watercourse.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-3',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">BH020</code></td>
+            <td class="font-monospace" style="font-size:12px">CanalArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Area: W &gt;= 30 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Area: Collect the area between shorelines, at typical water level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH030</code></td>
+            <td class="font-monospace" style="font-size:12px">DitchArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-2">Delineate the perimeter of the contiguous Ditch, at typical water surface level, to represent the shape and extent of the Ditch; Capture Conditions: width &gt;= 25 meters (area)</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">Area: W &gt;= 30meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Area: A double line ditch is extracted at the level of the greatest horizontal extent or from bank to bank.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH140</code></td>
+            <td class="font-monospace" style="font-size:12px">RiverStreamArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-3">Collect the area between shorelines, at typical water level. If perennial, the perimeter of the surface river shall be delineated at the typical water surface level; If intermittent or dry, it is recommended that the perimeter of the SURFACE River shall be delineated at the bottom of the streambed, as the most consistent level at which the feature should be extracted; Capture Condition: Width &gt;= 25 meters (area)</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-3',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-3">Area: W &gt;= 30 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-3',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-3">Area: Collect the area between shorelines, at typical water level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-3',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -258,6 +438,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

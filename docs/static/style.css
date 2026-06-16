@@ -121,6 +121,29 @@
 }
 .sb-reset:hover { color: #c0392b; background: #fde8e8; }
 
+/* ── Extraction Rules ───────────────────────────────────────── */
+.eg-cell { font-size: 12px; line-height: 1.55; color: #3a4c60; }
+.eg-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.eg-text.expanded { display: block; }
+.eg-toggle {
+  font-size: 11px;
+  color: #2563a8;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 2px 0 0;
+  display: block;
+}
+.eg-toggle:hover { text-decoration: underline; }
+.eg-missing { font-size: 12px; color: #9baab8; font-style: italic; }
+.eg-cap { font-size: 10px; font-weight: 700; text-transform: uppercase;
+          letter-spacing: .5px; color: #9baab8; margin-bottom: 2px; }
+
 /* ── Misc ───────────────────────────────────────────────────── */
 .rem-td   { font-size: 12px; color: #5a6e82; }
 .rem-cell { font-size: 11px; color: #9baab8; font-style: italic; display: block; margin-top: 2px; }

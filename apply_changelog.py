@@ -4,10 +4,14 @@
   2. Corrects 10k membership targets based on the changelog mapping decisions
   3. Adds new HDM FCs (RoadA, RoadCasementL) and their HDM memberships
 """
+import csv
 import sqlite3
 import openpyxl
 from datetime import datetime
 from pathlib import Path
+
+CSV_10K = "temp/features_10k.csv"
+CSV_50K = "temp/features_50k.csv"
 
 XLSX = "temp/SchemaChangeLog.xlsx"
 DB   = "db/schemas.db"
@@ -234,6 +238,70 @@ def remove_stubs(conn):
     conn.commit()
 
 
+# ── 9. Import extraction rules ────────────────────────────────────────────────
+
+def import_extraction_rules(conn):
+    conn.execute("DROP TABLE IF EXISTS extraction_rules")
+    conn.execute("""
+        CREATE TABLE extraction_rules (
+            id               INTEGER PRIMARY KEY,
+            scale            TEXT NOT NULL,
+            fcode            TEXT,
+            source_fc        TEXT,
+            source_subtype   TEXT,
+            definition       TEXT,
+            capture_conditions TEXT,
+            extraction_guide TEXT,
+            page_ref         TEXT
+        )
+    """)
+
+    inserted = 0
+
+    # 10k
+    with open(CSV_10K, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            fc       = (row.get("feature_class") or "").strip()
+            subtype  = (row.get("subtype") or "").strip()
+            fcode    = (row.get("fcode") or "").strip()
+            if not subtype or subtype.lower() == "none":
+                continue
+            if fcode.lower() in ("", "<none>", "none"):
+                fcode = None
+            conn.execute(
+                "INSERT INTO extraction_rules(scale,fcode,source_fc,source_subtype,definition,extraction_guide,page_ref)"
+                " VALUES(?,?,?,?,?,?,?)",
+                ("10k", fcode, fc, subtype,
+                 row.get("definition_description","").strip(),
+                 row.get("extraction_guide","").strip(),
+                 row.get("page_ref","").strip()),
+            )
+            inserted += 1
+
+    # 50k
+    with open(CSV_50K, encoding="utf-8-sig", newline="") as f:
+        for row in csv.DictReader(f):
+            fc       = (row.get("Feature_Class") or "").strip()
+            subtype  = (row.get("FCSUBTYPE") or "").strip()
+            fcode    = (row.get("FCODE") or "").strip()
+            if not subtype:
+                continue
+            if fcode.lower() in ("", "<none>", "none"):
+                fcode = None
+            conn.execute(
+                "INSERT INTO extraction_rules(scale,fcode,source_fc,source_subtype,definition,capture_conditions,extraction_guide)"
+                " VALUES(?,?,?,?,?,?,?)",
+                ("50k", fcode, fc, subtype,
+                 row.get("Definition","").strip(),
+                 row.get("Capture_Conditions","").strip(),
+                 row.get("Feature_Extraction_Guide","").strip()),
+            )
+            inserted += 1
+
+    conn.commit()
+    print(f"  {inserted} extraction rule rows imported")
+
+
 # ── Main ──────────────────────────────────────────────────────────────────────
 
 if __name__ == "__main__":
@@ -283,6 +351,9 @@ if __name__ == "__main__":
     """)
     print(f"  {r.rowcount} FCs updated")
     conn.commit()
+
+    print("\n=== 9. Importing extraction rules ===")
+    import_extraction_rules(conn)
 
     print("\n=== Summary ===")
     for scale in ("hdm", "10k", "50k"):

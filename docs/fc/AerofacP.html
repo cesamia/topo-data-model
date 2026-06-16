@@ -183,6 +183,142 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">GB005</code></td>
+            <td class="font-monospace" style="font-size:12px">AirportAirfieldPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">A runway (airports); Is a defined area of land or water used for landing, take-off, and movement of aircraft including associated buildings and facilities.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A defined area of land or water used for landing, take-off, and movement of aircraft including associated buildings and facilities.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">GB035</code></td>
+            <td class="font-monospace" style="font-size:12px">HeliportPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-2">An aerodrome intended to be used for the arrival, landing, takeoff or departure of vertical takeoff and landing aircraft/helicopters.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A designated area for landing and taking off helicopters, which can be on land, water, or a structure</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">GB005</code></td>
+            <td class="font-monospace" style="font-size:12px">AirportAirfieldPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">Delineate the perimeter of the runway area at ground level, excluding the terminal building;</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Area: L &gt;150 meters, W &gt;150 meters (&gt;= 22500 square meters); Point: L &lt;150 meters, W &lt;150 meters</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Area: Delineate the perimeter of the aircraft facility grounds at runway level. This excludes approach lighting when it&#39;s outside of the aircraft facility area. Point: Place a point on the center of the feature/polygon</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">GB035</code></td>
+            <td class="font-monospace" style="font-size:12px">HeliportPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-2">Place a point at the center of the visible extent of the Helipad, usually the center of symbol that marks the Helipad (e.g., an &#39;H&#39;)</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">All Required</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Place a point on the center of the feature/polygon</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -301,6 +437,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

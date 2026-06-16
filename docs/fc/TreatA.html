@@ -201,6 +201,230 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AC030</code></td>
+            <td class="font-monospace" style="font-size:12px">SettlingBasinSludgePondArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">Settling pond - A small reservoir where solid matter is precipitated from a liquid by evaporating or settling. Fish Hatchery / Fish Farm / Marine Farm - A facility involved in the breeding (hatching and associated activities) and cultivation (raising for release or harvesting) of fish in tanks or landlocked enclosures.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A settling basin (also called a sedimentation basin or sludge pond) is an engineered containment area designed to allow suspended solids in water or wastewater to settle out by gravity.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AJ030</code></td>
+            <td class="font-monospace" style="font-size:12px">FeedlotStockyardHoldingPenArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A designated enclosure or facility where livestock (such as cattle, pigs, or sheep) are confined, fed, and managed.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH040</code></td>
+            <td class="font-monospace" style="font-size:12px">FiltrationAerationBedsArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-3">An area containing layers of material used to filter or aerate water.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-3',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH050</code></td>
+            <td class="font-monospace" style="font-size:12px">FishHatcheryFishFarmMarineFarmArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-4">(see Treat_A definition - fish hatchery/farm context)</div>
+                <button class="eg-toggle" onclick="egToggle('def10-4',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-4">An enclosure of water used for the breeding and/or rearing of fish.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-4',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AC030</code></td>
+            <td class="font-monospace" style="font-size:12px">SettlingBasinSludgePondArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">Delineate the perimeter of the surface area of the feature; Necessary to clip the feature</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Area: L &gt;150 meters, W &gt;150 meters (&gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Area: Delineate the perimeter of earthworks for settling basin/sludge pond taken at interior base of embankment (at the level where the liquid/sludge meets the containment structure).</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AJ030</code></td>
+            <td class="font-monospace" style="font-size:12px">FeedlotStockyardHoldingPenArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">Area: L &gt;150 meters, W &gt;150 meters (&gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Area: Delineate the perimeter of the yard, including any associated structures / features within the perimeter of the yard (such as buildings, a bounding fence, cart tracks, etc.) that do not qualify for separate extraction, at ground level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH040</code></td>
+            <td class="font-monospace" style="font-size:12px">FiltrationAerationBedsArea</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-3">Area: L &gt;150 meters, W &gt;150 meters (&gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-3',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-3">Area: Delineate the perimeter of the filtration/aeration beds at the high water level. A sewage disposal bed should be collected as a Filtration/Aeration Bed.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-3',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">BH050</code></td>
+            <td class="font-monospace" style="font-size:12px">FishHatcheryFishFarmMarineFarmArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-4">Delineate the perimeter of the feature.</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-4',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-4">Area: L &gt;150 meters, W &gt;150 meters (&gt;= 22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-4',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-4">Area: Delineate the perimeter of the fish hatchery water area at the high water level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-4',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -208,6 +432,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

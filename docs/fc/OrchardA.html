@@ -192,6 +192,188 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">EA050</code></td>
+            <td class="font-monospace" style="font-size:12px">VineyardArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-1">(continuation of orchard/plantation)</div>
+                <button class="eg-toggle" onclick="egToggle('def10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A polygon feature of a tract of land where grapevines are deliberately planted, cultivated, and managed for the production of grapes for wine, juice, raisins, or fresh consumption.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">EA030</code></td>
+            <td class="font-monospace" style="font-size:12px">NurseryArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-2">Nursery is a place where shrubs, flowers, plants and trees are grown for transplanting, seed or grafting. Greenhouses like in Baguio City.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-2">A polygon feature of a place where plants are propagated, grown, and nurtured to a desired stage before being transplanted or sold.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-2',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">EA040</code></td>
+            <td class="font-monospace" style="font-size:12px">OrchardPlantationArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-3">Orchard/Plantation is an area covered by systematic plantings of trees which yield fruits, nuts, or other products. e.i. mango, lansones, citrus, avocado</div>
+                <button class="eg-toggle" onclick="egToggle('def10-3',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-3">An area covered by systematic plantings of trees which yield fruits, nuts or other products.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-3',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">EA050</code></td>
+            <td class="font-monospace" style="font-size:12px">VineyardArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-1">(see above)</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-1',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Area: L &gt;= 150 meters, W &gt;= 150 meter (22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Area: Delineate the perimeter of the vineyards/hops at ground level. Feature includes bounding fences, hedgerows, etc., and interior features such as buildings, roads, ditches, etc., even if they qualify for separate extraction.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">EA030</code></td>
+            <td class="font-monospace" style="font-size:12px">NurseryArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-2">(none specified)</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-2',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-2">Area: L &gt;= 150 meters, W &gt;= 150 meter (22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-2',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-2">Area: Delineate the perimeter of the nursery at ground level. Feature includes bounding fences, hedgerows, etc., and interior features such as buildings, roads, ditches, etc., even if they qualify for separate extraction.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-2',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">EA040</code></td>
+            <td class="font-monospace" style="font-size:12px">OrchardPlantationArea</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-3">Delineate the perimeter of the orchard/plantation and Vineyards at ground level. Feature includes bounding fences, hedgerows, etc., and interior features such as buildings, roads, ditches, etc., even if they qualify for separate extraction. Do not collect areas covered by the systematic planting of grape vines or hops as Orchard/Plantation components. Snapping to the Road Centerline (Road_L);</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-3',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-3">Area: L &gt;= 150 meters, W &gt;= 150 meter (22500 sq. meters)</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-3',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-3">Area: Delineate the perimeter of the orchard/plantation at ground level. Feature includes bounding fence, hedgerows, etc., and interior features such as buildings, roads, ditches, etc., even if they qualify for separate extraction.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-3',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -199,6 +381,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));

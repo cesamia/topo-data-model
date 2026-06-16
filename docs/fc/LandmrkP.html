@@ -210,6 +210,234 @@
 
   
   
+  
+  <div class="card mb-3 shadow-sm">
+    <div class="card-header sh-section-header">Extraction Rules</div>
+
+    
+    <div class="px-3 pt-2 pb-1" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Definitions</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Definition</th>
+            <th class="th-50k">1:50k Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AK030</code></td>
+            <td class="font-monospace" style="font-size:12px">AmusementParkAttractionPoint</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-1">A point feature for a ride, show, or entertainment facility within an amusement or theme park designed to provide enjoyment, thrill, or leisure to visitors.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-1',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AL030</code></td>
+            <td class="font-monospace" style="font-size:12px">CemeteryPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-3">An area or a site and associated structures devoted to the burial of the dead.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-3',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-3">An area of land for burying the dead.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-3',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AL130</code></td>
+            <td class="font-monospace" style="font-size:12px">MonumentPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def10-4">A marker erected and/or maintained as a memorial to a person and/or event.</div>
+                <button class="eg-toggle" onclick="egToggle('def10-4',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-4">A point feature to indicate a geographic location of a structure, statue, or other physical marker erected to commemorate a person, event, historical site, or cultural significance.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-4',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AK120</code></td>
+            <td class="font-monospace" style="font-size:12px">ParkPoint</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="def50-5">An area used for recreational or ornamental purposes.</div>
+                <button class="eg-toggle" onclick="egToggle('def50-5',this)">Show more</button>
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+
+    
+    <div class="px-3 pt-3 pb-1 border-top" style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.7px;color:#5a6e82">Extraction Rules</div>
+    <div class="table-responsive">
+      <table class="table table-sm table-hover mb-0 sh-table">
+        <thead>
+          <tr>
+            <th style="width:70px">F-Code</th>
+            <th>Subtype</th>
+            <th class="th-10k">1:10k Rules</th>
+            <th class="th-50k">1:50k Rules</th>
+          </tr>
+        </thead>
+        <tbody>
+          
+          
+          <tr>
+            <td><code class="fcode">AK030</code></td>
+            <td class="font-monospace" style="font-size:12px">AmusementParkAttractionPoint</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-1">Point: L &lt; 150 meters, W &lt; 150 meter</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-1',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-1">Point: Collect the center of the perimeter of a single amusement park attraction, including its associated supporting structures (such as poles and girders).</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-1',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AL030</code></td>
+            <td class="font-monospace" style="font-size:12px">CemeteryPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-3">Delineate the perimeter of the cemetery at ground level, including the surface that is bounded by other features such as fence or road segments.</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-3',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-3">Point: L &lt; 150 meters, W &lt; 150 meter</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-3',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-3">Point: Collect the center point of perimeter of the cemetery, including bounding features such as fences or roads, at ground level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-3',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AL130</code></td>
+            <td class="font-monospace" style="font-size:12px">MonumentPoint</td>
+            <td class="eg-cell">
+              
+                <div class="eg-text" id="eg10-4">Delineate/place point at the center of the perimeter of the monument in the plane of greatest horizontal extent.</div>
+                <button class="eg-toggle" onclick="egToggle('eg10-4',this)">Show more</button>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-4">Collect only the significant structure, statue, or other physical marker that are widely recognized due to their historical, cultural, or societal impact.</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-4',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-4">Point: Collect the center of the perimeter of the monument in the plane of greatest horizontal extent.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-4',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+          
+          <tr>
+            <td><code class="fcode">AK120</code></td>
+            <td class="font-monospace" style="font-size:12px">ParkPoint</td>
+            <td class="eg-cell">
+              
+                <span class="eg-missing">Not in 1:10k</span>
+              
+            </td>
+            <td class="eg-cell">
+              
+                
+                  <div class="eg-cap">Capture conditions</div>
+                  <div class="eg-text" id="cap50-5">Point: L &lt; 150 meters, W &lt; 150 meter</div>
+                  <button class="eg-toggle" onclick="egToggle('cap50-5',this)">Show more</button>
+                
+                
+                  <div class="eg-cap mt-1">Extraction guide</div>
+                  <div class="eg-text" id="eg50-5">Point: Collect the center point of perimeter, including bounding features such as fences or roads, at ground level.</div>
+                  <button class="eg-toggle" onclick="egToggle('eg50-5',this)">Show more</button>
+                
+              
+            </td>
+          </tr>
+          
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+
+  
+  
 
   
   
@@ -315,6 +543,12 @@
 </div>
 
 <script>
+function egToggle(id, btn) {
+  const el = document.getElementById(id);
+  const expanded = el.classList.toggle('expanded');
+  btn.textContent = expanded ? 'Show less' : 'Show more';
+}
+
 function domFilter(btn, status) {
   const wrap = btn.closest('.dom-filter');
   wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));
