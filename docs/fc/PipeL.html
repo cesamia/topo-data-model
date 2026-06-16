@@ -58,7 +58,7 @@
   
   <div class="d-flex align-items-center gap-2 mb-1">
     <h4 class="mb-0 fw-bold">PipeL</h4>
-    <span class="badge-sh badge-Modified fs-sm">MOD</span>
+    
   </div>
 
   
@@ -154,9 +154,11 @@ function domFilter(btn, status) {
                     (item.canonical === ACTIVE_FC ? ' fc-item-active' : '');
       a.dataset.name  = item.name;
       a.dataset.list  = item.list;
-      a.dataset.badge = item.badge;
-      a.innerHTML = `<span class="badge-sh badge-${item.badge} flex-shrink-0">${BADGE_LABELS[item.badge] || item.badge}</span>` +
-                    `<span class="text-truncate" style="font-size:12.5px">${item.display}</span>`;
+      if (item.badge) a.dataset.badge = item.badge;
+      const badgeHtml = item.badge
+        ? `<span class="badge-sh badge-${item.badge} flex-shrink-0">${BADGE_LABELS[item.badge] || item.badge}</span>`
+        : `<span style="width:40px;flex-shrink:0"></span>`;
+      a.innerHTML = badgeHtml + `<span class="text-truncate" style="font-size:12.5px">${item.display}</span>`;
       frag.appendChild(a);
     });
     nav.appendChild(frag);

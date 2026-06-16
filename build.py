@@ -44,14 +44,15 @@ def format_date(d: str | None) -> str:
     return d.replace(" 00:00:00", "")
 
 
-def badge_label(badge: str) -> str:
+def badge_label(badge: str | None) -> str:
     return {
         "Modified": "MOD",
         "Added":    "ADD",
         "Removed":  "REM",
         "Deleted":  "DEL",
         "Mapped":   "MTCH",
-    }.get(badge, "RET")
+        "Retained": "RET",
+    }.get(badge or "", "")
 
 
 # ── Queries ───────────────────────────────────────────────────────────────────

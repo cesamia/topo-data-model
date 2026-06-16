@@ -16,7 +16,7 @@
   {# ── FC header ── #}
   <div class="d-flex align-items-center gap-2 mb-1">
     <h4 class="mb-0 fw-bold">{{ fc.canonical_name }}</h4>
-    <span class="badge-sh badge-{{ fc.badge }} fs-sm">{{ fc.badge | badge_label }}</span>
+    {% if fc.badge %}<span class="badge-sh badge-{{ fc.badge }} fs-sm">{{ fc.badge | badge_label }}</span>{% endif %}
   </div>
 
   {# Lineage — which 10k / 50k FCs map to this HDM FC #}

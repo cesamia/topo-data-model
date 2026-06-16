@@ -74,7 +74,7 @@
         </div>
         <div class="col-6 col-sm-4">
           <div class="card text-center border-0 py-2" style="background:#e8f0fd">
-            <div class="fs-4 fw-bold" style="color:#2563a8">76</div>
+            <div class="fs-4 fw-bold" style="color:#2563a8">63</div>
             <div class="text-muted" style="font-size:11px">Modified</div>
           </div>
         </div>
@@ -121,9 +121,11 @@
                     (item.canonical === ACTIVE_FC ? ' fc-item-active' : '');
       a.dataset.name  = item.name;
       a.dataset.list  = item.list;
-      a.dataset.badge = item.badge;
-      a.innerHTML = `<span class="badge-sh badge-${item.badge} flex-shrink-0">${BADGE_LABELS[item.badge] || item.badge}</span>` +
-                    `<span class="text-truncate" style="font-size:12.5px">${item.display}</span>`;
+      if (item.badge) a.dataset.badge = item.badge;
+      const badgeHtml = item.badge
+        ? `<span class="badge-sh badge-${item.badge} flex-shrink-0">${BADGE_LABELS[item.badge] || item.badge}</span>`
+        : `<span style="width:40px;flex-shrink:0"></span>`;
+      a.innerHTML = badgeHtml + `<span class="text-truncate" style="font-size:12.5px">${item.display}</span>`;
       frag.appendChild(a);
     });
     nav.appendChild(frag);

@@ -51,6 +51,20 @@ BADGE_CORRECTIONS = {
     # Retained → Modified: ** subtype renames in changelog
     "LiftL":    "Modified",
     "LandfrmP": "Modified",
+    # Badge cleared — Modified in DB but no changelog evidence; status pending review
+    "BndvoidA": "",
+    "CulvertC": "",
+    "CoastL":   "",
+    "DangerL":  "",
+    "EmbankA":  "",
+    "FerryL":   "",
+    "OrchardA": "",
+    "PierA":    "",
+    "PipeL":    "",
+    "PowerL":   "",
+    "SeastrtA": "",
+    "TlmutilP": "",
+    "TreatA":   "",
 }
 
 # ── Old stubs to remove once their 10k entries are re-pointed ────────────────
