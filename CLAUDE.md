@@ -83,7 +83,7 @@ Always run scripts from the repo root: `python apply_changelog.py` then `python 
 | `Retained` | RET | FC carried over from source unchanged |
 | `Modified` | MOD | FC exists in source, changed in HDM |
 | `Added` | ADD | New FC in HDM, not in source |
-| `Removed` | REM | FC was in HDM, now removed |
+| `Removed` | DEL | FC was in HDM, now removed |
 | `""` (empty) | *(none)* | Status not yet confirmed |
 | `Mapped` | MTCH | 10k/50k FC matched to an HDM FC |
 | `Deleted` | DEL | 10k/50k FC has no HDM equivalent |

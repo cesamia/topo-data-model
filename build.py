@@ -48,7 +48,7 @@ def badge_label(badge: str | None) -> str:
     return {
         "Modified": "MOD",
         "Added":    "ADD",
-        "Removed":  "REM",
+        "Removed":  "DEL",
         "Deleted":  "DEL",
         "Mapped":   "MTCH",
         "Retained": "RET",
