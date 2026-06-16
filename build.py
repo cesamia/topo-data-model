@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Build static site from db/schemas.db → docs/"""
+import json
 import shutil
 import sqlite3
 from pathlib import Path
@@ -157,6 +158,24 @@ def get_fc_detail(conn: sqlite3.Connection, fc_row: sqlite3.Row) -> dict:
     }
 
 
+# ── Nav data ──────────────────────────────────────────────────────────────────
+
+def write_nav_data(sidebar_items: list[dict], out_dir: Path) -> None:
+    items = [
+        {
+            "name":      item["display_name"].lower(),
+            "display":   item["display_name"],
+            "canonical": item["canonical_name"],
+            "badge":     item["display_badge"],
+            "list":      item["scale"],
+        }
+        for item in sidebar_items
+    ]
+    js = "const NAV_DATA = " + json.dumps(items, ensure_ascii=False) + ";\n"
+    (out_dir / "static" / "nav-data.js").write_text(js, encoding="utf-8")
+    print("Built static/nav-data.js")
+
+
 # ── Build ─────────────────────────────────────────────────────────────────────
 
 def main():
@@ -173,6 +192,7 @@ def main():
     (OUT_DIR / "static").mkdir(parents=True, exist_ok=True)
 
     sidebar_items = get_sidebar_items(conn)
+    write_nav_data(sidebar_items, OUT_DIR)
 
     all_badges = conn.execute("SELECT badge FROM feature_classes").fetchall()
     counts = {
@@ -186,7 +206,7 @@ def main():
     # index.html
     tmpl = env.get_template("index.html")
     (OUT_DIR / "index.html").write_text(
-        tmpl.render(sidebar_items=sidebar_items, counts=counts, active=None, static_prefix=""),
+        tmpl.render(counts=counts, active=None, static_prefix=""),
         encoding="utf-8",
     )
     print("Built index.html")
@@ -200,7 +220,7 @@ def main():
         fc = get_fc_detail(conn, fc_row)
         safe = fc["canonical_name"].replace("/", "_")
         html = detail_tmpl.render(
-            fc=fc, sidebar_items=sidebar_items,
+            fc=fc,
             active=fc["canonical_name"],
             static_prefix="../",
         )

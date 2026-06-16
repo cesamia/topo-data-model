@@ -15,7 +15,7 @@
     Schema Harmonization
   </a>
   <span class="text-secondary me-2">|</span>
-  <span class="sh-sub">10k / 50k Topographic Datasets</span>
+  <span class="sh-sub">1:10k and 1:50k Topographic Datasets</span>
   <span class="badge bg-secondary ms-auto fw-normal">Documentation</span>
 </header>
 
@@ -46,19 +46,8 @@
       <span class="leg-src badge-sh badge-Deleted  sb-badge-btn d-none" data-badge="Deleted" onclick="toggleBadge('Deleted',this)" title="Deleted from HDM">DEL</span>
       <span id="badgeReset" class="d-none ms-auto sb-reset" onclick="resetBadge()" title="Clear filter">✕</span>
     </div>
-    <!-- FC list -->
-    <nav id="fcNav" class="fc-list overflow-y-auto flex-grow-1" style="visibility:hidden">
-      {% for item in sidebar_items %}
-      <a href="{{ static_prefix }}fc/{{ item.canonical_name }}.html"
-         class="fc-item px-2 py-1 text-decoration-none text-dark{% if active == item.canonical_name %} fc-item-active{% endif %}"
-         data-name="{{ item.display_name.lower() }}"
-         data-list="{{ item.scale }}"
-         data-badge="{{ item.display_badge }}">
-        <span class="badge-sh badge-{{ item.display_badge }} flex-shrink-0">{{ item.display_badge | badge_label }}</span>
-        <span class="text-truncate" style="font-size:12.5px">{{ item.display_name }}</span>
-      </a>
-      {% endfor %}
-    </nav>
+    <!-- FC list — populated by nav-data.js -->
+    <nav id="fcNav" class="fc-list overflow-y-auto flex-grow-1" style="visibility:hidden"></nav>
   </aside>
 
   <!-- Main -->
@@ -68,6 +57,30 @@
 </div>
 
 <script>
+  const FC_PREFIX   = "{{ static_prefix }}fc/";
+  const ACTIVE_FC   = "{{ active or '' }}";
+  const BADGE_LABELS = {Modified:"MOD",Retained:"RET",Added:"ADD",Deleted:"DEL",Mapped:"MAP"};
+</script>
+<script src="{{ static_prefix }}static/nav-data.js"></script>
+<script>
+  function buildNav() {
+    const nav = document.getElementById('fcNav');
+    const frag = document.createDocumentFragment();
+    NAV_DATA.forEach(item => {
+      const a = document.createElement('a');
+      a.href = FC_PREFIX + item.canonical + '.html';
+      a.className = 'fc-item px-2 py-1 text-decoration-none text-dark' +
+                    (item.canonical === ACTIVE_FC ? ' fc-item-active' : '');
+      a.dataset.name  = item.name;
+      a.dataset.list  = item.list;
+      a.dataset.badge = item.badge;
+      a.innerHTML = `<span class="badge-sh badge-${item.badge} flex-shrink-0">${BADGE_LABELS[item.badge] || item.badge}</span>` +
+                    `<span class="text-truncate" style="font-size:12.5px">${item.display}</span>`;
+      frag.appendChild(a);
+    });
+    nav.appendChild(frag);
+  }
+
   let activeScale = sessionStorage.getItem('sb_scale') || 'hdm';
   let activeBadge = sessionStorage.getItem('sb_badge') || null;
 
@@ -126,6 +139,7 @@
 
   // Restore state on every page load
   (function () {
+    buildNav();
     const isHdm = activeScale === 'hdm';
     document.querySelectorAll('[data-scale]').forEach(b =>
       b.classList.toggle('active', b.dataset.scale === activeScale));
