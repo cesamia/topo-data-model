@@ -70,6 +70,19 @@ BADGE_CORRECTIONS = {
 # ── Old stubs to remove once their 10k entries are re-pointed ────────────────
 REMOVE_STUBS = ["Road_A", "RoadCasement_L"]
 
+# ── Changelog name corrections (Excel name → DB canonical name/s) ─────────────
+# List value = one entry applied to multiple FCs; string value = simple rename
+NAME_CORRECTIONS = {
+    "AerofacA/AerofacP": ["AerofacA", "AerofacP"],
+    "Embank_A":           "EmbankA",
+    "Embank_L":           "EmbankL",
+    "GoundTxt":           "GroundTxt",
+    "Landfrm2A":          "Lndfrm2A",
+    "WatercrsA":          "WatrcrsA",
+    "WatercrsL":          "WatrcrsL",
+    "Wellspr_P":          "WellsprP",
+}
+
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
 
@@ -133,19 +146,27 @@ def import_changelog(conn):
 
         date_str = date.strftime("%Y-%m-%d") if isinstance(date, datetime) else (str(date) if date else "")
 
-        fid = get_fc_id(conn, clean)
-        if fid is None:
-            skipped += 1
-            continue
+        # Resolve name correction → may expand to multiple targets
+        corrected = NAME_CORRECTIONS.get(clean, clean)
+        targets = corrected if isinstance(corrected, list) else [corrected]
 
-        i = order.get(fid, 0)
-        conn.execute(
-            "INSERT INTO changelog(fc_id,change_text,source,change_date,version,change_type,sort_order)"
-            " VALUES(?,?,?,?,?,?,?)",
-            (fid, change, source, date_str, version, change_type, i),
-        )
-        order[fid] = i + 1
-        inserted += 1
+        matched = False
+        for target in targets:
+            fid = get_fc_id(conn, target)
+            if fid is None:
+                continue
+            matched = True
+            i = order.get(fid, 0)
+            conn.execute(
+                "INSERT INTO changelog(fc_id,change_text,source,change_date,version,change_type,sort_order)"
+                " VALUES(?,?,?,?,?,?,?)",
+                (fid, change, source, date_str, version, change_type, i),
+            )
+            order[fid] = i + 1
+            inserted += 1
+
+        if not matched:
+            skipped += 1
 
     conn.commit()
     print(f"  {inserted} entries imported, {skipped} skipped (FC not in DB)")
