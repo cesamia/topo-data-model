@@ -42,6 +42,7 @@
       <span class="leg-hdm badge-sh badge-Retained sb-badge-btn" data-badge="Retained" onclick="toggleBadge('Retained',this)" title="Retained">RET</span>
       <span class="leg-hdm badge-sh badge-Modified sb-badge-btn" data-badge="Modified" onclick="toggleBadge('Modified',this)" title="Modified">MOD</span>
       <span class="leg-hdm badge-sh badge-Added    sb-badge-btn" data-badge="Added"    onclick="toggleBadge('Added',this)"    title="Added">ADD</span>
+      <span class="leg-hdm badge-sh badge-Removed  sb-badge-btn" data-badge="Removed"  onclick="toggleBadge('Removed',this)"  title="Removed from HDM">DEL</span>
       <span class="leg-src badge-sh badge-Mapped   sb-badge-btn d-none" data-badge="Mapped"  onclick="toggleBadge('Mapped',this)"  title="Matched to HDM">MTCH</span>
       <span class="leg-src badge-sh badge-Dropped  sb-badge-btn d-none" data-badge="Dropped" onclick="toggleBadge('Dropped',this)" title="Dropped — no HDM equivalent">DRP</span>
       <span id="badgeReset" class="d-none ms-auto sb-reset" onclick="resetBadge()" title="Clear filter">✕</span>
@@ -241,6 +242,13 @@ function domFilter(btn, status) {
 
   let activeScale = sessionStorage.getItem('sb_scale') || 'hdm';
   let activeBadge = sessionStorage.getItem('sb_badge') || null;
+  // Discard stale badge if it doesn't belong to the current scale
+  const HDM_BADGES = new Set(['Retained','Modified','Added','Removed']);
+  const SRC_BADGES = new Set(['Mapped','Dropped']);
+  if (activeBadge) {
+    const validSet = activeScale === 'hdm' ? HDM_BADGES : SRC_BADGES;
+    if (!validSet.has(activeBadge)) { activeBadge = null; sessionStorage.removeItem('sb_badge'); }
+  }
 
   function setScale(scale, btn) {
     activeScale = scale;
