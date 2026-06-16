@@ -34,7 +34,24 @@ NEW_HDM_FCS = [
 ]
 
 # FCs removed from HDM — strip HDM membership, set badge Removed
-REMOVED_FROM_HDM = ["FortA"]
+REMOVED_FROM_HDM = ["FortA", "PolbndL"]
+
+# FCs whose badge needs explicit correction (schema/domain changes not auto-detected)
+BADGE_CORRECTIONS = {
+    "PolbndP":  "Modified",  # field renames + deletions in changelog
+    "BuildL":   "Modified",  # domain will not be migrated (v6 changelog)
+    # Retained → Modified: have v4 changelog entries (default value / field changes)
+    "BuiltupA": "Modified",
+    "DamA":     "Modified",
+    "DamC":     "Modified",
+    "FortP":    "Modified",
+    "LockA":    "Modified",
+    "RouteP":   "Modified",
+    "TunnelC":  "Modified",
+    # Retained → Modified: ** subtype renames in changelog
+    "LiftL":    "Modified",
+    "LandfrmP": "Modified",
+}
 
 # ── Old stubs to remove once their 10k entries are re-pointed ────────────────
 REMOVE_STUBS = ["Road_A", "RoadCasement_L"]
@@ -202,6 +219,14 @@ if __name__ == "__main__":
             conn.execute("DELETE FROM fc_membership WHERE fc_id=? AND scale='hdm'", (fid,))
             conn.execute("UPDATE feature_classes SET badge='Removed' WHERE id=?", (fid,))
             print(f"  {name}: removed from HDM, badge -> Removed")
+    conn.commit()
+
+    print("\n=== 6. Applying badge corrections ===")
+    for name, badge in BADGE_CORRECTIONS.items():
+        fid = get_fc_id(conn, name)
+        if fid:
+            conn.execute("UPDATE feature_classes SET badge=? WHERE id=?", (badge, fid))
+            print(f"  {name}: badge -> {badge}")
     conn.commit()
 
     print("\n=== Summary ===")
