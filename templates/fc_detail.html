@@ -101,9 +101,9 @@
   </script>
 
   {# ── Subtypes ── #}
-  {% if fc.subtypes %}
   <div class="card mb-3 shadow-sm">
     <div class="card-header sh-section-header">Subtypes &amp; Mapping Actions</div>
+    {% if fc.subtypes %}
     <div class="table-responsive">
       <table class="table table-sm table-hover mb-0 sh-table">
         <thead>
@@ -128,8 +128,10 @@
         </tbody>
       </table>
     </div>
+    {% else %}
+    <div class="card-body text-muted" style="font-size:12.5px">No subtypes listed.</div>
+    {% endif %}
   </div>
-  {% endif %}
 
   {# ── Domains ── #}
   {% for dom in fc.domains %}
