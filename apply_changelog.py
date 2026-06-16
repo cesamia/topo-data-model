@@ -73,6 +73,7 @@ REMOVE_STUBS = ["Road_A", "RoadCasement_L"]
 # ── Changelog name corrections (Excel name → DB canonical name/s) ─────────────
 # List value = one entry applied to multiple FCs; string value = simple rename
 NAME_CORRECTIONS = {
+    # Typos / alternate spellings in the Excel
     "AerofacA/AerofacP": ["AerofacA", "AerofacP"],
     "Embank_A":           "EmbankA",
     "Embank_L":           "EmbankL",
@@ -81,6 +82,13 @@ NAME_CORRECTIONS = {
     "WatercrsA":          "WatrcrsA",
     "WatercrsL":          "WatrcrsL",
     "Wellspr_P":          "WellsprP",
+    # 10k source FCs not in DB → route changelog to their HDM target
+    "AdministrativeBoundary_A": "PolbndA",
+    "AdministrativeBoundary_L": "PolbndL",
+    "Cemetery_A":               "LandmrkA",
+    "Cloud_A":                  "BndvoidA",
+    "CoralReef_P":              "DangerP",
+    "LakePond_A":               "LakeresA",
 }
 
 

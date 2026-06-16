@@ -99,6 +99,9 @@
 .cl-domain   { border-left-color: #7c3aed; }
 .cl-fcdelete { border-left-color: #c0392b; }
 .cl-mapping  { border-left-color: #0e7490; }
+.cl-delete   { border-left-color: #c0392b; }
+.cl-add      { border-left-color: #1e7e48; }
+.cl-mod      { border-left-color: #2563a8; }
 
 /* ── Badge filter buttons ───────────────────────────────────── */
 .sb-badge-btn {

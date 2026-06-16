@@ -145,7 +145,7 @@
     <div class="card-header sh-section-header">Changelog</div>
     <div class="card-body p-0">
       {% for cl in fc.changelog %}
-      {% set meta = cl.change_type | cl_meta %}
+      {% set meta = cl.change_type | cl_meta(cl.change_text) %}
       <div class="cl-entry d-flex gap-3 px-3 py-2 border-bottom">
         <span class="cl-date text-muted">{{ cl.change_date | format_date }}</span>
         <div class="cl-change {{ meta.cls }} flex-grow-1">

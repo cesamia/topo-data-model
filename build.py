@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build static site from db/schemas.db → docs/"""
 import json
+import re
 import shutil
 import sqlite3
 from pathlib import Path
@@ -30,12 +31,20 @@ def action_chip_class(action: str | None) -> str:
     return "ac-other"
 
 
-def cl_meta(change_type: str | None) -> dict:
-    return {
-        "***": {"label": "domain change",  "cls": "cl-domain"},
-        "**":  {"label": "fc deleted",     "cls": "cl-fcdelete"},
-        "*":   {"label": "10k mapping",    "cls": "cl-mapping"},
-    }.get(change_type or "", {"label": "schema change", "cls": "cl-schema"})
+_DEL_PAT = re.compile(r'\b(?:deleted|dropped|removed|unmapped|not collected|unassigned)\b')
+_ADD_PAT = re.compile(r'\b(?:added|created|mapped to|assigned)\b')
+
+def cl_meta(change_type: str | None, change_text: str = "") -> dict:
+    t = (change_text or "").lower()
+    if change_type == "*":
+        return {"label": "MTCH", "cls": "cl-mapping"}
+    if change_type == "***":
+        return {"label": "MOD",  "cls": "cl-domain"}
+    if _DEL_PAT.search(t):
+        return {"label": "DEL", "cls": "cl-delete"}
+    if _ADD_PAT.search(t):
+        return {"label": "ADD", "cls": "cl-add"}
+    return {"label": "MOD", "cls": "cl-mod"}
 
 
 def format_date(d: str | None) -> str:
