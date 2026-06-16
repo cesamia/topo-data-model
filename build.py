@@ -205,13 +205,15 @@ def main():
     sidebar_items = get_sidebar_items(conn)
     write_nav_data(sidebar_items, OUT_DIR)
 
-    all_badges = conn.execute("SELECT badge FROM feature_classes").fetchall()
+    def scale_count(scale):
+        return conn.execute(
+            "SELECT COUNT(*) FROM fc_membership WHERE scale=?", (scale,)
+        ).fetchone()[0]
+
     counts = {
-        "total":    len(all_badges),
-        "retained": sum(1 for r in all_badges if r["badge"] == "Retained"),
-        "modified": sum(1 for r in all_badges if r["badge"] == "Modified"),
-        "removed":  sum(1 for r in all_badges if r["badge"] == "Removed"),
-        "added":    sum(1 for r in all_badges if r["badge"] == "Added"),
+        "hdm": scale_count("hdm"),
+        "src_10k": scale_count("10k"),
+        "src_50k": scale_count("50k"),
     }
 
     # index.html

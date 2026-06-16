@@ -2,45 +2,53 @@
 {% block title %}Overview — Schema Harmonization{% endblock %}
 
 {% block content %}
-<div class="d-flex justify-content-center align-items-center h-100">
-  <div class="card shadow-sm" style="max-width:520px;width:100%">
+<div class="d-flex justify-content-center align-items-start pt-4 h-100">
+  <div class="card shadow-sm" style="max-width:560px;width:100%">
     <div class="card-body p-4">
       <h4 class="fw-bold text-dark mb-1">Schema Harmonization</h4>
-      <p class="text-muted mb-4" style="font-size:13px">10k / 50k Topographic Dataset Comparison</p>
+      <p class="text-muted mb-4" style="font-size:13px">1:10k and 1:50k Topographic Datasets</p>
 
+      <!-- FC count cards -->
       <div class="row g-2 mb-4">
-        <div class="col-6 col-sm-4">
-          <div class="card text-center border-0 bg-light py-2">
-            <div class="fs-4 fw-bold">{{ counts.total }}</div>
-            <div class="text-muted" style="font-size:11px">Feature Classes</div>
+        <div class="col-4">
+          <div class="card text-center border-0 py-3" style="background:#e8f0fd">
+            <div class="fs-3 fw-bold" style="color:#2563a8">{{ counts.hdm }}</div>
+            <div class="text-muted mt-1" style="font-size:11px;letter-spacing:.4px">HDM FCs</div>
           </div>
         </div>
-        <div class="col-6 col-sm-4">
-          <div class="card text-center border-0 py-2" style="background:#e8f5ee">
-            <div class="fs-4 fw-bold text-success">{{ counts.retained }}</div>
-            <div class="text-muted" style="font-size:11px">Retained</div>
+        <div class="col-4">
+          <div class="card text-center border-0 py-3" style="background:#edfff5">
+            <div class="fs-3 fw-bold" style="color:#1a6e3a">{{ counts.src_10k }}</div>
+            <div class="text-muted mt-1" style="font-size:11px;letter-spacing:.4px">10k FCs</div>
           </div>
         </div>
-        <div class="col-6 col-sm-4">
-          <div class="card text-center border-0 py-2" style="background:#e8f0fd">
-            <div class="fs-4 fw-bold" style="color:#2563a8">{{ counts.modified }}</div>
-            <div class="text-muted" style="font-size:11px">Modified</div>
+        <div class="col-4">
+          <div class="card text-center border-0 py-3" style="background:#edf4ff">
+            <div class="fs-3 fw-bold" style="color:#1a4a8e">{{ counts.src_50k }}</div>
+            <div class="text-muted mt-1" style="font-size:11px;letter-spacing:.4px">50k FCs</div>
           </div>
         </div>
-        <div class="col-6 col-sm-4">
-          <div class="card text-center border-0 py-2" style="background:#fde8e8">
-            <div class="fs-4 fw-bold text-danger">{{ counts.removed }}</div>
-            <div class="text-muted" style="font-size:11px">Removed</div>
-          </div>
-        </div>
-        {% if counts.added %}
-        <div class="col-6 col-sm-4">
-          <div class="card text-center border-0 py-2" style="background:#f0fae8">
-            <div class="fs-4 fw-bold" style="color:#4a7c1e">{{ counts.added }}</div>
-            <div class="text-muted" style="font-size:11px">Added</div>
-          </div>
-        </div>
-        {% endif %}
+      </div>
+
+      <!-- Source data models -->
+      <div class="mb-4">
+        <div class="text-uppercase fw-bold text-secondary mb-2" style="font-size:10px;letter-spacing:.8px">Source Data Models</div>
+        <table class="table table-sm mb-0" style="font-size:12.5px">
+          <tbody>
+            <tr>
+              <td class="text-muted pe-3" style="white-space:nowrap;width:1%">1:10k</td>
+              <td><code>NAMRIA_TLM_2014.08.20_update.gdb</code></td>
+            </tr>
+            <tr>
+              <td class="text-muted pe-3" style="white-space:nowrap">1:50k</td>
+              <td><code>MapSheetZone51.gdb</code></td>
+            </tr>
+            <tr class="border-top">
+              <td class="text-muted pe-3" style="white-space:nowrap">HDM Reference</td>
+              <td><code>VMap2TLM_10.8.gdb</code></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
       <p class="text-muted mb-0" style="font-size:12.5px">
