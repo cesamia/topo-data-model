@@ -278,6 +278,15 @@ if __name__ == "__main__":
     print(f"  {r.rowcount} FCs updated")
     conn.commit()
 
+    print("\n=== 8. Setting blank HDM badges to Modified ===")
+    r = conn.execute("""
+        UPDATE feature_classes SET badge='Modified'
+        WHERE (badge='' OR badge IS NULL)
+          AND id IN (SELECT fc_id FROM fc_membership WHERE scale='hdm')
+    """)
+    print(f"  {r.rowcount} FCs updated")
+    conn.commit()
+
     print("\n=== Summary ===")
     for scale in ("hdm", "10k", "50k"):
         n = conn.execute("SELECT COUNT(*) FROM fc_membership WHERE scale=?", (scale,)).fetchone()[0]
