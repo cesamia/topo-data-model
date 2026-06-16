@@ -39,8 +39,6 @@ REMOVED_FROM_HDM = ["FortA", "PolbndL", "PolbndA", "PolbndP"]
 # FCs whose badge needs explicit correction (schema/domain changes not auto-detected)
 BADGE_CORRECTIONS = {
     "BuildL":   "Modified",  # domain will not be migrated (v6 changelog)
-    "PolbndA":  "",          # removed from HDM but model still in progress
-    "PolbndP":  "",          # removed from HDM but model still in progress
     # Retained → Modified: have v4 changelog entries (default value / field changes)
     "BuiltupA": "Modified",
     "DamA":     "Modified",
@@ -256,13 +254,12 @@ if __name__ == "__main__":
     print("\n=== 4. Removing orphaned stubs ===")
     remove_stubs(conn)
 
-    print("\n=== 5. Removing FCs deleted from HDM ===")
+    print("\n=== 5. Removing FCs from HDM membership ===")
     for name in REMOVED_FROM_HDM:
         fid = get_fc_id(conn, name)
         if fid:
             conn.execute("DELETE FROM fc_membership WHERE fc_id=? AND scale='hdm'", (fid,))
-            conn.execute("UPDATE feature_classes SET badge='Removed' WHERE id=?", (fid,))
-            print(f"  {name}: removed from HDM, badge -> Removed")
+            print(f"  {name}: removed from HDM membership")
     conn.commit()
 
     print("\n=== 6. Applying badge corrections ===")
