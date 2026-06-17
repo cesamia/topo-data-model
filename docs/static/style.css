@@ -122,7 +122,7 @@
 .sb-reset:hover { color: #c0392b; background: #fde8e8; }
 
 /* ── Extraction Rules ───────────────────────────────────────── */
-.eg-cell { font-size: 12px; line-height: 1.55; color: #3a4c60; }
+.eg-cell { font-size: 12px; line-height: 1.55; color: #3a4c60; word-wrap: break-word; }
 .eg-text {
   display: -webkit-box;
   -webkit-line-clamp: 3;
