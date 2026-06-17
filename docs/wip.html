@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>PumpingP — Schema Harmonization</title>
+  <title>Work in Progress — Schema Harmonization</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="../static/style.css"/>
+  <link rel="stylesheet" href="static/style.css"/>
 </head>
 <body class="d-flex flex-column vh-100 overflow-hidden bg-light">
 
 <!-- Header -->
 <header class="sh-header d-flex align-items-center px-3 flex-shrink-0">
-  <a href="../index.html" class="text-white text-decoration-none fw-semibold me-2">
+  <a href="index.html" class="text-white text-decoration-none fw-semibold me-2">
     Schema Harmonization
   </a>
   <span class="text-secondary me-2">|</span>
@@ -52,219 +52,25 @@
   <!-- Main -->
   <main class="flex-grow-1 overflow-y-auto p-3">
     
-<div class="detail-wrap mx-auto" style="max-width:1100px">
-
-  
-  <div class="d-flex align-items-center gap-2 mb-1">
-    <h4 id="fc-heading" class="mb-0 fw-bold">PumpingP</h4>
-    <span id="fc-heading-badge"></span>
+<div class="detail-wrap mx-auto d-flex flex-column align-items-center justify-content-center"
+     style="max-width:1100px; min-height:60vh">
+  <div class="text-center">
+    <div style="font-size:48px; color:#d0d8e4; margin-bottom:16px">&#9881;</div>
+    <h5 class="fw-bold mb-1" style="color:#1a3a5c">Work in Progress</h5>
+    <p class="text-muted mb-4" style="font-size:13.5px">This page is under development and will be available soon.</p>
+    <a href="javascript:history.back()" class="btn btn-sm btn-outline-secondary">Go back</a>
   </div>
-  <div id="fc-lineage" class="d-flex align-items-center flex-wrap gap-1 mb-3"></div>
-
-  <script>
-  const FC_HDM_NAME    = "PumpingP";
-  const FC_HDM_BADGE   = "";
-  const FC_IN_HDM      = false;
-  const FC_SOURCES_10K = [];
-  const FC_SOURCES_50K = ["PumpingP"];
-
-  function updateFcHeader(scale) {
-    const hdg = document.getElementById('fc-heading');
-    const bdg = document.getElementById('fc-heading-badge');
-    const lin = document.getElementById('fc-lineage');
-    if (!hdg) return;
-
-    // Heading name
-    let headName = FC_HDM_NAME;
-    if (scale === '10k' && FC_SOURCES_10K.length) headName = FC_SOURCES_10K[0];
-    else if (scale === '50k' && FC_SOURCES_50K.length) headName = FC_SOURCES_50K[0];
-    hdg.textContent = headName;
-
-    // Badge in heading — only on HDM scale
-    const bl = (typeof BADGE_LABELS !== 'undefined' && BADGE_LABELS[FC_HDM_BADGE]) || '';
-    bdg.innerHTML = (scale === 'hdm' && FC_HDM_BADGE && bl)
-      ? `<span class="badge-sh badge-${FC_HDM_BADGE}">${bl}</span>`
-      : '';
-
-    // Source badge (MTCH vs DRP) for 10k/50k entries in subheading
-    const srcBadge = FC_IN_HDM ? 'Mapped' : 'Dropped';
-    const srcLbl   = FC_IN_HDM ? 'MTCH'   : 'DRP';
-
-    function srcBadgeHtml() {
-      return `<span class="badge-sh badge-${srcBadge}" style="width:auto;padding:1px 5px">${srcLbl}</span>`;
-    }
-    function hdmBadgeHtml() {
-      return (FC_HDM_BADGE && bl)
-        ? `<span class="badge-sh badge-${FC_HDM_BADGE}" style="width:auto;padding:1px 5px">${bl}</span>`
-        : '';
-    }
-
-    function chips10k(withBadge) {
-      if (!FC_SOURCES_10K.length) return null;
-      const chips = FC_SOURCES_10K.map(n => `<span class="alias-chip chip-10k">${n}</span>`).join(' ');
-      return `<span class="alias-lbl">10k</span>${chips}${withBadge ? ' ' + srcBadgeHtml() : ''}`;
-    }
-    function chips50k(withBadge) {
-      if (!FC_SOURCES_50K.length) return null;
-      const chips = FC_SOURCES_50K.map(n => `<span class="alias-chip chip-50k">${n}</span>`).join(' ');
-      return `<span class="alias-lbl">50k</span>${chips}${withBadge ? ' ' + srcBadgeHtml() : ''}`;
-    }
-    function chipsHdm() {
-      return `<span class="alias-lbl">HDM</span><span class="alias-chip" style="background:#f0f0f5;border-color:#d0d0e0;color:#333;font-family:Consolas,monospace">${FC_HDM_NAME}</span> ${hdmBadgeHtml()}`;
-    }
-
-    const parts = [];
-    if (scale === 'hdm') {
-      // Subheading: source names only, no badges (badge is already in the heading)
-      const p10 = chips10k(false); if (p10) parts.push(p10);
-      const p50 = chips50k(false); if (p50) parts.push(p50);
-    } else if (scale === '10k') {
-      const p50 = chips50k(true); if (p50) parts.push(p50);
-      parts.push(chipsHdm());
-    } else {
-      const p10 = chips10k(true); if (p10) parts.push(p10);
-      parts.push(chipsHdm());
-    }
-
-    lin.innerHTML = parts.length
-      ? parts.join('<span class="text-muted mx-1">|</span>')
-      : '<span class="text-muted" style="font-size:12px">No source FC mapped.</span>';
-  }
-
-  // Run immediately for the parts that don't need BADGE_LABELS
-  (function () {
-    const _scale = sessionStorage.getItem('sb_scale') || 'hdm';
-    const hdg = document.getElementById('fc-heading');
-    if (hdg && _scale === '10k' && FC_SOURCES_10K.length) hdg.textContent = FC_SOURCES_10K[0];
-    else if (hdg && _scale === '50k' && FC_SOURCES_50K.length) hdg.textContent = FC_SOURCES_50K[0];
-    if (_scale !== 'hdm') document.getElementById('fc-heading-badge').innerHTML = '';
-  })();
-  </script>
-
-  
-  <div class="card mb-3 shadow-sm">
-    <div class="card-header sh-section-header">Subtypes &amp; Mapping Actions</div>
-    
-    <div class="table-responsive">
-      <table class="table table-sm table-hover mb-0 sh-table">
-        <thead>
-          <tr>
-            <th>F-Code</th>
-            <th>Subtype</th>
-            <th>HDM Action</th>
-            <th>Remarks</th>
-          </tr>
-        </thead>
-        <tbody>
-          
-          <tr>
-            <td><code class="fcode">AQ116</code></td>
-            <td class="font-monospace" style="font-size:12px">PumpingStationPoint</td>
-            <td><span class="ac ac-other">Dropped</span></td>
-            <td class="text-muted rem-td">
-              Redundant with Building_P Field BFC = Pumphouse.
-            </td>
-          </tr>
-          
-        </tbody>
-      </table>
-    </div>
-    
-  </div>
-
-  
-  
-  
-
-  
-  
-
-  
-  <div class="d-flex gap-3 mb-3">
-    <a href="../wip.html" class="fc-nav-btn fc-nav-fields">
-      <span class="fc-nav-label">Fields</span>
-      <span class="fc-nav-sub">Field definitions &amp; attributes</span>
-    </a>
-    <a href="../wip.html" class="fc-nav-btn fc-nav-domains">
-      <span class="fc-nav-label">Domains</span>
-      <span class="fc-nav-sub">Domain values &amp; mapping</span>
-    </a>
-  </div>
-
-  
-  
-  <div class="card mb-3 shadow-sm">
-    <div class="card-header sh-section-header">Changelog</div>
-    <div class="card-body p-0">
-      
-      
-      <div class="cl-entry d-flex gap-3 px-3 py-2 border-bottom">
-        <span class="cl-date text-muted">2026-01-06</span>
-        <div class="cl-change cl-domain flex-grow-1">
-          Deleted domain/s of deleted Feature Class (see deleted FC &amp; Domains)
-          <div class="cl-badge text-muted">
-            MOD
-             · Harmonization Agreements
-             · v1
-          </div>
-        </div>
-      </div>
-      
-      
-      <div class="cl-entry d-flex gap-3 px-3 py-2 border-bottom">
-        <span class="cl-date text-muted">2026-01-06</span>
-        <div class="cl-change cl-delete flex-grow-1">
-          Deleted feature class from 50k with 10k equivalent, but different container.
-          <div class="cl-badge text-muted">
-            DEL
-             · Harmonization Agreements
-             · v1
-          </div>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-  
-
 </div>
-
-<script>
-function egToggle(id, btn) {
-  const el = document.getElementById(id);
-  const expanded = el.classList.toggle('expanded');
-  btn.textContent = expanded ? 'Show less' : 'Show more';
-}
-
-// Hide "Show more" buttons where text isn't actually truncated
-document.addEventListener('DOMContentLoaded', function () {
-  document.querySelectorAll('.eg-toggle').forEach(btn => {
-    const id = btn.getAttribute('onclick').match(/'([^']+)'/)[1];
-    const el = document.getElementById(id);
-    if (el && el.scrollHeight <= el.clientHeight) btn.style.display = 'none';
-  });
-});
-
-function domFilter(btn, status) {
-  const wrap = btn.closest('.dom-filter');
-  wrap.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  const tbl = document.getElementById(wrap.dataset.table);
-  tbl.querySelectorAll('tbody tr').forEach(row => {
-    row.style.display = (status === 'All' || row.dataset.status === status) ? '' : 'none';
-  });
-}
-</script>
 
   </main>
 </div>
 
 <script>
-  const FC_PREFIX   = "../fc/";
-  const ACTIVE_FC   = "PumpingP";
+  const FC_PREFIX   = "fc/";
+  const ACTIVE_FC   = "";
   const BADGE_LABELS = {Modified:"MOD",Added:"ADD",Removed:"DEL",Mapped:"MTCH",Dropped:"DRP"};
 </script>
-<script src="../static/nav-data.js"></script>
+<script src="static/nav-data.js"></script>
 <script>
   function buildNav() {
     const nav = document.getElementById('fcNav');

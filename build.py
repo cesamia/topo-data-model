@@ -273,6 +273,14 @@ def main():
         (OUT_DIR / "fc" / f"{safe}.html").write_text(html, encoding="utf-8")
         print(f"  Built fc/{safe}.html")
 
+    # wip.html
+    wip_tmpl = env.get_template("wip.html")
+    (OUT_DIR / "wip.html").write_text(
+        wip_tmpl.render(active=None, static_prefix=""),
+        encoding="utf-8",
+    )
+    print("Built wip.html")
+
     # static assets
     shutil.copy(STATIC_DIR / "style.css", OUT_DIR / "static" / "style.css")
 
