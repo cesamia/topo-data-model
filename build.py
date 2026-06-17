@@ -282,7 +282,8 @@ def main():
     print("Built wip.html")
 
     # static assets
-    shutil.copy(STATIC_DIR / "style.css", OUT_DIR / "static" / "style.css")
+    shutil.copy(STATIC_DIR / "style.css",    OUT_DIR / "static" / "style.css")
+    shutil.copy(STATIC_DIR / "favicon.svg",  OUT_DIR / "static" / "favicon.svg")
 
     conn.close()
     print(f"\nDone - site in {OUT_DIR}/")
